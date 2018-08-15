@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/yhlong0/Access/issues"
   },
-  "homepage": "https://github.com/yhlong0/Access#readme"
+  "homepage": "https://github.com/yhlong0/Access#readme",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
 }
