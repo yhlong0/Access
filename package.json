@@ -1,0 +1,22 @@
+{
+  "name": "access",
+  "version": "1.0.0",
+  "description": "record access for users",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yhlong0/Access.git"
+  },
+  "keywords": [
+    "access"
+  ],
+  "author": "Hailong Yang",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yhlong0/Access/issues"
+  },
+  "homepage": "https://github.com/yhlong0/Access#readme"
+}
