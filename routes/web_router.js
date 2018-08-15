@@ -1,5 +1,6 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
+const userController = require('../controllers/user');
 
 /* Show API page. */
 router.get('/', function(req, res) {
@@ -7,10 +8,7 @@ router.get('/', function(req, res) {
 });
 
 /* Show users data. */
-router.get('/users', function (req, res) {
-    res.send('Users data');
-});
-
+router.get('/users', userController.getAllUsers);
 
 /* Show one user. */
 router.get('/users/:userId', function (req, res) {
