@@ -2,8 +2,8 @@ var UserModel = require('../models/user');
 
 exports.getAllUsers = function(req, res) {
 
-    UserModel.getUser('5b75e3e2f579ea082c3a5642', function(err, user) {
-        res.send('test user info ' + user.joinDate.getFullYear() + '/' + user.joinDate.getMonth() + user._id );
+    UserModel.getAllUsers(function(err, users) {
+        res.json(users);
     });  
 };
 

@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const userController = require('../controllers/user');
+const systemController = require('../controllers/system');
 
 /* Show API page. */
 router.get('/', function(req, res) {
@@ -17,6 +18,11 @@ router.get('/users/1', userController.addUser);
 router.get('/users/:userId', function (req, res) {
     res.send('Users id:  ' + req.params.userId);
 });
+
+
+
+/* Show all systems. */
+router.get('/systems', systemController.getAllSystems);
 
 
 
