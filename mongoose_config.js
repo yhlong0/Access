@@ -1,4 +1,4 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://127.0.0.1/access');
+mongoose.connect('mongodb://localhost:27017/access', {useNewUrlParser: true});
 
 exports.mongoose = mongoose;

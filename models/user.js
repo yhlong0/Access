@@ -5,8 +5,8 @@ const UserSchema = new mongoose.Schema({
     joinDate: String
 });
 
-UserSchema.statics.getUser = function(username, callback) {
-    this.findOne({username: username}, callback)  
+UserSchema.statics.getUser = function (id, callback) {
+    this.findById(id, callback);  
 };
 
 module.exports = mongoose.model('User', UserSchema);

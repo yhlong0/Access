@@ -1,13 +1,18 @@
 1. Add C:\Program Files\MongoDB\Server\4.0\bin to path environment.
-2. show dbs
-3. use access
-4. db
-5. db.createUser({
+2. To start the mongodb
+    mongod --port 27017 --dbpath e:\data
+3. Connect to db from cmd 
+   mongo 
+4. show dbs
+5. use access
+6. db
+7. db.createUser({
     user:"access",
     pwd:"12345678",
     roles:["readWrite", "dbAdmin"]
 });
-6. db.createCollection('users');
-7. db.users.insert({first_name:"John", last_name:"Doe"});
-8. db.users.find()
+8. db.createCollection('users');
+9. db.users.insert({first_name:"John", last_name:"Doe"});
+10. db.users.find()
+11. show collections
 
