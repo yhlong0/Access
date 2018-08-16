@@ -1,10 +1,16 @@
 var UserModel = require('../models/user');
 
 exports.getAllUsers = function(req, res) {
-
     UserModel.getAllUsers(function(err, users) {
         res.json(users);
     });  
+};
+
+exports.getUser = function (req, res) {
+    let userid = req.params.userId
+    UserModel.getUser(userid, function (err, user) {
+        res.json(user);
+    });
 };
 
 exports.addUser = function (req, res) {

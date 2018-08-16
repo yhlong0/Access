@@ -16,9 +16,7 @@ router.get('/users', userController.getAllUsers);
 router.get('/users/1', userController.addUser);
 
 /* Show one user. */
-router.get('/users/:userId', function (req, res) {
-    res.send('Users id:  ' + req.params.userId);
-});
+router.get('/users/:userId', userController.getUser);
 
 
 
