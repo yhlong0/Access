@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const userController = require('../controllers/user');
 const systemController = require('../controllers/system');
+const roleController = require('../controllers/role');
 
 /* Show API page. */
 router.get('/', function(req, res) {
@@ -25,5 +26,9 @@ router.get('/users/:userId', function (req, res) {
 router.get('/systems', systemController.getAllSystems);
 
 
+
+
+/* Show all roles. */
+router.get('/roles', roleController.getAllRoles);
 
 module.exports = router;

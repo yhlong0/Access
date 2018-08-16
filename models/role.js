@@ -9,8 +9,8 @@ RoleSchema.statics.getRole = function (id, callback) {
     this.findById(id, callback);
 };
 
-RoleSchema.statics.getAllRoles = function (id, callback) {
-    this.findById(id, callback);
+RoleSchema.statics.getAllRoles = function (callback) {
+    this.find({}, callback);
 };
 
 RoleSchema.statics.addRole = function (role, callback) {

@@ -15,5 +15,6 @@
 9. db.users.insert({firstname:"Hailong", lastname:"Yang", joinDate:});
 10. db.users.find()
 11. show collections
-12. db.roles.insert({rolename:"Hailong", roledescription:"Yang", joinDate:});
+12. db.roles.insert({roleName:"support", roleDescription:"customer support"});
+13. db.systems.insert({sysName:"SolarWinds", sysDescription:"Network System Monitoring Tool"});
 
