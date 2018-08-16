@@ -9,14 +9,17 @@ router.get('/', function(req, res) {
     res.send('Welcome to API.');
 });
 
+
+/* Show one user. */
+router.get('/users/:userId', userController.getUser);
+
 /* Show users data. */
 router.get('/users', userController.getAllUsers);
 
 /* Creat new user. */
 router.get('/users/1', userController.addUser);
 
-/* Show one user. */
-router.get('/users/:userId', userController.getUser);
+
 
 
 
