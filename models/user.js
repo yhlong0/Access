@@ -3,7 +3,21 @@ const mongoose = require('../mongoose_config').mongoose;
 const UserSchema = new mongoose.Schema({
     lastname: String,
     firstname: String,
-    joinDate: Date
+    joinDate: Date,
+    sysAccess: [
+        {
+            sysid: String,
+            sysname: String,
+            accessTime: Date
+        }
+    ],
+    roles: [
+        {
+            roleid: String,
+            rolename: String,
+            accessTime: Date
+        }
+    ]
 });
 
 UserSchema.statics.getUser = function (id, callback) {
