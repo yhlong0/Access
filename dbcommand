@@ -1,0 +1,13 @@
+1. Add C:\Program Files\MongoDB\Server\4.0\bin to path environment.
+2. show dbs
+3. use access
+4. db
+5. db.createUser({
+    user:"access",
+    pwd:"12345678",
+    roles:["readWrite", "dbAdmin"]
+});
+6. db.createCollection('users');
+7. db.users.insert({first_name:"John", last_name:"Doe"});
+8. db.users.find()
+

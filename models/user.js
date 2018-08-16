@@ -8,3 +8,5 @@ const UserSchema = new mongoose.Schema({
 UserSchema.statics.getUser = function(username, callback) {
     this.findOne({username: username}, callback)  
 };
+
+module.exports = mongoose.model('User', UserSchema);
