@@ -5,3 +5,10 @@ exports.getAllSystems = function (req, res) {
         res.json(systems);
     });
 };
+
+exports.getSystem = function (req, res) {
+    let systemId = req.params.systemId;
+    SystemModel.getSystem(systemId, function (err, system) {
+        res.json(system);
+    });
+};

@@ -7,8 +7,8 @@ exports.getAllUsers = function(req, res) {
 };
 
 exports.getUser = function (req, res) {
-    let userid = req.params.userId
-    UserModel.getUser(userid, function (err, user) {
+    let userId = req.params.userId;
+    UserModel.getUser(userId, function (err, user) {
         res.json(user);
     });
 };

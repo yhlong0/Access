@@ -26,10 +26,19 @@ router.get('/users/1', userController.addUser);
 /* Show all systems. */
 router.get('/systems', systemController.getAllSystems);
 
+/* Show one system. */
+router.get('/systems/:systemId', systemController.getSystem);
+
 
 
 
 /* Show all roles. */
 router.get('/roles', roleController.getAllRoles);
+
+/* Show one system. */
+router.get('/roles/:roleId', roleController.getRole);
+
+
+
 
 module.exports = router;

@@ -5,3 +5,10 @@ exports.getAllRoles = function (req, res) {
         res.json(roles);
     });
 };
+
+exports.getRole = function (req, res) {
+    let roleId = req.params.roleId;
+    SystemModel.getRole(roleId, function (err, role) {
+        res.json(role);
+    });
+};
