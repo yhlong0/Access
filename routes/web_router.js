@@ -10,6 +10,9 @@ router.get('/', function(req, res) {
 /* Show users data. */
 router.get('/users', userController.getAllUsers);
 
+/* Creat new user. */
+router.get('/users/1', userController.addUser);
+
 /* Show one user. */
 router.get('/users/:userId', function (req, res) {
     res.send('Users id:  ' + req.params.userId);

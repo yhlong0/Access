@@ -12,7 +12,7 @@
     roles:["readWrite", "dbAdmin"]
 });
 8. db.createCollection('users');
-9. db.users.insert({first_name:"John", last_name:"Doe"});
+9. db.users.insert({firstname:"Hailong", lastname:"Yang", joinDate:});
 10. db.users.find()
 11. show collections
 
