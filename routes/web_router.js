@@ -10,6 +10,12 @@ router.get('/', function(req, res) {
 });
 
 
+/* Add access for user. */
+router.post('/users/:userId/access', userController.addUserAccess);
+
+/* Show user access. */
+router.get('/users/:userId/access', userController.showUserAccess);
+
 /* Show one user. */
 router.get('/users/:userId', userController.getUser);
 
@@ -22,24 +28,22 @@ router.post('/users', userController.addUser);
 
 
 
+/* Show one system. */
+router.get('/systems/:systemId', systemController.getSystem);
 
 /* Show all systems. */
 router.get('/systems', systemController.getAllSystems);
-
-/* Show one system. */
-router.get('/systems/:systemId', systemController.getSystem);
 
 /* Creat new system. */
 router.post('/systems', systemController.addSystem);
 
 
 
+/* Show one system. */
+router.get('/roles/:roleId', roleController.getRole);
 
 /* Show all roles. */
 router.get('/roles', roleController.getAllRoles);
-
-/* Show one system. */
-router.get('/roles/:roleId', roleController.getRole);
 
 /* Creat new role. */
 router.post('/roles', roleController.addRole);

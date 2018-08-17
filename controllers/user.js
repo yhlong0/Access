@@ -37,3 +37,27 @@ exports.addUser = function (req, res) {
         }       
     });
 };
+
+exports.showUserAccess = function (req, res) {
+    let userId = req.params.userId;
+    UserModel.getUser(userId, function (err, user) {
+        res.json(user.sysAccess);
+    });
+};
+
+exports.addUserAccess = function (req, res) {
+    let userId = req.params.userId;
+    
+    let accessDate = new Date();
+
+    let sysAccess = {
+        systemId: 'test123456789',
+        systemName: 'test0019',
+        systemDescription: 'test system description',
+        accessDate: accessDate
+    };
+
+    UserModel.addUserAccess(userId, sysAccess, function(err, user) {
+        res.json(user);
+    });
+};

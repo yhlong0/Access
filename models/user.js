@@ -5,20 +5,8 @@ const UserSchema = new mongoose.Schema({
     firstname: String,
     joinDate: Date,
     status: Boolean,
-    sysAccess: [
-        {
-            sysid: String,
-            sysname: String,
-            accessTime: Date
-        }
-    ],
-    roles: [
-        {
-            roleid: String,
-            rolename: String,
-            accessTime: Date
-        }
-    ]
+    sysAccess: { type: Array, "default": [] },
+    roles: { type: Array, "default": [] },
 });
 
 UserSchema.statics.getUser = function (id, callback) {
@@ -31,6 +19,18 @@ UserSchema.statics.getAllUsers = function (callback) {
 
 UserSchema.statics.addUser = function (user, callback) {
     this.create(user, callback);
+};
+
+UserSchema.statics.addUserAccess = function (userId, sysAccess, callback) {
+    this.update(
+        {_id: userId},
+        {
+            $push: {
+                sysAccess: sysAccess
+            }
+        },
+        callback
+    );
 };
 
 module.exports = mongoose.model('User', UserSchema);
