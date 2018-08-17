@@ -17,7 +17,7 @@ router.get('/users/:userId', userController.getUser);
 router.get('/users', userController.getAllUsers);
 
 /* Creat new user. */
-router.get('/users/create', userController.addUser);
+router.post('/users', userController.addUser);
 
 
 
