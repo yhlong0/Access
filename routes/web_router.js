@@ -3,6 +3,7 @@ const router = express.Router();
 const userController = require('../controllers/user');
 const systemController = require('../controllers/system');
 const roleController = require('../controllers/role');
+const relationController = require('../controllers/relation');
 
 /* Show API page. */
 router.get('/', function(req, res) {
@@ -11,7 +12,7 @@ router.get('/', function(req, res) {
 
 
 /* Add access for user. */
-router.post('/users/:userId/access', userController.addUserAccess);
+router.post('/users/:userId/access', relationController.addUserAccess);
 
 /* Show user access. */
 router.get('/users/:userId/access', userController.showUserAccess);

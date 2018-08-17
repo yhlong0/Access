@@ -16,7 +16,7 @@ exports.getUser = function (req, res) {
 exports.addUser = function (req, res) {
     let lastname = req.body.lastname;
     let firstname = req.body.firstname;
-    let joinDate = new Date();
+    let joinDate = Date.now();
 
     user = {
         lastname: lastname,
@@ -45,19 +45,4 @@ exports.showUserAccess = function (req, res) {
     });
 };
 
-exports.addUserAccess = function (req, res) {
-    let userId = req.params.userId;
-    
-    let accessDate = new Date();
 
-    let sysAccess = {
-        systemId: 'test123456789',
-        systemName: 'test0019',
-        systemDescription: 'test system description',
-        accessDate: accessDate
-    };
-
-    UserModel.addUserAccess(userId, sysAccess, function(err, user) {
-        res.json(user);
-    });
-};
