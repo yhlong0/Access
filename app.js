@@ -6,11 +6,11 @@ const port = process.env.PORT || 4000;
 
 const webRouter = require('./routes/web_router');
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use('/', webRouter);
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
 
 
 // catch 404 and forward to error handler

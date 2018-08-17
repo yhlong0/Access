@@ -38,6 +38,9 @@ router.get('/roles', roleController.getAllRoles);
 /* Show one system. */
 router.get('/roles/:roleId', roleController.getRole);
 
+/* Creat new role. */
+router.post('/roles', roleController.addRole);
+
 
 
 

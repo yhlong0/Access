@@ -4,6 +4,7 @@ const UserSchema = new mongoose.Schema({
     lastname: String,
     firstname: String,
     joinDate: Date,
+    status: Boolean,
     sysAccess: [
         {
             sysid: String,

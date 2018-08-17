@@ -14,38 +14,26 @@ exports.getUser = function (req, res) {
 };
 
 exports.addUser = function (req, res) {
-    joinDate = new Date();
+    let lastname = req.body.lastname;
+    let firstname = req.body.firstname;
+    let joinDate = new Date();
+
     user = {
-        lastname: "lastTwo",
-        firstname: "firstTwo",
+        lastname: lastname,
+        firstname: firstname,
         joinDate: joinDate,
+        status: true,
         sysAccess: [
-            {
-                sysid: "testsysid002",
-                sysname: "testsysname002"
-            },
-            {
-                sysid: "testsysid003",
-                sysname: "testsysname003"
-            }
         ],
         roles: [
-            {
-                roleid: "testroleid004",
-                rolename: "testrolename004"
-            },
-            {
-                roleid: "testroleid005",
-                rolename: "testrolename005"
-            }
         ]
-    }
+    };
 
     UserModel.addUser(user, function (err, user) {
         if(err) {
             console.log(err);
         } else {
-            res.send('test user info ' + user.joinDate);
+            res.json(user);
         }       
     });
 };
