@@ -1,8 +1,8 @@
 const mongoose = require('../mongoose_config').mongoose;
 
 const SystemSchema = new mongoose.Schema({
-    sysName: String,
-    sysDescription: String,
+    systemName: String,
+    systemDescription: String,
 });
 
 SystemSchema.statics.getSystem = function (id, callback) {

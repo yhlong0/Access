@@ -29,6 +29,9 @@ router.get('/systems', systemController.getAllSystems);
 /* Show one system. */
 router.get('/systems/:systemId', systemController.getSystem);
 
+/* Creat new system. */
+router.post('/systems', systemController.addSystem);
+
 
 
 
