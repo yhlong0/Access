@@ -48,7 +48,7 @@ exports.showUserAccess = function (req, res) {
 exports.updateUser = function(req, res) {
     let userId = req.params.userId;
     let updateContent = req.body;
-    console.log(updateContent);
+
     UserModel.updateUser(userId, updateContent, function(err, user) {
         res.json(user);
     });

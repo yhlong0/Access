@@ -13,6 +13,14 @@ SystemSchema.statics.getAllSystems = function (callback) {
     this.find({}, callback);
 };
 
+SystemSchema.statics.updateSystem = function (systemId, updateContent, callback) {
+    this.findOneAndUpdate(
+        {_id: systemId},
+        updateContent,
+        callback
+    );
+};
+
 SystemSchema.statics.addSystem = function (system, callback) {
     this.create(system, callback);
 };

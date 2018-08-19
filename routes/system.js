@@ -5,12 +5,13 @@ const systemController = require('../controllers/system');
 /* Show one system. */
 router.get('/:systemId', systemController.getSystem);
 
+/* Update one system. */
+router.put('/:systemId', systemController.updateSystem);
+
 /* Show all systems. */
 router.get('/', systemController.getAllSystems);
 
 /* Creat new system. */
 router.post('/', systemController.addSystem);
-
-
 
 module.exports = router;
