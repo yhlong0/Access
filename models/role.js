@@ -2,7 +2,7 @@ const mongoose = require('../mongoose_config').mongoose;
 
 const RoleSchema = new mongoose.Schema({
     roleName: String,
-    roleDescription: String,
+    roleDescription: String
 });
 
 RoleSchema.statics.getRole = function (id, callback) {
