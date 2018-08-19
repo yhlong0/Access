@@ -13,6 +13,15 @@ exports.getRole = function (req, res) {
     });
 };
 
+exports.updateRole = function (req, res) {
+    let roleId = req.params.roleId;
+    let updateContent = req.body;
+    console.log(updateContent);
+    RoleModel.updateRole(roleId, updateContent, function (err, role) {
+        res.json(role);
+    });
+};
+
 exports.addRole = function(req, res) {
     let roleName = req.body.roleName;
     let roleDescription = req.body.roleDescription;

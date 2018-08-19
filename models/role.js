@@ -13,6 +13,14 @@ RoleSchema.statics.getAllRoles = function (callback) {
     this.find({}, callback);
 };
 
+RoleSchema.statics.updateRole = function (roleId, updateContent, callback) {
+    this.findOneAndUpdate(
+        {_id: roleId},
+        updateContent,
+        callback
+    );
+};
+
 RoleSchema.statics.addRole = function (role, callback) {
     this.create(role, callback);
 };
