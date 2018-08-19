@@ -5,11 +5,17 @@ const port = process.env.PORT || 4000;
 
 
 const webRouter = require('./routes/web_router');
+const userRouter = require('./routes/user');
+const roleRouter = require('./routes/role');
+const systemRouter = require('./routes/system');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use('/', webRouter);
+app.use('/users', userRouter);
+app.use('/roles', roleRouter);
+app.use('/systems', systemRouter);
 
 
 
