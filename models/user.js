@@ -38,7 +38,7 @@ UserSchema.statics.addUserRole = function (userId, roleAccess, callback) {
         {_id: userId},
         {
             $push: {
-                roleAccess: roleAccess
+                roles: roleAccess
             }
         },
         callback

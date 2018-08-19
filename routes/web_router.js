@@ -10,6 +10,8 @@ router.get('/', function(req, res) {
     res.send('Welcome to API.');
 });
 
+/* Add role for user. */
+router.post('/users/:userId/role', relationController.addUserRole);
 
 /* Add access for user. */
 router.post('/users/:userId/access', relationController.addUserAccess);

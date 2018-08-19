@@ -24,13 +24,14 @@ exports.addUserAccess = function (req, res) {
 exports.addUserRole = function (req, res) {
     let userId = req.params.userId;
     let roleId = req.body.roleId;
-
+    
     RoleModel.getRole(roleId, function(err, role) {
         if(err) {
             console.log(err);
         } else {
             let roleAccess = role.toObject();
             roleAccess.accessDate = Date.now();
+            console.log(roleAccess);
             UserModel.addUserRole(userId, roleAccess, function (err, user) {
                 res.json(user);
             });
