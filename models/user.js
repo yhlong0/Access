@@ -21,6 +21,14 @@ UserSchema.statics.addUser = function (user, callback) {
     this.create(user, callback);
 };
 
+UserSchema.statics.updateUser = function (userId, updateContent, callback) {
+    this.findOneAndUpdate(
+        {_id: userId},
+        updateContent,
+        callback
+    );
+};
+
 UserSchema.statics.addUserAccess = function (userId, sysAccess, callback) {
     this.update(
         {_id: userId},

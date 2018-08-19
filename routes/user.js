@@ -10,7 +10,7 @@ router.get('/', userController.getAllUsers);
 router.post('/', userController.addUser);
 
 /* Update one user. */
-router.post('/:userId', userController.updateUser);
+router.put('/:userId', userController.updateUser);
 
 /* Show one user. */
 router.get('/:userId', userController.getUser);
