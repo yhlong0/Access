@@ -1,4 +1,4 @@
-var RoleModel = require('../models/role');
+const RoleModel = require('../models/role');
 
 exports.getAllRoles = function (req, res) {
     RoleModel.getAllRoles(function (err, roles) {

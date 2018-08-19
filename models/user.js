@@ -33,4 +33,16 @@ UserSchema.statics.addUserAccess = function (userId, sysAccess, callback) {
     );
 };
 
+UserSchema.statics.addUserRole = function (userId, roleAccess, callback) {
+    this.update(
+        {_id: userId},
+        {
+            $push: {
+                roleAccess: roleAccess
+            }
+        },
+        callback
+    );
+};
+
 module.exports = mongoose.model('User', UserSchema);

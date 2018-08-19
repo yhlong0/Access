@@ -1,4 +1,4 @@
-var UserModel = require('../models/user');
+const UserModel = require('../models/user');
 
 exports.getAllUsers = function(req, res) {
     UserModel.getAllUsers(function(err, users) {

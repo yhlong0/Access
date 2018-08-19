@@ -1,4 +1,4 @@
-var SystemModel = require('../models/system');
+const SystemModel = require('../models/system');
 
 exports.getAllSystems = function (req, res) {
     SystemModel.getAllSystems(function (err, systems) {
