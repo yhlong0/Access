@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/yhlong0/Access#readme",
   "dependencies": {
+    "@material-ui/icons": "^2.0.3",
     "body-parser": "^1.18.3",
     "concurrently": "^3.6.1",
     "express": "^4.16.3",
