@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Button from '@material-ui/core/Button';
 
 class App extends Component {
   constructor() {
@@ -26,7 +27,7 @@ class App extends Component {
         <p className="App-intro">
         <ul>
           {this.state.users.map(user => 
-            <li key={user.id}>{user._id}</li>
+            <li key={user.id}>{user._id}<Button variant="contained" color="primary">Delete</Button></li>
           )}
         </ul>
         </p>       
