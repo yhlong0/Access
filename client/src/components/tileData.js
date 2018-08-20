@@ -2,39 +2,32 @@ import React from 'react';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import DraftsIcon from '@material-ui/icons/Drafts';
-import StarIcon from '@material-ui/icons/Star';
-import SendIcon from '@material-ui/icons/Send';
+import AccountIcon from '@material-ui/icons/AccountBox';
+import SystemIcon from '@material-ui/icons/Computer';
+import RoleIcon from '@material-ui/icons/SupervisorAccountRounded';
 import MailIcon from '@material-ui/icons/Mail';
-import DeleteIcon from '@material-ui/icons/Delete';
-import ReportIcon from '@material-ui/icons/Report';
+import DsiabledIcon from '@material-ui/icons/DesktopAccessDisabledRounded';
+import ReportIcon from '@material-ui/icons/AssessmentRounded';
 
 export const mailFolderListItems = (
     <div>
         <ListItem button>
             <ListItemIcon>
-                <InboxIcon />
+                <AccountIcon />
             </ListItemIcon>
-            <ListItemText primary="Inbox" />
+            <ListItemText primary="Users" />
         </ListItem>
         <ListItem button>
             <ListItemIcon>
-                <StarIcon />
+                <SystemIcon />
             </ListItemIcon>
-            <ListItemText primary="Starred" />
+            <ListItemText primary="Systems" />
         </ListItem>
         <ListItem button>
             <ListItemIcon>
-                <SendIcon />
+                <RoleIcon />
             </ListItemIcon>
-            <ListItemText primary="Send mail" />
-        </ListItem>
-        <ListItem button>
-            <ListItemIcon>
-                <DraftsIcon />
-            </ListItemIcon>
-            <ListItemText primary="Drafts" />
+            <ListItemText primary="Roles" />
         </ListItem>
     </div>
 );
@@ -43,21 +36,21 @@ export const otherMailFolderListItems = (
     <div>
         <ListItem button>
             <ListItemIcon>
-                <MailIcon />
+                <ReportIcon />                
             </ListItemIcon>
-            <ListItemText primary="All mail" />
+            <ListItemText primary="Reports" />
         </ListItem>
         <ListItem button>
             <ListItemIcon>
-                <DeleteIcon />
+                <DsiabledIcon />
             </ListItemIcon>
-            <ListItemText primary="Trash" />
+            <ListItemText primary="Disabled Users" />
         </ListItem>
         <ListItem button>
             <ListItemIcon>
-                <ReportIcon />
+                <MailIcon />    
             </ListItemIcon>
-            <ListItemText primary="Spam" />
+            <ListItemText primary="Settings" />
         </ListItem>
     </div>
 );
