@@ -10,7 +10,7 @@ class App extends Component {
     }
   }
 
-  ComponentDidMount() {
+  componentDidMount() {
     fetch('/users')
       .then(res => res.json())
       .then(users => this.setState({users}, ()=> console.log('Users fetched...', users)));
@@ -24,13 +24,12 @@ class App extends Component {
           <h1 className="App-title">Welcome to React</h1>
         </header>
         <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
         <ul>
           {this.state.users.map(user => 
-            <li key={user._id}>{user.firstname}</li>
+            <li key={user.id}>{user._id}</li>
           )}
         </ul>
+        </p>       
       </div>
     );
   }
