@@ -102,7 +102,7 @@ class DetailedExpansionPanel extends React.Component {
                                 </Button>
                                 <br />
                                 <br />
-                                <Button variant="contained" size="small" color="light">
+                                <Button variant="contained" size="small">
                                     Add Role
                                 </Button>
                             </Typography>
