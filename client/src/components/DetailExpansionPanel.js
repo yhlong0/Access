@@ -45,40 +45,61 @@ const styles = theme => ({
             textDecoration: 'underline',
         },
     },
+    chip: {
+        margin: '5px',
+    },
+    roleChip: {
+        margin: '5px',
+        color: theme.palette.primary.main,
+    }
 });
 
 function DetailedExpansionPanel(props) {
     const { classes } = props;
     return (
         <div className={classes.root}>
-            <ExpansionPanel defaultExpanded>
+            <ExpansionPanel >
                 <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
                     <div className={classes.column}>
-                        <Typography className={classes.heading}>Location</Typography>
+                        <Typography className={classes.heading}>Hailong Yang</Typography>
                     </div>
                     <div className={classes.column}>
-                        <Typography className={classes.secondaryHeading}>Select trip destination</Typography>
+                        <Typography className={classes.secondaryHeading}>Join Date: 06/01/2018</Typography>
                     </div>
                 </ExpansionPanelSummary>
                 <ExpansionPanelDetails className={classes.details}>
-                    <div className={classes.column} />
                     <div className={classes.column}>
-                        <Chip label="Barbados" className={classes.chip} onDelete={() => { }} />
+                        <Chip label="System Admin 06/01/2018" className={classes.roleChip} onDelete={() => { }} />
+                    </div>
+                    <div className={classes.column}>
+                        <Chip label="Domain Account 06/01/2018" className={classes.chip} onDelete={() => { }} />
+                        <Chip label="Phone 06/01/2018" className={classes.chip} onDelete={() => { }} />
+                        <Chip label="Internal Site 06/01/2018" className={classes.chip} onDelete={() => { }} />
+                        <Chip label="Domain Account 06/01/2018" className={classes.chip} onDelete={() => { }} />
+                        <Chip label="Domain Account 06/01/2018" className={classes.chip} onDelete={() => { }} />
+                        <Chip label="Domain Account 06/01/2018" className={classes.chip} onDelete={() => { }} />
+                        <Chip label="Domain Account 06/01/2018" className={classes.chip} onDelete={() => { }} />
                     </div>
                     <div className={classNames(classes.column, classes.helper)}>
                         <Typography variant="caption">
                             Select your destination of choice
                             <br />
-                            <a href="#sub-labels-and-columns" className={classes.link}>
-                                Learn more
-                            </a>
+                            <br />
+                            <Button variant="contained" size="small" color="primary">
+                                Add Access
+                            </Button>
+                            <br />
+                            <br />
+                            <Button variant="contained" size="small" color="secondary">
+                                Add Role
+                            </Button>
                         </Typography>
                     </div>
                 </ExpansionPanelDetails>
                 <Divider />
                 <ExpansionPanelActions>
                     <Button size="small">Cancel</Button>
-                    <Button size="small" color="primary">
+                    <Button variant="contained" size="small" color="primary">
                         Save
                     </Button>
                 </ExpansionPanelActions>
