@@ -82,7 +82,7 @@ function DetailedExpansionPanel(props) {
                     </div>
                     <div className={classNames(classes.column, classes.helper)}>
                         <Typography variant="caption">
-                            Select your destination of choice
+                            Select your action
                             <br />
                             <br />
                             <Button variant="contained" size="small" color="primary">
@@ -90,7 +90,7 @@ function DetailedExpansionPanel(props) {
                             </Button>
                             <br />
                             <br />
-                            <Button variant="contained" size="small" color="secondary">
+                            <Button variant="contained" size="small" color="light">
                                 Add Role
                             </Button>
                         </Typography>
