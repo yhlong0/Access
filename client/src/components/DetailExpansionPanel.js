@@ -6,6 +6,8 @@ import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelActions from '@material-ui/core/ExpansionPanelActions';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Switch from '@material-ui/core/Switch';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Chip from '@material-ui/core/Chip';
@@ -54,58 +56,77 @@ const styles = theme => ({
     }
 });
 
-function DetailedExpansionPanel(props) {
-    const { classes } = props;
-    return (
-        <div className={classes.root}>
-            <ExpansionPanel >
-                <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-                    <div className={classes.column}>
-                        <Typography className={classes.heading}>Hailong Yang</Typography>
-                    </div>
-                    <div className={classes.column}>
-                        <Typography className={classes.secondaryHeading}>Join Date: 06/01/2018</Typography>
-                    </div>
-                </ExpansionPanelSummary>
-                <ExpansionPanelDetails className={classes.details}>
-                    <div className={classes.column}>
-                        <Chip label="System Admin 06/01/2018" className={classes.roleChip} onDelete={() => { }} />
-                    </div>
-                    <div className={classes.column}>
-                        <Chip label="Domain Account 06/01/2018" className={classes.chip} onDelete={() => { }} />
-                        <Chip label="Phone 06/01/2018" className={classes.chip} onDelete={() => { }} />
-                        <Chip label="Internal Site 06/01/2018" className={classes.chip} onDelete={() => { }} />
-                        <Chip label="Domain Account 06/01/2018" className={classes.chip} onDelete={() => { }} />
-                        <Chip label="Domain Account 06/01/2018" className={classes.chip} onDelete={() => { }} />
-                        <Chip label="Domain Account 06/01/2018" className={classes.chip} onDelete={() => { }} />
-                        <Chip label="Domain Account 06/01/2018" className={classes.chip} onDelete={() => { }} />
-                    </div>
-                    <div className={classNames(classes.column, classes.helper)}>
-                        <Typography variant="caption">
-                            Select your action
-                            <br />
-                            <br />
-                            <Button variant="contained" size="small" color="primary">
-                                Add Access
-                            </Button>
-                            <br />
-                            <br />
-                            <Button variant="contained" size="small" color="light">
-                                Add Role
-                            </Button>
-                        </Typography>
-                    </div>
-                </ExpansionPanelDetails>
-                <Divider />
-                <ExpansionPanelActions>
-                    <Button size="small">Cancel</Button>
-                    <Button variant="contained" size="small" color="primary">
-                        Save
-                    </Button>
-                </ExpansionPanelActions>
-            </ExpansionPanel>
-        </div>
-    );
+class DetailedExpansionPanel extends React.Component {
+    state= {
+        checkedB: true
+    };
+
+    handleChange = name => event => {
+        this.setState({ [name]: event.target.checked });
+    };
+
+    render() {
+        const{ classes } = this.props;
+
+        return (
+            <div className={classes.root}>
+                <ExpansionPanel >
+                    <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+                        <div className={classes.column}>
+                            <Typography className={classes.heading}>Hailong Yang</Typography>
+                        </div>
+                        <div className={classes.column}>
+                            <Typography className={classes.secondaryHeading}>Join Date: 06/01/2018</Typography>
+                        </div>
+                    </ExpansionPanelSummary>
+                    <ExpansionPanelDetails className={classes.details}>
+                        <div className={classes.column}>
+                            <Chip label="System Admin 06/01/2018" className={classes.roleChip} onDelete={() => { }} />
+                        </div>
+                        <div className={classes.column}>
+                            <Chip label="Domain Account 06/01/2018" className={classes.chip} onDelete={() => { }} />
+                            <Chip label="Phone 06/01/2018" className={classes.chip} onDelete={() => { }} />
+                            <Chip label="Internal Site 06/01/2018" className={classes.chip} onDelete={() => { }} />
+                            <Chip label="Domain Account 06/01/2018" className={classes.chip} onDelete={() => { }} />
+                            <Chip label="Domain Account 06/01/2018" className={classes.chip} onDelete={() => { }} />
+                            <Chip label="Domain Account 06/01/2018" className={classes.chip} onDelete={() => { }} />
+                            <Chip label="Domain Account 06/01/2018" className={classes.chip} onDelete={() => { }} />
+                        </div>
+                        <div className={classNames(classes.column, classes.helper)}>
+                            <Typography variant="caption">
+                                Select your action
+                                <br />
+                                <br />
+                                <Button variant="contained" size="small" color="primary">
+                                    Add Access
+                                </Button>
+                                <br />
+                                <br />
+                                <Button variant="contained" size="small" color="light">
+                                    Add Role
+                                </Button>
+                            </Typography>
+                        </div>
+                    </ExpansionPanelDetails>
+                    <Divider />
+                    <ExpansionPanelActions>
+                        <FormControlLabel
+                            label="Status"
+                            labelPlacement="start"
+                            control={
+                                <Switch
+                                    checked={this.state.checkedB}
+                                    onChange={this.handleChange('checkedB')}
+                                    value="checkedB"
+                                    color="primary"
+                                />
+                            }
+                        />
+                    </ExpansionPanelActions>
+                </ExpansionPanel>
+            </div>
+        );
+    }
 }
 
 DetailedExpansionPanel.propTypes = {
