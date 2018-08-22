@@ -43,7 +43,7 @@ const styles = theme => ({
 class TableView extends React.Component {
     state = {
         order: 'asc',
-        orderBy: 'roleName',
+        orderBy: 'name',
         selected: [],
         data: [],
         page: 0,
@@ -146,9 +146,9 @@ class TableView extends React.Component {
                                                 <Checkbox checked={isSelected} />
                                             </TableCell>
                                             <TableCell component="th" scope="row" padding="none">
-                                                {n.roleName}
+                                                {n.name}
                                             </TableCell>
-                                            <TableCell>{n.roleDescription}</TableCell>
+                                            <TableCell>{n.description}</TableCell>
                                         </TableRow>
                                     );
                                 })}
