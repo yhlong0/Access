@@ -12,8 +12,6 @@ import EnhancedTableToolbar from './Molecules/EnhancedTableToolbar';
 import EnhancedTableHead from './Molecules/EnhancedTableHead';
 import axios from 'axios';
 
-
-
 function desc(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
     return -1;
@@ -54,10 +52,10 @@ class RoleTable extends React.Component {
 
   componentDidMount() {
     axios.get('/roles')
-    .then(res => {
-      console.log(res.data);
-      this.setState({data: res.data});
-    });
+      .then(res => {
+        console.log(res.data);
+        this.setState({ data: res.data });
+      });
   }
 
   handleRequestSort = (event, property) => {
