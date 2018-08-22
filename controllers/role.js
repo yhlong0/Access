@@ -27,8 +27,8 @@ exports.addRole = function(req, res) {
     let roleDescription = req.body.roleDescription;
 
     role = {
-        roleName: roleName,
-        roleDescription: roleDescription
+        name: roleName,
+        description: roleDescription
     };
 
     RoleModel.addRole(role, function(err, role) {

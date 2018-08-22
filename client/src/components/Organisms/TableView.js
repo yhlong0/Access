@@ -51,9 +51,9 @@ class TableView extends React.Component {
     };
 
     componentDidMount() {
-        axios.get('/roles')
+        console.log(this.props.tableData);
+        axios.get(`${this.props.tableData}`)
             .then(res => {
-                console.log(res.data);
                 this.setState({ data: res.data });
             });
     }

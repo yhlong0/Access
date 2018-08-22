@@ -12,9 +12,8 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import { mailFolderListItems, otherMailFolderListItems } from './tileData';
+import { mailFolderListItems, otherMailFolderListItems } from './Organisms/tileData';
 import DetailPanel from './DetailExpansionPanel';
-import RoleTable from './RoleTable';
 import TableView from './Organisms/TableView';
 
 const drawerWidth = 240;
@@ -87,6 +86,14 @@ const styles = theme => ({
 class MiniDrawer extends React.Component {
     state = {
         open: false,
+        tableData: [
+            {
+                url: '/roles'
+            },
+            {
+                url: '/systems'
+            }
+        ]
     };
 
     handleDrawerOpen = () => {
@@ -141,8 +148,7 @@ class MiniDrawer extends React.Component {
                     <div className={classes.toolbar} />
                     <Typography noWrap>{'Welcome to user access tracking system!'}</Typography><br />
                     <DetailPanel />
-                    <RoleTable />
-                    <TableView />
+                    <TableView tableData={this.state.tableData[0].url}/>
                 </main>
             </div>
         );
