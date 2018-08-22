@@ -15,6 +15,7 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import { mailFolderListItems, otherMailFolderListItems } from './tileData';
 import DetailPanel from './DetailExpansionPanel';
 import RoleTable from './RoleTable';
+import TextField from './TextField';
 
 const drawerWidth = 240;
 
@@ -140,6 +141,7 @@ class MiniDrawer extends React.Component {
                     <div className={classes.toolbar} />
                     <Typography noWrap>{'Welcome to user access tracking system!'}</Typography><br />
                     <DetailPanel />
+                    <TextField />
                     <RoleTable />
                 </main>
             </div>
