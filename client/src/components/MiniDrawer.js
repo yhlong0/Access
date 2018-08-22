@@ -88,10 +88,40 @@ class MiniDrawer extends React.Component {
         open: false,
         tableData: [
             {
-                url: '/roles'
+                url: '/roles',
+                title: 'Roles',
+                rows: [
+                    { 
+                        id: 'name', 
+                        numeric: false, 
+                        disablePadding: true, 
+                        label: 'Role Name' 
+                    },
+                    { 
+                        id: 'description', 
+                        numeric: false, 
+                        disablePadding: false, 
+                        label: 'Role Description' 
+                    }
+                ]
             },
             {
-                url: '/systems'
+                url: '/systems',
+                title: 'Systems',
+                rows: [
+                    {
+                        id: 'name',
+                        numeric: false,
+                        disablePadding: true,
+                        label: 'System Name'
+                    },
+                    {
+                        id: 'description',
+                        numeric: false,
+                        disablePadding: false,
+                        label: 'System Description'
+                    }
+                ]
             }
         ]
     };
@@ -148,7 +178,8 @@ class MiniDrawer extends React.Component {
                     <div className={classes.toolbar} />
                     <Typography noWrap>{'Welcome to user access tracking system!'}</Typography><br />
                     <DetailPanel />
-                    <TableView tableData={this.state.tableData[0].url}/>
+                    <TableView tableData={this.state.tableData[0]}/>
+                    <TableView tableData={this.state.tableData[1]} />
                 </main>
             </div>
         );

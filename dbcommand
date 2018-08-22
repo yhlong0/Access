@@ -17,4 +17,4 @@
 11. show collections
 12. db.roles.insert({roleName:"support", roleDescription:"customer support"});
 13. db.systems.insert({sysName:"SolarWinds", sysDescription:"Network System Monitoring Tool"});
-
+14. db.roles.deleteMany({})

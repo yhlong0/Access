@@ -7,18 +7,13 @@ import Checkbox from '@material-ui/core/Checkbox';
 import Tooltip from '@material-ui/core/Tooltip';
 import TableSortLabel from '@material-ui/core/TableSortLabel';
 
-const rows = [
-    { id: 'roleName', numeric: false, disablePadding: true, label: 'Role Name' },
-    { id: 'roleDescription', numeric: false, disablePadding: false, label: 'Role Description' },
-];
-
 class EnhancedTableHead extends React.Component {
     createSortHandler = property => event => {
         this.props.onRequestSort(event, property);
     };
 
     render() {
-        const { onSelectAllClick, order, orderBy, numSelected, rowCount } = this.props;
+        const { onSelectAllClick, order, orderBy, numSelected, rowCount, rows } = this.props;
 
         return (
             <TableHead>

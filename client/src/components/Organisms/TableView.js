@@ -51,8 +51,7 @@ class TableView extends React.Component {
     };
 
     componentDidMount() {
-        console.log(this.props.tableData);
-        axios.get(`${this.props.tableData}`)
+        axios.get(`${this.props.tableData.url}`)
             .then(res => {
                 this.setState({ data: res.data });
             });
@@ -109,13 +108,16 @@ class TableView extends React.Component {
     isSelected = id => this.state.selected.indexOf(id) !== -1;
 
     render() {
-        const { classes } = this.props;
+        const { classes, tableData } = this.props;
         const { data, order, orderBy, selected, rowsPerPage, page } = this.state;
         const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
 
         return (
             <Paper className={classes.root}>
-                <EnhancedTableToolbar numSelected={selected.length} />
+                <EnhancedTableToolbar 
+                    numSelected={selected.length}
+                    titleName={tableData.title} 
+                />
                 <div className={classes.tableWrapper}>
                     <Table className={classes.table} aria-labelledby="tableTitle">
                         <EnhancedTableHead
@@ -125,6 +127,7 @@ class TableView extends React.Component {
                             onSelectAllClick={this.handleSelectAllClick}
                             onRequestSort={this.handleRequestSort}
                             rowCount={data.length}
+                            rows={tableData.rows}
                         />
                         <TableBody>
                             {data

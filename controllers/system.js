@@ -28,8 +28,8 @@ exports.addSystem = function (req, res) {
     let systemDescription = req.body.systemDescription;
 
     system = {
-        systemName: systemName,
-        systemDescription: systemDescription
+        name: systemName,
+        description: systemDescription
     };
 
     SystemModel.addSystem(system, function (err, system) {
