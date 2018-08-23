@@ -27,58 +27,65 @@ const styles = theme => ({
 
 class TextFields extends React.Component {
   state = {
-    name: 'name',
-    description: 'des',
+    name: '',
+    description: '',
   };
 
   handleChange = event => {
-    this.setState({ name: event.target.value });
+    const target = event.target;
+    const value = target.value;
+    const name = target.name;
+
+    this.setState({ [name]: value });
   }
 
   handleSubmit = event => {
     event.preventDefault();
 
     axios.post(`/roles`, {
-      roleName: 'new role 2',
-      roleDescription: 'new role description 2' })
-      .then(res => {
-        console.log(res);
-      });
-
+      roleName: this.state.name,
+      roleDescription: this.state.description
+    })
+    .then(res => {
+      console.log(res);
+    });
   };
 
   render() {
     const { classes, name, desc } = this.props;
 
     return (
-      <form 
-        className={classes.container} 
-        noValidate 
-        autoComplete="off" 
+      <form
+        className={classes.container}
+        noValidate
+        autoComplete="off"
         onSubmit={this.handleSubmit}
       >
         <TextField
           required
           id="name"
+          name="name"
           label={name}
           className={classes.textField}
           margin="normal"
+          onChange={this.handleChange}
         />
         <TextField
           required
           id="description"
+          name="description"
           label={desc}
           className={(classes.textField, classes.descField)}
           margin="normal"
         />
-        <Button 
-          className={classes.saveButton} 
-          variant="contained" 
-          size="small" 
+        <Button
+          className={classes.saveButton}
+          variant="contained"
+          size="small"
           color="primary"
           type="submit"
         >
-            Save
+          Save
         </Button>
       </form>
     );
