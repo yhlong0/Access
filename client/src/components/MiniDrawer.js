@@ -14,12 +14,8 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import { mailFolderListItems, otherMailFolderListItems } from './Organisms/tileData';
 import DetailPanel from './DetailExpansionPanel';
-<<<<<<< HEAD
-import RoleTable from './RoleTable';
 import TextField from './TextField';
-=======
 import TableView from './Organisms/TableView';
->>>>>>> 2d5d5c9523aef9692446ca3a1fd2a4a10292b1e2
 
 const drawerWidth = 240;
 
@@ -183,13 +179,9 @@ class MiniDrawer extends React.Component {
                     <div className={classes.toolbar} />
                     <Typography noWrap>{'Welcome to user access tracking system!'}</Typography><br />
                     <DetailPanel />
-<<<<<<< HEAD
                     <TextField />
-                    <RoleTable />
-=======
                     <TableView tableData={this.state.tableData[0]}/>
                     <TableView tableData={this.state.tableData[1]} />
->>>>>>> 2d5d5c9523aef9692446ca3a1fd2a4a10292b1e2
                 </main>
             </div>
         );
