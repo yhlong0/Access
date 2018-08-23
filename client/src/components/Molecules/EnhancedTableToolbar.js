@@ -39,12 +39,15 @@ const toolbarStyles = theme => ({
 let EnhancedTableToolbar = props => {
     const { numSelected, classes, titleName, selectedId } = props;
 
-    let handleDeleteSystem = () => {
+    let handleDelete = () => {
         console.log(selectedId);
-        axios.delete(`/systems/${selectedId}`)
-            .then(res => {
-                console.log(res.data);
-            });
+        selectedId.map(id => {
+            axios.delete(`/systems/${id}`)
+                .then(res => {
+                    console.log(res.data);
+                });
+            return id;
+        });
     };
 
     return (
@@ -68,7 +71,7 @@ let EnhancedTableToolbar = props => {
             <div className={classes.actions}>
                 {numSelected > 0 ? (
                     <Tooltip title="Delete">
-                        <IconButton aria-label="Delete" onClick={handleDeleteSystem}>
+                        <IconButton aria-label="Delete" onClick={handleDelete}>
                             <DeleteIcon />
                         </IconButton>
                     </Tooltip>
