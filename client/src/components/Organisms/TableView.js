@@ -117,6 +117,7 @@ class TableView extends React.Component {
                 <EnhancedTableToolbar 
                     numSelected={selected.length}
                     titleName={tableData.title} 
+                    selectedId={this.state.selected}
                 />
                 <div className={classes.tableWrapper}>
                     <Table className={classes.table} aria-labelledby="tableTitle">

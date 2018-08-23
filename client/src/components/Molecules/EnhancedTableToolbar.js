@@ -9,6 +9,7 @@ import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import FilterListIcon from '@material-ui/icons/FilterList';
 import { lighten } from '@material-ui/core/styles/colorManipulator';
+import axios from 'axios';
 
 const toolbarStyles = theme => ({
     root: {
@@ -36,7 +37,15 @@ const toolbarStyles = theme => ({
 });
 
 let EnhancedTableToolbar = props => {
-    const { numSelected, classes, titleName } = props;
+    const { numSelected, classes, titleName, selectedId } = props;
+
+    let handleDeleteSystem = () => {
+        console.log(selectedId);
+        axios.delete(`/systems/${selectedId}`)
+            .then(res => {
+                console.log(res.data);
+            });
+    };
 
     return (
         <Toolbar
@@ -47,7 +56,7 @@ let EnhancedTableToolbar = props => {
             <div className={classes.title}>
                 {numSelected > 0 ? (
                     <Typography color="inherit" variant="subheading">
-                        {numSelected} selected
+                        {numSelected} selected 
                     </Typography>
                 ) : (
                     <Typography variant="title" id="tableTitle">
@@ -59,7 +68,7 @@ let EnhancedTableToolbar = props => {
             <div className={classes.actions}>
                 {numSelected > 0 ? (
                     <Tooltip title="Delete">
-                        <IconButton aria-label="Delete">
+                        <IconButton aria-label="Delete" onClick={handleDeleteSystem}>
                             <DeleteIcon />
                         </IconButton>
                     </Tooltip>
