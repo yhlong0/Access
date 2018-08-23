@@ -14,8 +14,8 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import { mailFolderListItems, otherMailFolderListItems } from './Organisms/tileData';
 import DetailPanel from './DetailExpansionPanel';
-import TextField from './TextField';
-import TableView from './Organisms/TableView';
+import RolePage from './Pages/RolePage';
+import SystemPage from './Pages/SystemPage';
 
 const drawerWidth = 240;
 
@@ -87,44 +87,6 @@ const styles = theme => ({
 class MiniDrawer extends React.Component {
     state = {
         open: false,
-        tableData: [
-            {
-                url: '/roles',
-                title: 'Roles',
-                rows: [
-                    { 
-                        id: 'name', 
-                        numeric: false, 
-                        disablePadding: true, 
-                        label: 'Role Name' 
-                    },
-                    { 
-                        id: 'description', 
-                        numeric: false, 
-                        disablePadding: false, 
-                        label: 'Role Description' 
-                    }
-                ]
-            },
-            {
-                url: '/systems',
-                title: 'Systems',
-                rows: [
-                    {
-                        id: 'name',
-                        numeric: false,
-                        disablePadding: true,
-                        label: 'System Name'
-                    },
-                    {
-                        id: 'description',
-                        numeric: false,
-                        disablePadding: false,
-                        label: 'System Description'
-                    }
-                ]
-            }
-        ]
     };
 
     handleDrawerOpen = () => {
@@ -179,9 +141,8 @@ class MiniDrawer extends React.Component {
                     <div className={classes.toolbar} />
                     <Typography noWrap>{'Welcome to user access tracking system!'}</Typography><br />
                     <DetailPanel />
-                    <TextField />
-                    <TableView tableData={this.state.tableData[0]}/>
-                    <TableView tableData={this.state.tableData[1]} />
+                    <RolePage />
+                    <SystemPage />
                 </main>
             </div>
         );

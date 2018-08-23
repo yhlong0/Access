@@ -22,31 +22,31 @@ const styles = theme => ({
 
 class TextFields extends React.Component {
   state = {
-    roleName: 'Cat in the Hat',
+    name: 'name',
   };
 
-  handleChange = roleName => event => {
+  handleChange = name => event => {
     this.setState({
-      [roleName]: event.target.value,
+      [name]: event.target.value,
     });
   };
 
   render() {
-    const { classes } = this.props;
+    const { classes, name, desc } = this.props;
 
     return (
       <form className={classes.container} noValidate autoComplete="off">
         <TextField
           required
-          id="roleName"
-          label="Role Name"
+          id="name"
+          label={name}
           className={classes.textField}
           margin="normal"
         />
         <TextField
           required
-          id="roleDescription"
-          label="Role Description"
+          id="description"
+          label={desc}
           className={classes.textField}
           margin="normal"
         />
