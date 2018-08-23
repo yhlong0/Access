@@ -21,6 +21,11 @@ SystemSchema.statics.updateSystem = function (systemId, updateContent, callback)
     );
 };
 
+SystemSchema.statics.deleteSystem = function(systemId, callback) {
+    console.log(systemId);
+    this.deleteOne({ _id: systemId }, callback);
+}
+
 SystemSchema.statics.addSystem = function (system, callback) {
     this.create(system, callback);
 };

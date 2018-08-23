@@ -23,6 +23,18 @@ exports.updateSystem = function (req, res) {
     });
 };
 
+exports.deleteSystem = function (req, res) {
+    let systemId = req.params.systemId;
+
+    SystemModel.deleteSystem(systemId, function (err) {
+        if(!err) {
+            res.json({message: 'delete success'});
+        } else {
+            res.json({ message: 'delete failed' });
+        }
+    });
+};
+
 exports.addSystem = function (req, res) {
     let systemName = req.body.name;
     let systemDescription = req.body.description;

@@ -8,6 +8,9 @@ router.get('/:systemId', systemController.getSystem);
 /* Update one system. */
 router.put('/:systemId', systemController.updateSystem);
 
+/* Delete one system. */
+router.delete('/:systemId', systemController.deleteSystem);
+
 /* Show all systems. */
 router.get('/', systemController.getAllSystems);
 
