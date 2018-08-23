@@ -24,7 +24,11 @@ const tableData = {
 function RolePage () {
     return (
         <div>
-            <TextField name={'Role Name'} desc={'Role Description'} />
+            <TextField 
+                name={'Role Name'} 
+                desc={'Role Description'} 
+                url={'/roles'}
+            />
             <TableView tableData={tableData}></TableView>
         </div>
     );

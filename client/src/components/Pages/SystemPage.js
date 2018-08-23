@@ -24,7 +24,11 @@ const tableData = {
 function SystemPage () {
     return (
         <div>
-            <TextField name={'System Name'} desc={'System Description'} />
+            <TextField 
+                name={'System Name'} 
+                desc={'System Description'} 
+                url={'/systems'}
+            />
             <TableView tableData={tableData}></TableView>
         </div>
     );

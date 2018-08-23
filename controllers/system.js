@@ -24,8 +24,8 @@ exports.updateSystem = function (req, res) {
 };
 
 exports.addSystem = function (req, res) {
-    let systemName = req.body.systemName;
-    let systemDescription = req.body.systemDescription;
+    let systemName = req.body.name;
+    let systemDescription = req.body.description;
 
     system = {
         name: systemName,

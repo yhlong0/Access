@@ -41,10 +41,10 @@ class TextFields extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault();
-
-    axios.post(`/roles`, {
-      roleName: this.state.name,
-      roleDescription: this.state.description
+    console.log(this.props.url)
+    axios.post(this.props.url, {
+      name: this.state.name,
+      description: this.state.description
     })
     .then(res => {
       console.log(res);
@@ -77,6 +77,7 @@ class TextFields extends React.Component {
           label={desc}
           className={(classes.textField, classes.descField)}
           margin="normal"
+          onChange={this.handleChange}
         />
         <Button
           className={classes.saveButton}

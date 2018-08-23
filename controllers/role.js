@@ -23,8 +23,8 @@ exports.updateRole = function (req, res) {
 };
 
 exports.addRole = function(req, res) {
-    let roleName = req.body.roleName;
-    let roleDescription = req.body.roleDescription;
+    let roleName = req.body.name;
+    let roleDescription = req.body.description;
     console.log(req.body);
 
     role = {
