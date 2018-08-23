@@ -12,17 +12,21 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import { mailFolderListItems, otherMailFolderListItems } from './tileData';
+import { mailFolderListItems, otherMailFolderListItems } from './Organisms/tileData';
 import DetailPanel from './DetailExpansionPanel';
+<<<<<<< HEAD
 import RoleTable from './RoleTable';
 import TextField from './TextField';
+=======
+import TableView from './Organisms/TableView';
+>>>>>>> 2d5d5c9523aef9692446ca3a1fd2a4a10292b1e2
 
 const drawerWidth = 240;
 
 const styles = theme => ({
     root: {
         flexGrow: 1,
-        height: 1000,
+        minHeight: 1000,
         zIndex: 1,
         overflow: 'hidden',
         position: 'relative',
@@ -87,6 +91,44 @@ const styles = theme => ({
 class MiniDrawer extends React.Component {
     state = {
         open: false,
+        tableData: [
+            {
+                url: '/roles',
+                title: 'Roles',
+                rows: [
+                    { 
+                        id: 'name', 
+                        numeric: false, 
+                        disablePadding: true, 
+                        label: 'Role Name' 
+                    },
+                    { 
+                        id: 'description', 
+                        numeric: false, 
+                        disablePadding: false, 
+                        label: 'Role Description' 
+                    }
+                ]
+            },
+            {
+                url: '/systems',
+                title: 'Systems',
+                rows: [
+                    {
+                        id: 'name',
+                        numeric: false,
+                        disablePadding: true,
+                        label: 'System Name'
+                    },
+                    {
+                        id: 'description',
+                        numeric: false,
+                        disablePadding: false,
+                        label: 'System Description'
+                    }
+                ]
+            }
+        ]
     };
 
     handleDrawerOpen = () => {
@@ -141,8 +183,13 @@ class MiniDrawer extends React.Component {
                     <div className={classes.toolbar} />
                     <Typography noWrap>{'Welcome to user access tracking system!'}</Typography><br />
                     <DetailPanel />
+<<<<<<< HEAD
                     <TextField />
                     <RoleTable />
+=======
+                    <TableView tableData={this.state.tableData[0]}/>
+                    <TableView tableData={this.state.tableData[1]} />
+>>>>>>> 2d5d5c9523aef9692446ca3a1fd2a4a10292b1e2
                 </main>
             </div>
         );

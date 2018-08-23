@@ -1,5 +1,6 @@
 # Access
-Record and track users access
+Record and track users access.
+MERN app, NodeJS Restful API, MongoDB, Express framework and ReactJS, Material-UI for frontend.  
 
 ### RESTFUL API
 
