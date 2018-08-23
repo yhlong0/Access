@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import MiniDrawer from './components/MiniDrawer';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 const theme = createMuiTheme({
   palette: {
@@ -20,11 +21,13 @@ const theme = createMuiTheme({
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <MuiThemeProvider theme={theme}>
-          <MiniDrawer />       
-        </MuiThemeProvider>
-      </div>
+      <Router>
+        <div className="App">
+          <MuiThemeProvider theme={theme}>
+            <MiniDrawer />       
+          </MuiThemeProvider>
+        </div>
+      </Router>
     );
   }
 }

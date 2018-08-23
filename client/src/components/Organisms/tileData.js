@@ -8,27 +8,34 @@ import RoleIcon from '@material-ui/icons/SupervisorAccountRounded';
 import MailIcon from '@material-ui/icons/Mail';
 import DsiabledIcon from '@material-ui/icons/DesktopAccessDisabledRounded';
 import ReportIcon from '@material-ui/icons/AssessmentRounded';
+import { Link } from 'react-router-dom';
 
 export const mailFolderListItems = (
     <div>
-        <ListItem button>
-            <ListItemIcon>
-                <AccountIcon />
-            </ListItemIcon>
-            <ListItemText primary="Users" />
-        </ListItem>
-        <ListItem button>
-            <ListItemIcon>
-                <SystemIcon />
-            </ListItemIcon>
-            <ListItemText primary="Systems" />
-        </ListItem>
-        <ListItem button>
-            <ListItemIcon>
-                <RoleIcon />
-            </ListItemIcon>
-            <ListItemText primary="Roles" />
-        </ListItem>
+        <Link to="/users">
+            <ListItem button>
+                <ListItemIcon>
+                    <AccountIcon />
+                </ListItemIcon>
+                <ListItemText primary="Users" />
+            </ListItem>
+        </Link>
+        <Link to="/systems">
+            <ListItem button>
+                <ListItemIcon>
+                    <SystemIcon />
+                </ListItemIcon>
+                <ListItemText primary="Systems" />
+            </ListItem>
+        </Link>
+        <Link to="/roles">
+            <ListItem button>
+                <ListItemIcon>
+                    <RoleIcon />
+                </ListItemIcon>
+                <ListItemText primary="Roles" />
+            </ListItem>
+        </Link>
     </div>
 );
 

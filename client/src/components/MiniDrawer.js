@@ -16,6 +16,7 @@ import { mailFolderListItems, otherMailFolderListItems } from './Organisms/tileD
 import DetailPanel from './DetailExpansionPanel';
 import RolePage from './Pages/RolePage';
 import SystemPage from './Pages/SystemPage';
+import { Route, Link } from 'react-router-dom';
 
 const drawerWidth = 240;
 
@@ -116,7 +117,7 @@ class MiniDrawer extends React.Component {
                             <MenuIcon />
                         </IconButton>
                         <Typography variant="title" color="inherit" noWrap>
-                            User Access Tracking
+                            <Link to="/users">User Access Tracking</Link>
                         </Typography>
                     </Toolbar>
                 </AppBar>
@@ -140,9 +141,9 @@ class MiniDrawer extends React.Component {
                 <main className={classes.content}>
                     <div className={classes.toolbar} />
                     <Typography noWrap>{'Welcome to user access tracking system!'}</Typography><br />
-                    <DetailPanel />
-                    <RolePage />
-                    <SystemPage />
+                    <Route path="/users" component={DetailPanel} />
+                    <Route path="/roles" component={RolePage} />
+                    <Route path="/systems" component={SystemPage} />
                 </main>
             </div>
         );
