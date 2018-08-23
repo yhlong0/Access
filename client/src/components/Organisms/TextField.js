@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import axios from 'axios';
+axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
 const styles = theme => ({
   container: {
@@ -26,19 +28,35 @@ const styles = theme => ({
 class TextFields extends React.Component {
   state = {
     name: 'name',
+    description: 'des',
   };
 
-  handleChange = name => event => {
-    this.setState({
-      [name]: event.target.value,
-    });
+  handleChange = event => {
+    this.setState({ name: event.target.value });
+  }
+
+  handleSubmit = event => {
+    event.preventDefault();
+
+    axios.post(`/roles`, {
+      roleName: 'new role 2',
+      roleDescription: 'new role description 2' })
+      .then(res => {
+        console.log(res);
+      });
+
   };
 
   render() {
     const { classes, name, desc } = this.props;
 
     return (
-      <form className={classes.container} noValidate autoComplete="off">
+      <form 
+        className={classes.container} 
+        noValidate 
+        autoComplete="off" 
+        onSubmit={this.handleSubmit}
+      >
         <TextField
           required
           id="name"
@@ -53,7 +71,13 @@ class TextFields extends React.Component {
           className={(classes.textField, classes.descField)}
           margin="normal"
         />
-        <Button className={classes.saveButton} variant="contained" size="small" color="primary">
+        <Button 
+          className={classes.saveButton} 
+          variant="contained" 
+          size="small" 
+          color="primary"
+          type="submit"
+        >
             Save
         </Button>
       </form>

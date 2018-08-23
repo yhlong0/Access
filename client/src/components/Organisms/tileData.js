@@ -18,7 +18,7 @@ const styles = {
 
 export const mailFolderListItems = (
     <div>
-        <Link to="/users" style={styles.link}>
+        <Link to="/user" style={styles.link}>
             <ListItem button>
                 <ListItemIcon>
                     <AccountIcon />
@@ -26,7 +26,7 @@ export const mailFolderListItems = (
                 <ListItemText primary="Users" />
             </ListItem>
         </Link>
-        <Link to="/systems" style={styles.link}>
+        <Link to="/system" style={styles.link}>
             <ListItem button>
                 <ListItemIcon>
                     <SystemIcon />
@@ -34,7 +34,7 @@ export const mailFolderListItems = (
                 <ListItemText primary="Systems" />
             </ListItem>
         </Link>
-        <Link to="/roles" style={styles.link}>
+        <Link to="/role" style={styles.link}>
             <ListItem button>
                 <ListItemIcon>
                     <RoleIcon />

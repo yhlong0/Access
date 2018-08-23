@@ -152,9 +152,9 @@ class MiniDrawer extends React.Component {
                         }
                     } />
                         
-                    <Route path="/users" component={DetailPanel} />
-                    <Route path="/roles" component={RolePage} />
-                    <Route path="/systems" component={SystemPage} />
+                    <Route path="/user" component={DetailPanel} />
+                    <Route path="/role" component={RolePage} />
+                    <Route path="/system" component={SystemPage} />
                 </main>
             </div>
         );
