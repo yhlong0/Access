@@ -83,6 +83,10 @@ const styles = theme => ({
         backgroundColor: theme.palette.background.default,
         padding: theme.spacing.unit * 3,
     },
+    link: {
+        textDecoration: 'none', 
+        color: 'white',
+    }
 });
 
 class MiniDrawer extends React.Component {
@@ -117,7 +121,7 @@ class MiniDrawer extends React.Component {
                             <MenuIcon />
                         </IconButton>
                         <Typography variant="title" color="inherit" noWrap>
-                            <Link to="/users">User Access Tracking</Link>
+                            <Link to="/" className={classes.link}>User Access Tracking</Link>
                         </Typography>
                     </Toolbar>
                 </AppBar>
@@ -140,7 +144,14 @@ class MiniDrawer extends React.Component {
                 </Drawer>
                 <main className={classes.content}>
                     <div className={classes.toolbar} />
-                    <Typography noWrap>{'Welcome to user access tracking system!'}</Typography><br />
+                    <Route path="/" exact render={
+                        () => {
+                            return (
+                                <Typography noWrap>{'Welcome to user access tracking system!'}</Typography> 
+                            );
+                        }
+                    } />
+                        
                     <Route path="/users" component={DetailPanel} />
                     <Route path="/roles" component={RolePage} />
                     <Route path="/systems" component={SystemPage} />

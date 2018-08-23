@@ -10,9 +10,15 @@ import DsiabledIcon from '@material-ui/icons/DesktopAccessDisabledRounded';
 import ReportIcon from '@material-ui/icons/AssessmentRounded';
 import { Link } from 'react-router-dom';
 
+const styles = {
+    link: {
+        textDecoration: 'none'
+    }
+}
+
 export const mailFolderListItems = (
     <div>
-        <Link to="/users">
+        <Link to="/users" style={styles.link}>
             <ListItem button>
                 <ListItemIcon>
                     <AccountIcon />
@@ -20,7 +26,7 @@ export const mailFolderListItems = (
                 <ListItemText primary="Users" />
             </ListItem>
         </Link>
-        <Link to="/systems">
+        <Link to="/systems" style={styles.link}>
             <ListItem button>
                 <ListItemIcon>
                     <SystemIcon />
@@ -28,7 +34,7 @@ export const mailFolderListItems = (
                 <ListItemText primary="Systems" />
             </ListItem>
         </Link>
-        <Link to="/roles">
+        <Link to="/roles" style={styles.link}>
             <ListItem button>
                 <ListItemIcon>
                     <RoleIcon />

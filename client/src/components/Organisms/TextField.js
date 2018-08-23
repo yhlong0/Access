@@ -14,6 +14,9 @@ const styles = theme => ({
     marginRight: theme.spacing.unit,
     width: 200,
   },
+  descField: {
+    width: 500,
+  },
   saveButton: {
     margin: '25px 10px 10px 30px',
   }
@@ -47,7 +50,7 @@ class TextFields extends React.Component {
           required
           id="description"
           label={desc}
-          className={classes.textField}
+          className={(classes.textField, classes.descField)}
           margin="normal"
         />
         <Button className={classes.saveButton} variant="contained" size="small" color="primary">
