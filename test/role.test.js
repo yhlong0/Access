@@ -28,7 +28,7 @@ describe('Roles', () => {
                     .end((err, res) => {
                         res.should.have.status(200);
                         res.body.should.be.a('array');
-                        res.body.length.should.be.eql(5);
+                        res.body.length.should.be.eql(8);
                         done();
                     });
             });
@@ -40,10 +40,10 @@ describe('Roles', () => {
     */
 
     describe('/POST role', () => {
-        it('it should not POST a role without role name', (done) => {
+        it('it should POST a role', (done) => {
             let role = {
-                name: "test",
-                description: "new role description"
+                name: "test 23",
+                description: "new 332 role description"
             };
 
             chai.request(app)
@@ -51,8 +51,12 @@ describe('Roles', () => {
                 .send(role)
                 .end((err, res) => {
                     res.should.have.status(200);
+                    res.body.should.be.a('object');
+                    res.body.role.should.have.property('name');
+                    res.body.role.should.have.property('description');
+                    done();
                 });
-        });
+        }).timeout(10000);
     });
 
 
