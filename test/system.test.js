@@ -9,7 +9,7 @@ let should = chai.should();
 
 chai.use(chaiHttp);
 
-describe('Roles', () => {
+describe('Systems', () => {
 //     beforeEach((done) => {
 //         Role.remove({}, (err) => {
 //             done();
@@ -20,11 +20,11 @@ describe('Roles', () => {
     * Test the /Get route
     */
 
-    describe('Roles', () => {
-        describe('/roles get All roles', () => {
-            it('it should GET all the roles', (done) => {
+    describe('Systems', () => {
+        describe('/systems get All systems', () => {
+            it('it should GET all the systems', (done) => {
                 chai.request(app)
-                    .get('/roles')
+                    .get('/systems')
                     .end((err, res) => {
                         res.should.have.status(200);
                         res.body.should.be.a('array');
