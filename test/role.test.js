@@ -28,7 +28,7 @@ describe('Roles', () => {
                     .end((err, res) => {
                         res.should.have.status(200);
                         res.body.should.be.a('array');
-                        res.body.length.should.be.eql(8);
+                        res.body.length.should.be.eql(11);
                         done();
                     });
             });
@@ -52,8 +52,8 @@ describe('Roles', () => {
                 .end((err, res) => {
                     res.should.have.status(200);
                     res.body.should.be.a('object');
-                    res.body.role.should.have.property('name');
-                    res.body.role.should.have.property('description');
+                    res.body.should.have.property('name');
+                    res.body.should.have.property('description');
                     done();
                 });
         }).timeout(10000);
