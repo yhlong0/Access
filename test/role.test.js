@@ -39,5 +39,20 @@ describe('Roles', () => {
     * Test the /POST route
     */
 
+    describe('/POST role', () => {
+        it('it should not POST a role without role name', (done) => {
+            let role = {
+                description: "new role description"
+            };
+
+            chai.request(app)
+                .post('/roles')
+                .send(role)
+                .end((err, res) => {
+                    res.should.have.status(200);
+                });
+        });
+    });
+
 
 });
