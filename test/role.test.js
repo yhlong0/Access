@@ -28,7 +28,7 @@ describe('Roles', () => {
                     .end((err, res) => {
                         res.should.have.status(200);
                         res.body.should.be.a('array');
-                        res.body.length.should.be.eql(3);
+                        res.body.length.should.be.eql(5);
                         done();
                     });
             });
@@ -42,6 +42,7 @@ describe('Roles', () => {
     describe('/POST role', () => {
         it('it should not POST a role without role name', (done) => {
             let role = {
+                name: "test",
                 description: "new role description"
             };
 
