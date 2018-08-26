@@ -48,6 +48,11 @@ class TextFields extends React.Component {
     })
     .then(res => {
       console.log(res);
+      axios.get(this.props.url)
+      .then(list => {
+        debugger
+          this.props.updateData(list);
+      });
     });
   };
 
