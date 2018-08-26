@@ -10,7 +10,6 @@ import Paper from '@material-ui/core/Paper';
 import Checkbox from '@material-ui/core/Checkbox';
 import EnhancedTableToolbar from '../Molecules/EnhancedTableToolbar';
 import EnhancedTableHead from '../Molecules/EnhancedTableHead';
-import axios from 'axios';
 
 function desc(a, b, orderBy) {
     if (b[orderBy] < a[orderBy]) {
@@ -48,14 +47,6 @@ class TableView extends React.Component {
         page: 0,
         rowsPerPage: 5,
     };
-/*
-    componentDidMount() {
-        axios.get(`${this.props.tableData.url}`)
-            .then(res => {
-                this.setState({ data: res.data });
-            });
-    }
-*/
 
     handleRequestSort = (event, property) => {
         const orderBy = property;
@@ -109,7 +100,7 @@ class TableView extends React.Component {
 
     render() {
         const { classes, tableData, data } = this.props;
-        const {  order, orderBy, selected, rowsPerPage, page } = this.state;
+        const { order, orderBy, selected, rowsPerPage, page } = this.state;
         const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
 
         return (
