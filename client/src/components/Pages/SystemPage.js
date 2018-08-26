@@ -33,8 +33,18 @@ class SystemPage extends React.Component {
             });
     }
 
-    updateData = (res) =>{
+    updateData = (res) => {
         this.setState({ data: res.data });
+    }
+
+    handleDelete = (selectedId) => {
+        selectedId.map(id => {
+            axios.delete(`/systems/${id}`)
+                .then(res => {
+                    console.log(res.data);
+                });
+            return id;
+        });
     }
 
     render() {
@@ -46,7 +56,11 @@ class SystemPage extends React.Component {
                     url={'/systems'}
                     updateData={this.updateData}
                 />
-                <TableView tableData={tableData} data={this.state.data}></TableView>
+                <TableView 
+                    tableData={tableData} 
+                    data={this.state.data}
+                    handleDelete={this.handleDelete}
+                />
             </div>
         );
     }

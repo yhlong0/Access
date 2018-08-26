@@ -99,7 +99,7 @@ class TableView extends React.Component {
     isSelected = id => this.state.selected.indexOf(id) !== -1;
 
     render() {
-        const { classes, tableData, data } = this.props;
+        const { classes, tableData, data, handleDelete } = this.props;
         const { order, orderBy, selected, rowsPerPage, page } = this.state;
         const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
 
@@ -109,6 +109,7 @@ class TableView extends React.Component {
                     numSelected={selected.length}
                     titleName={tableData.title} 
                     selectedId={this.state.selected}
+                    handleDelete={handleDelete}
                 />
                 <div className={classes.tableWrapper}>
                     <Table className={classes.table} aria-labelledby="tableTitle">
