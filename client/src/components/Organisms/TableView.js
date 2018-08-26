@@ -45,17 +45,17 @@ class TableView extends React.Component {
         order: 'asc',
         orderBy: 'name',
         selected: [],
-        data: [],
         page: 0,
         rowsPerPage: 5,
     };
-
+/*
     componentDidMount() {
         axios.get(`${this.props.tableData.url}`)
             .then(res => {
                 this.setState({ data: res.data });
             });
     }
+*/
 
     handleRequestSort = (event, property) => {
         const orderBy = property;
@@ -108,8 +108,8 @@ class TableView extends React.Component {
     isSelected = id => this.state.selected.indexOf(id) !== -1;
 
     render() {
-        const { classes, tableData } = this.props;
-        const { data, order, orderBy, selected, rowsPerPage, page } = this.state;
+        const { classes, tableData, data } = this.props;
+        const {  order, orderBy, selected, rowsPerPage, page } = this.state;
         const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
 
         return (
