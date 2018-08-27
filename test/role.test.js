@@ -4,6 +4,7 @@ let Role = require('../models/role');
 let chai = require('chai');
 let chaiHttp = require('chai-http');
 let app = require('../app');
+let should = chai.should();
 
 
 chai.use(chaiHttp);
@@ -61,5 +62,32 @@ describe('Clean Roles', () => {
                     });
             }).timeout(10000);
         });
+
+        /*
+        * Test the /GET:roleId route
+        */
+
+        describe('/GET:roleId get a role', () => {
+            it('it should GET a role by the given id', (done) => {
+                let role = new Role({
+                    name: "test 23",
+                    description: "new 332 role description"
+                });
+                role.save((err, role) => {
+                    chai.request(app)
+                        .get('/roles/' + role.id)
+                        .send(role)
+                        .end((err, res) => {
+                            res.should.have.status(200);
+                            res.body.should.be.a('object');
+                            res.body.should.have.property('name');
+                            res.body.should.have.property('description');
+                            res.body.should.have.property('_id').eql(role.id);
+                            done();
+                        });
+                });
+            });
+        });
+
     });
 });
