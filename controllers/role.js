@@ -22,6 +22,18 @@ exports.updateRole = function (req, res) {
     });
 };
 
+exports.deleteRole = function (req, res) {
+    let roleId = req.params.roleId;
+
+    RoleModel.deleteRole(roleId, function (err) {
+        if(!err) {
+            res.json({message: 'delete success'});
+        } else {
+            res.json({ message: 'delete failed' });
+        }
+    });
+};
+
 exports.addRole = function(req, res) {
     let roleName = req.body.name;
     let roleDescription = req.body.description;

@@ -8,6 +8,9 @@ router.get('/:roleId', roleController.getRole);
 /* Update one roles. */
 router.put('/:roleId', roleController.updateRole);
 
+/* Delete one role. */
+router.delete('/:roleId', roleController.deleteRole);
+
 /* Show all roles. */
 router.get('/', roleController.getAllRoles);
 

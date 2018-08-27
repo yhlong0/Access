@@ -21,6 +21,11 @@ RoleSchema.statics.updateRole = function (roleId, updateContent, callback) {
     );
 };
 
+RoleSchema.statics.deleteRole = function(roleId, callback) {
+    console.log(roleId);
+    this.deleteOne({ _id: roleId }, callback);
+}
+
 RoleSchema.statics.addRole = function (role, callback) {
     this.create(role, callback);
 };

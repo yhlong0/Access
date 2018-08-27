@@ -39,6 +39,20 @@ class RolePage extends React.Component {
         debugger
         this.setState({ data: res.data });
     }
+
+    handleDelete = (selectedId) => {
+        selectedId.map(id => {
+            axios.delete(`/roles/${id}`)
+                .then(res => {
+                    console.log(res.data);
+                    axios.get('/roles')
+                    .then(res => {
+                        this.setState({ data: res.data });
+                    });
+                });
+            return id;
+        });
+    }
   
     render() {
       return (
@@ -49,9 +63,11 @@ class RolePage extends React.Component {
                 url={'/roles'}
                 updateData = {this.updateData}
             />
-            {this.state.data &&
-            <TableView tableData={tableData} data = {this.state.data}></TableView>
-            }
+            <TableView 
+                tableData={tableData} 
+                data = {this.state.data}
+                handleDelete={this.handleDelete}
+            />
         </div>
       );
     }
