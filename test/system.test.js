@@ -1,11 +1,9 @@
-let mongoose = require("mongoose");
 let System = require('../models/system');
 
 //Require the dev-dependencies
 let chai = require('chai');
 let chaiHttp = require('chai-http');
 let app = require('../app');
-let should = chai.should();
 
 chai.use(chaiHttp);
 
