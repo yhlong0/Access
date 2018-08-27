@@ -13,6 +13,18 @@ exports.getUser = function (req, res) {
     });
 };
 
+exports.deleteUser = function (req, res) {
+    let userId = req.params.userId;
+
+    UserModel.deleteUser(userId, function (err) {
+        if(!err) {
+            res.json({message: 'delete success'});
+        } else {
+            res.json({ message: 'delete failed' });
+        }
+    });
+};
+
 exports.addUser = function (req, res) {
     let lastname = req.body.lastname;
     let firstname = req.body.firstname;

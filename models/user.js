@@ -29,6 +29,11 @@ UserSchema.statics.updateUser = function (userId, updateContent, callback) {
     );
 };
 
+UserSchema.statics.deleteUser = function(userId, callback) {
+    console.log(userId);
+    this.deleteOne({ _id: userId }, callback);
+}
+
 UserSchema.statics.addUserAccess = function (userId, sysAccess, callback) {
     this.update(
         {_id: userId},

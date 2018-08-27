@@ -15,6 +15,9 @@ router.put('/:userId', userController.updateUser);
 /* Show one user. */
 router.get('/:userId', userController.getUser);
 
+/* Delete one user. */
+router.delete('/:userId', userController.deleteUser);
+
 /* Show user access. */
 router.get('/:userId/access', userController.showUserAccess);
 
