@@ -61,5 +61,32 @@ describe('Clean Systems', () => {
                     });
             }).timeout(10000);
         });
+
+        /*
+        * Test the /GET:systemId route
+        */
+
+        describe('/GET:systemId get a system', () => {
+            it('it should GET a system by the given id', (done) => {
+                let system = new System({
+                    name: "test 23",
+                    description: "new 332 system description"
+                });
+                system.save((err, system) => {
+                    chai.request(app)
+                        .get('/systems/' + system.id)
+                        .send(system)
+                        .end((err, res) => {
+                            res.should.have.status(200);
+                            res.body.should.be.a('object');
+                            res.body.should.have.property('name');
+                            res.body.should.have.property('description');
+                            res.body.should.have.property('_id').eql(system.id);
+                            done();
+                        });
+                });
+            });
+        });
+
     });
 });

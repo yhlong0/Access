@@ -64,10 +64,49 @@ describe('Clean Users', () => {
                         res.body.should.have.property('lastname');
                         res.body.should.have.property('firstname');
                         res.body.should.have.property('joinDate');
-                        res.body.should.have.property('status');
+                        res.body.should.have.property('status').eql(true);
+                        res.body.should.have.property('sysAccess').which.is.a('array');
+                        res.body.should.have.property('roles').which.is.a('array');
                         done();
                     });
             }).timeout(10000);
         });
+
+        /*
+        * Test the /GET:userId route
+        */
+
+        describe('/GET:userId get a user', () => {
+            it('it should GET a user by the given id', (done) => {
+                let user = new User({
+                    lastname: 'test_lastname',
+                    firstname: 'test_firstname',
+                    joinDate: new Date(),
+                    status: true,
+                    sysAccess: [
+                    ],
+                    roles: [
+                    ]
+                });
+                user.save((err, user) => {
+                    chai.request(app)
+                        .get('/users/' + user.id)
+                        .send(user)
+                        .end((err, res) => {
+                            res.should.have.status(200);
+                            res.body.should.be.a('object');
+                            res.body.should.have.property('lastname');
+                            res.body.should.have.property('firstname');
+                            res.body.should.have.property('joinDate');
+                            res.body.should.have.property('status').eql(true);
+                            res.body.should.have.property('sysAccess').which.is.a('array');
+                            res.body.should.have.property('roles').which.is.a('array');
+                            res.body.should.have.property('_id').eql(user.id);
+                            done();
+                        });
+                });
+            });
+        });
+
     });
 });
