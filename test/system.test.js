@@ -9,35 +9,58 @@ let should = chai.should();
 
 chai.use(chaiHttp);
 
-describe('Systems', () => {
-//     beforeEach((done) => {
-//         Role.remove({}, (err) => {
-//             done();
-//         });
-//     });
-
+describe('Clean Systems', () => {
     /*
-    * Test the /Get route
+    * Clean systems from database;
     */
 
+    beforeEach((done) => {
+        System.remove({}, (err) => {
+            done();
+        });
+    });
+
     describe('Systems', () => {
-        describe('/systems get All systems', () => {
+        
+        /*
+        * Test the /Get route
+        */
+
+        describe('/GET get all systems', () => {
             it('it should GET all the systems', (done) => {
                 chai.request(app)
                     .get('/systems')
                     .end((err, res) => {
                         res.should.have.status(200);
                         res.body.should.be.a('array');
-                        res.body.length.should.be.eql(3);
+                        res.body.length.should.be.eql(0);
                         done();
                     });
             });
         });
+
+        /*
+        * Test the /POST route
+        */
+
+        describe('/POST add a system', () => {
+            it('it should POST a system', (done) => {
+                let system = {
+                    name: "test system",
+                    description: "new 332 system description"
+                };
+
+                chai.request(app)
+                    .post('/systems')
+                    .send(system)
+                    .end((err, res) => {
+                        res.should.have.status(200);
+                        res.body.should.be.a('object');
+                        res.body.should.have.property('name');
+                        res.body.should.have.property('description');
+                        done();
+                    });
+            }).timeout(10000);
+        });
     });
-
-    /*
-    * Test the /POST route
-    */
-
-
 });

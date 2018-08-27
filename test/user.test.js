@@ -9,19 +9,26 @@ let should = chai.should();
 
 chai.use(chaiHttp);
 
-describe('Users', () => {
+describe('Clean Users', () => {
+    /*
+    * Clean users from database;
+    */
+    
     beforeEach((done) => {
         User.remove({}, (err) => {
             done();
         });
     });
 
-    /*
-    * Test the /Get route
-    */
+
 
     describe('Users', () => {
-        describe('/users get All users', () => {
+
+        /*
+        * Test the /Get route
+        */
+
+        describe('/GET get all users', () => {
             it('it should GET all the users', (done) => {
                 chai.request(app)
                     .get('/users')
@@ -34,11 +41,36 @@ describe('Users', () => {
             });
         });
 
+        /*
+        * Test the /POST route
+        */
+
+        describe('/POST add a user', () => {
+            it('it should POST a user', (done) => {
+                let user = {
+                    lastname: 'test_lastname',
+                    firstname: 'test_firstname',
+                    joinDate: new Date(),
+                    status: true,
+                    sysAccess: [
+                    ],
+                    roles: [
+                    ]
+                };
+
+                chai.request(app)
+                    .post('/users')
+                    .send(user)
+                    .end((err, res) => {
+                        res.should.have.status(200);
+                        res.body.should.be.a('object');
+                        res.body.should.have.property('lastname');
+                        res.body.should.have.property('firstname');
+                        res.body.should.have.property('joinDate');
+                        res.body.should.have.property('status');
+                        done();
+                    });
+            }).timeout(10000);
+        });
     });
-
-    /*
-    * Test the /POST route
-    */
-
-
 });

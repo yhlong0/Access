@@ -37,14 +37,11 @@ exports.deleteRole = function (req, res) {
 exports.addRole = function(req, res) {
     let roleName = req.body.name;
     let roleDescription = req.body.description;
-    console.log(req.body);
 
     role = {
         name: roleName,
         description: roleDescription
     };
-
-    console.log(role);
 
     RoleModel.addRole(role, function(err, role) {
         if (err) {
