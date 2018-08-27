@@ -23,7 +23,7 @@ const tableData = {
 };
 class SystemPage extends React.Component {
     state = {
-        data:[],
+        data: [],
     };
 
     componentDidMount() {
