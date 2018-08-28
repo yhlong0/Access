@@ -88,5 +88,34 @@ describe('Clean Systems', () => {
             });
         });
 
+        /*
+        * Test the /PUT:roleId route
+        */
+        
+        describe('/PUT:systemId update a system', () => {
+            it('it should UPDATE a system by given id', (done) => {
+                let system = new System({
+                    name: "oldsystem",
+                    description: "olddescription"
+                });
+                system.save((err, system) => {
+                    chai.request(app) 
+                        .put('/systems/' + system.id)
+                        .send({
+                            name: "updatesystem",
+                            description: "updatedescription"
+                        })
+                        .end((err, res) => {
+                            res.should.have.status(200);
+                            res.body.should.be.a('object');
+                            res.body.should.have.property('message').eql('update success');
+                            res.body.should.to.have.nested.property('system.name').eql('updatesystem');
+                            res.body.should.to.have.nested.property('system.description').eql('updatedescription');
+                            done();                            
+                        });
+                });
+            });
+        });
+
     });
 });

@@ -19,7 +19,14 @@ exports.updateSystem = function (req, res) {
     let updateContent = req.body;
     console.log(updateContent);
     SystemModel.updateSystem(systemId, updateContent, function (err, system) {
-        res.json(system);
+        if(!err) {
+            res.json({
+                message: 'update success',
+                system: system
+            });
+        } else {
+            res.json({ message: 'update failed' });
+        }
     });
 };
 
