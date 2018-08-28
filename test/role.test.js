@@ -89,5 +89,34 @@ describe('Clean Roles', () => {
             });
         });
 
+        /*
+        * Test the /PUT:roleId route
+        */
+
+       describe('/PUT:roleId update a role', () => {
+        it('it should UPDATE a role by the given id', (done) => {
+            let role = new Role({
+                name: "oldname",
+                description: "olddescription"
+            });
+            role.save((err, role) => {
+                chai.request(app)
+                    .put('/roles/' + role.id)
+                    .send({
+                        name: "updatename",
+                        description: "updatedescription"
+                    })
+                    .end((err, res) => {
+                        res.should.have.status(200);
+                        res.body.should.be.a('object');
+                        res.body.should.have.property('name').eql("updatename");
+                        res.body.should.have.property('description').eql("updatedescription");
+                        done();
+                    });
+            });
+        });
+    });
+
+
     });
 });
