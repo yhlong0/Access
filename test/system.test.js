@@ -89,7 +89,7 @@ describe('Clean Systems', () => {
         });
 
         /*
-        * Test the /PUT:roleId route
+        * Test the /PUT:systemId route
         */
         
         describe('/PUT:systemId update a system', () => {

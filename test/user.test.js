@@ -108,5 +108,9 @@ describe('Clean Users', () => {
             });
         });
 
+        /*
+        * Test the /PUT:userId route
+        */
+
     });
 });
