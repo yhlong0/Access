@@ -37,15 +37,15 @@ class SystemPage extends React.Component {
         this.setState({ data: res.data });
     }
 
-    handleDelete = (selectedId) => {
-        selectedId.map(id => {
-            axios.delete(`/systems/${id}`)
-                .then(res => {
-                    console.log(res.data);
-                });
-            return id;
-        });
-    }
+    // handleDelete = (selectedId) => {
+    //     selectedId.map(id => {
+    //         axios.delete(`/systems/${id}`)
+    //             .then(res => {
+    //                 console.log(res.data);
+    //             });
+    //         return id;
+    //     });
+    // }
 
     render() {
         return (

@@ -36,7 +36,7 @@ const toolbarStyles = theme => ({
 });
 
 let EnhancedTableToolbar = props => {
-    const { numSelected, classes, titleName, selectedId, handleDelete } = props;
+    const { numSelected, classes, titleName, selectedId, handleUpdate } = props;
 
     /*let handleDelete = () => {
         console.log(selectedId);
@@ -48,6 +48,11 @@ let EnhancedTableToolbar = props => {
             return id;
         });
     };*/
+
+    let handleSubmit = event => {
+        debugger;
+        handleUpdate(selectedId);
+    }
 
     return (
         <Toolbar
@@ -70,8 +75,8 @@ let EnhancedTableToolbar = props => {
             <div className={classes.actions}>
                 {numSelected > 0 ? (
                     <Tooltip title="Delete">
-                        <IconButton aria-label="Delete" onClick={handleDelete(selectedId)}>
-                            <DeleteIcon />
+                        <IconButton aria-label="Delete">
+                            <DeleteIcon onClick={handleSubmit} />
                         </IconButton>
                     </Tooltip>
                 ) : (

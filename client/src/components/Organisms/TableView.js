@@ -96,10 +96,15 @@ class TableView extends React.Component {
         this.setState({ rowsPerPage: event.target.value });
     };
 
+    handleUpdate = () => {
+        console.log(this.state.selected);
+        this.props.updateTBD(this.state.selected);
+    }
+
     isSelected = id => this.state.selected.indexOf(id) !== -1;
 
     render() {
-        const { classes, tableData, data, handleDelete } = this.props;
+        const { classes, tableData, data } = this.props;
         const { order, orderBy, selected, rowsPerPage, page } = this.state;
         const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
 
@@ -109,7 +114,7 @@ class TableView extends React.Component {
                     numSelected={selected.length}
                     titleName={tableData.title} 
                     selectedId={this.state.selected}
-                    handleDelete={handleDelete}
+                    handleUpdate={this.handleUpdate}
                 />
                 <div className={classes.tableWrapper}>
                     <Table className={classes.table} aria-labelledby="tableTitle">

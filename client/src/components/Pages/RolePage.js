@@ -24,24 +24,28 @@ const tableData = {
 
 class RolePage extends React.Component {
     state = {
-      data : [],
+      data: [],
+      toBeDelete: [],
     };
     
   componentDidMount() {
-        debugger
         axios.get('/roles')
             .then(res => {
                 this.setState({ data: res.data });
             });
     }
 
-    updateData = (res) =>{
-        debugger
+    updateData = (res) => {
         this.setState({ data: res.data });
     }
 
-    handleDelete = (selectedId) => {
-        selectedId.map(id => {
+    updateTBD = (selected) => {
+        this.setState({ toBeDelete: ['test', 'test2'] });
+        console.log(this.state.toBeDelete);
+    }
+
+    deleteItem = (toBeDelete) => {
+        toBeDelete.map(id => {
             axios.delete(`/roles/${id}`)
                 .then(res => {
                     console.log(res.data);
@@ -61,12 +65,12 @@ class RolePage extends React.Component {
                 name={'Role Name'} 
                 desc={'Role Description'} 
                 url={'/roles'}
-                updateData = {this.updateData}
+                updateData={this.updateData}
             />
             <TableView 
                 tableData={tableData} 
-                data = {this.state.data}
-                handleDelete={this.handleDelete}
+                data={this.state.data}
+                updateTBD={this.updateTBD}
             />
         </div>
       );
