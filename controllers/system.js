@@ -17,7 +17,7 @@ exports.getSystem = function (req, res) {
 exports.updateSystem = function (req, res) {
     let systemId = req.params.systemId;
     let updateContent = req.body;
-    console.log(updateContent);
+    //console.log(updateContent);
     SystemModel.updateSystem(systemId, updateContent, function (err, system) {
         if(!err) {
             res.json({
