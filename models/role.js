@@ -17,6 +17,7 @@ RoleSchema.statics.updateRole = function (roleId, updateContent, callback) {
     this.findOneAndUpdate(
         {_id: roleId},
         updateContent,
+        {new: true},
         callback
     );
 };

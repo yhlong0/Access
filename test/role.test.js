@@ -109,8 +109,9 @@ describe('Clean Roles', () => {
                     .end((err, res) => {
                         res.should.have.status(200);
                         res.body.should.be.a('object');
-                        res.body.should.have.property('name').eql("updatename");
-                        res.body.should.have.property('description').eql("updatedescription");
+                        res.body.should.have.property('message').eql('update success');
+                        res.body.should.to.have.nested.property('role.name').eql('updatename');
+                        //res.body.should.have.property('description').eql("updatedescription");
                         done();
                     });
             });

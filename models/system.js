@@ -17,6 +17,7 @@ SystemSchema.statics.updateSystem = function (systemId, updateContent, callback)
     this.findOneAndUpdate(
         {_id: systemId},
         updateContent,
+        {new: true},
         callback
     );
 };

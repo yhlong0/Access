@@ -25,6 +25,7 @@ UserSchema.statics.updateUser = function (userId, updateContent, callback) {
     this.findOneAndUpdate(
         {_id: userId},
         updateContent,
+        {new: true},
         callback
     );
 };
