@@ -4,15 +4,16 @@ import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
-import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelActions from '@material-ui/core/ExpansionPanelActions';
+import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 import Typography from '@material-ui/core/Typography';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Chip from '@material-ui/core/Chip';
 import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
+import SummaryPanel from '../Molecules/SummaryPanel';
 
 const styles = theme => ({
     root: {
@@ -72,12 +73,7 @@ class UserPage extends React.Component {
             <div className={classes.root}>
                 <ExpansionPanel >
                     <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-                        <div className={classes.column}>
-                            <Typography className={classes.heading}>Hailong Yang</Typography>
-                        </div>
-                        <div className={classes.column}>
-                            <Typography className={classes.secondaryHeading}>Join Date: 06/01/2018</Typography>
-                        </div>
+                        <SummaryPanel />
                     </ExpansionPanelSummary>
                     <ExpansionPanelDetails className={classes.details}>
                         <div className={classes.column}>
