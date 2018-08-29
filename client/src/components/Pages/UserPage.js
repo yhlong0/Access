@@ -56,7 +56,7 @@ const styles = theme => ({
     }
 });
 
-class DetailedExpansionPanel extends React.Component {
+class UserPage extends React.Component {
     state= {
         checkedB: true
     };
@@ -129,8 +129,8 @@ class DetailedExpansionPanel extends React.Component {
     }
 }
 
-DetailedExpansionPanel.propTypes = {
+UserPage.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(DetailedExpansionPanel);
+export default withStyles(styles)(UserPage);

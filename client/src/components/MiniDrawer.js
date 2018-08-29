@@ -13,7 +13,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import { mailFolderListItems, otherMailFolderListItems } from './Organisms/tileData';
-import DetailPanel from './DetailExpansionPanel';
+import UserPage from './Pages/UserPage';
 import RolePage from './Pages/RolePage';
 import SystemPage from './Pages/SystemPage';
 import { Route, Link } from 'react-router-dom';
@@ -152,7 +152,7 @@ class MiniDrawer extends React.Component {
                         }
                     } />
                         
-                    <Route path="/user" component={DetailPanel} />
+                    <Route path="/user" component={UserPage} />
                     <Route path="/role" component={RolePage} />
                     <Route path="/system" component={SystemPage} />
                 </main>
