@@ -15,6 +15,7 @@ import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
 import SummaryPanel from '../Molecules/SummaryPanel';
 import RoleColumn from '../Molecules/RoleColumn';
+import NewUserTextField from '../Molecules/NewUserTextField';
 
 const styles = theme => ({
     root: {
@@ -72,6 +73,7 @@ class UserPage extends React.Component {
 
         return (
             <div className={classes.root}>
+                <NewUserTextField />
                 <ExpansionPanel >
                     <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
                         <SummaryPanel />

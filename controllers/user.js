@@ -28,8 +28,13 @@ exports.deleteUser = function (req, res) {
 exports.addUser = function (req, res) {
     let lastname = req.body.lastname;
     let firstname = req.body.firstname;
-    let joinDate = Date.now();
 
+    if(req.body.joinDate) {
+        joinDate = req.body.joinDate;
+    } else {
+        joinDate = Date.now();
+    }
+    
     user = {
         lastname: lastname,
         firstname: firstname,
