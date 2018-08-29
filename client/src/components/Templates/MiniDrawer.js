@@ -12,10 +12,10 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import { mailFolderListItems, otherMailFolderListItems } from './Organisms/tileData';
-import UserPage from './Pages/UserPage';
-import RolePage from './Pages/RolePage';
-import SystemPage from './Pages/SystemPage';
+import { mailFolderListItems, otherMailFolderListItems } from '../Organisms/tileData';
+import UserPage from '../Pages/UserPage';
+import RolePage from '../Pages/RolePage';
+import SystemPage from '../Pages/SystemPage';
 import { Route, Link } from 'react-router-dom';
 
 const drawerWidth = 240;

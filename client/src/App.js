@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import MiniDrawer from './components/MiniDrawer';
+import MiniDrawer from './components/Templates/MiniDrawer';
 import { BrowserRouter as Router } from 'react-router-dom';
 
 const theme = createMuiTheme({
