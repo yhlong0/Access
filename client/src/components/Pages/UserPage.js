@@ -14,6 +14,7 @@ import Chip from '@material-ui/core/Chip';
 import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
 import SummaryPanel from '../Molecules/SummaryPanel';
+import RoleColumn from '../Molecules/RoleColumn';
 
 const styles = theme => ({
     root: {
@@ -76,9 +77,7 @@ class UserPage extends React.Component {
                         <SummaryPanel />
                     </ExpansionPanelSummary>
                     <ExpansionPanelDetails className={classes.details}>
-                        <div className={classes.column}>
-                            <Chip label="System Admin 06/01/2018" className={classes.roleChip} onDelete={() => { }} />
-                        </div>
+                        <RoleColumn />
                         <div className={classes.column}>
                             <Chip label="Domain Account 06/01/2018" className={classes.chip} onDelete={() => { }} />
                             <Chip label="Phone 06/01/2018" className={classes.chip} onDelete={() => { }} />

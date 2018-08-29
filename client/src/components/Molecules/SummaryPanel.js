@@ -19,7 +19,7 @@ const styles = theme => ({
 });
 
 let SummaryPanel = props => {
-    const{ classes } = props;
+    const { classes } = props;
 
     return (
         <Fragment>         
