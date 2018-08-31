@@ -26,15 +26,10 @@ const tableData = {
 
 class RolePage extends React.Component {
     state = {
-      data: [],
       toBeDelete: [],
     };
     
   componentDidMount() {
-        axios.get('/roles')
-            .then(res => {
-                this.setState({ data: res.data });
-            });
         this.props.dispatch(roleActions.fetchRole())
     }
 
@@ -62,7 +57,8 @@ class RolePage extends React.Component {
     }
   
     render() {
-        console.log(this.props);
+        console.log(this.props.roles);
+        //console.log(this.state.data);
       return (
         <div>
             <TextField 
@@ -73,7 +69,7 @@ class RolePage extends React.Component {
             />
             <TableView 
                 tableData={tableData} 
-                data={this.state.data}
+                data={this.props.roles}
                 updateTBD={this.updateTBD}
             />
         </div>

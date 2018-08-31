@@ -108,6 +108,7 @@ class TableView extends React.Component {
         const { order, orderBy, selected, rowsPerPage, page } = this.state;
         const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
 
+
         return (
             <Paper className={classes.root}>
                 <EnhancedTableToolbar 

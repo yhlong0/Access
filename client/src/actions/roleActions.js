@@ -10,24 +10,24 @@ export function fetchRoles() {
     };
 };
 
-// export function fetchRole() {
-//     return function(dispatch) {
-//         axios.get('/roles')
-//             .then((res) => {
-//                 dispatch({type: 'FETCH_ROLE_FULFILLED', payload: res.data})
-//             })
-//             .catch((err) => {
-//                 dispatch({type: 'FETCH_ROLE_REJECTED', payload: err})
-//             });
-//     };
-// };
-
 export function fetchRole() {
-    return {
-        type: "FETCH_ROLE_FULFILLED",
-        payload: {
-            name: 'test',
-            description: 'test role',
-        }
-    }
+    return function(dispatch) {
+        axios.get('/roles')
+            .then((res) => {
+                dispatch({type: 'FETCH_ROLE_FULFILLED', payload: res.data})
+            })
+            .catch((err) => {
+                dispatch({type: 'FETCH_ROLE_REJECTED', payload: err})
+            });
+    };
 };
+
+// export function fetchRole() {
+//     return {
+//         type: "FETCH_ROLE_FULFILLED",
+//         payload: {
+//             name: 'test',
+//             description: 'test role',
+//         }
+//     }
+// };
