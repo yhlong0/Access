@@ -1,4 +1,13 @@
-export default function roleReducer(state = {}, action) {
+export default function roleReducer(state = {
+    role: {
+        _id: null,
+        name: null,
+        description: null,
+    },
+    fetching: false,
+    fetched: false,
+    error: null,
+}, action) {
     switch(action.type) {
         case 'CREATE_ROLE':
             return {
@@ -8,9 +17,10 @@ export default function roleReducer(state = {}, action) {
             };
         case 'FETCH_ROLE_FULFILLED': 
             return {
-                ...state, 
-                name: action.name,
-                description: action.description 
+                ...state,
+                fetching: false,
+                fetched: true, 
+                role: action.payload,
             }
         default: 
             return state;

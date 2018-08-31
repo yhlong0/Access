@@ -1,6 +1,8 @@
 import React from 'react';
 import TextField from '../Organisms/TextField';
 import TableView from '../Organisms/TableView';
+import { connect } from 'react-redux';
+import * as roleActions from '../../actions/roleActions';
 import axios from 'axios';
 
 const tableData = {
@@ -33,6 +35,7 @@ class RolePage extends React.Component {
             .then(res => {
                 this.setState({ data: res.data });
             });
+        this.props.dispatch(roleActions.fetchRole())
     }
 
     updateData = (res) => {
@@ -59,6 +62,7 @@ class RolePage extends React.Component {
     }
   
     render() {
+        console.log(this.props);
       return (
         <div>
             <TextField 
@@ -77,4 +81,10 @@ class RolePage extends React.Component {
     }
   }
 
-export default RolePage;
+function mapStateToProps(state, ownProps) {
+    return {
+        roles: state.role.role
+    };
+}
+
+export default connect(mapStateToProps)(RolePage);
