@@ -41,19 +41,20 @@ class TextFields extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    console.log(this.props.url)
-    axios.post(this.props.url, {
-      name: this.state.name,
-      description: this.state.description
-    })
-    .then(res => {
-      console.log(res);
-      axios.get(this.props.url)
-      .then(list => {
-        debugger
-          this.props.updateData(list);
-      });
-    });
+    this.props.updateData();
+    // console.log(this.props.url)
+    // axios.post(this.props.url, {
+    //   name: this.state.name,
+    //   description: this.state.description
+    // })
+    // .then(res => {
+    //   console.log(res);
+    //   axios.get(this.props.url)
+    //   .then(list => {
+    //       this.props.updateData(list);
+    //   });
+    // });
+    //this.props.createRole();
   };
 
   render() {
