@@ -1,8 +1,8 @@
 import axios from 'axios';
 
-export function createRole() {
+export function createRole(role) {
     return dispatch => {
-        axios.post('/roles', {name: 'testAddRole', description: 'test Add Role description'})
+        axios.post('/roles', role)
              .then((res) => {
                 axios.get('/roles')
                      .then((res) => {

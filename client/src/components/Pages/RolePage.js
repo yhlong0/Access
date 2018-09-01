@@ -33,9 +33,9 @@ class RolePage extends React.Component {
         this.props.dispatch(roleActions.fetchRoles())
     }
 
-    updateData = () => {
+    updateData = (role) => {
         //this.setState({ data: res.data });
-        this.props.dispatch(roleActions.createRole())
+        this.props.dispatch(roleActions.createRole(role))
     }
 
     updateTBD = (selected) => {
