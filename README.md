@@ -1,8 +1,14 @@
 # Access
 Record and track users access.
-MERN app, NodeJS Restful API, MongoDB, Express framework and ReactJS, Material-UI for frontend.  
+MERN app, NodeJS Restful API, MongoDB, Express framework and ReactJS, Redux, Material-UI for frontend.  
 
-### RESTFUL API
+### FRONT-END 
+
+Redux to store the state, Material-UI for UI/UX design.  
+
+
+
+### BACK-END RESTFUL API 
 
 ##### User information
 1. GET /users to retrieve all users information
