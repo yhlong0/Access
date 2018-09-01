@@ -11,7 +11,14 @@ export default function roleReducer(state = {
                 name: action.name,
                 description: action.description 
             };
-        case 'FETCH_ROLE_FULFILLED': 
+        case 'FETCH_ROLES_PENDING': 
+            return {
+                ...state,
+                fetching: true,
+                fetched: false, 
+                role: [{_id: 'pending', name: 'pending', description: 'pending'}],
+            }
+        case 'FETCH_ROLES_FULFILLED': 
             return {
                 ...state,
                 fetching: false,

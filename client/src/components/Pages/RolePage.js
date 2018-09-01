@@ -30,7 +30,7 @@ class RolePage extends React.Component {
     };
     
   componentDidMount() {
-        this.props.dispatch(roleActions.fetchRole())
+        this.props.dispatch(roleActions.fetchRoles())
     }
 
     updateData = (res) => {
