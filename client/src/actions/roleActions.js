@@ -39,8 +39,15 @@ export const deleteRole = (id) => {
              .catch((err) => {
                 dispatch({type: 'DELETE_ROLE_REJECTED', payload: err})
             });
+    };
+};
+
+export const selectRole = (id) => {
+    return {
+        type: 'SELECT_ROLE',
+        payload: ['5b8a153d2052b911087507a0'],
     }
-}
+};
 
 // export function fetchRole() {
 //     return {

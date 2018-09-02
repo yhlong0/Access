@@ -1,5 +1,6 @@
 export default function roleReducer(state = {
     role: [],
+    selected: [],
     fetching: false,
     fetched: false,
     error: null,
@@ -32,6 +33,11 @@ export default function roleReducer(state = {
                 fetching: true,
                 fetched: false, 
                 role: [{_id: 'pending', name: 'pending', description: 'pending'}],
+            }
+        case 'SELECT_ROLE': 
+            return {
+                ...state,
+                selected: ['5b8a153d2052b911087507a0'],
             }
         default: 
             return state;
