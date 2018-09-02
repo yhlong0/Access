@@ -102,10 +102,14 @@ class TableView extends React.Component {
         this.props.updateTBD(this.state.selected);
     }
 
+    clearSelected = () => {
+        this.setState({ selected: [] });
+    }
+
     isSelected = id => this.state.selected.indexOf(id) !== -1;
 
     render() {
-        const { classes, tableData, data } = this.props;
+        const { classes, tableData, data, deleteRole } = this.props;
         const { order, orderBy, selected, rowsPerPage, page } = this.state;
         const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
 
@@ -117,6 +121,8 @@ class TableView extends React.Component {
                     titleName={tableData.title} 
                     selectedId={this.state.selected}
                     handleUpdate={this.handleUpdate}
+                    deleteRole={deleteRole}
+                    clearSelected={this.clearSelected}
                 />
                 <div className={classes.tableWrapper}>
                     <Table className={classes.table} aria-labelledby="tableTitle">

@@ -27,10 +27,11 @@ export const fetchRoles = () => {
     };
 };
 
-export const deleteRole = (id) => {
+export const deleteRole = (selected) => {
     return dispatch => {
-        axios.delete('/roles/' + id)
+        axios.delete('/roles/' + selected[0])
              .then((res) => {
+                dispatch({type: 'CLEAR_SELECTED', payload: []}); 
                 axios.get('/roles')
                 .then((res) => {
                    dispatch({type: 'FETCH_ROLES_FULFILLED', payload: res.data})

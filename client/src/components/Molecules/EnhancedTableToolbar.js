@@ -36,7 +36,7 @@ const toolbarStyles = theme => ({
 });
 
 let EnhancedTableToolbar = props => {
-    const { numSelected, classes, titleName, selectedId, handleUpdate } = props;
+    const { numSelected, classes, titleName, selectedId, clearSelected, deleteRole } = props;
 
     /*let handleDelete = () => {
         console.log(selectedId);
@@ -50,8 +50,8 @@ let EnhancedTableToolbar = props => {
     };*/
 
     let handleSubmit = event => {
-        debugger;
-        handleUpdate(selectedId);
+        deleteRole();
+        clearSelected();
     }
 
     return (

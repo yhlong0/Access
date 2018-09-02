@@ -38,8 +38,8 @@ class RolePage extends React.Component {
         this.props.dispatch(roleActions.createRole(role));
     }
 
-    deleteRole = (id) => {
-        this.props.dispatch(roleActions.deleteRole(id));
+    deleteRole = () => {
+        this.props.dispatch(roleActions.deleteRole(this.props.selected));
     }
 
     selectRole = (selected) => {
@@ -66,8 +66,8 @@ class RolePage extends React.Component {
     }
   
     render() {
-        console.log(this.props.roles);
-        //console.log(this.state.data);
+        //console.log(this.props.roles);
+        console.log(this.props.selected);
       return (
         <div>
             <TextField 
@@ -90,7 +90,8 @@ class RolePage extends React.Component {
 
 function mapStateToProps(state, ownProps) {
     return {
-        roles: state.role.role
+        roles: state.role.role,
+        selected: state.role.selected,
     };
 }
 

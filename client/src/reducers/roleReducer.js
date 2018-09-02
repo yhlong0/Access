@@ -39,6 +39,11 @@ export default function roleReducer(state = {
                 ...state,
                 selected: action.payload,
             }
+        case 'CLEAR_SELECTED': 
+            return {
+                ...state,
+                selected: action.payload,
+            }
         default: 
             return state;
     }
