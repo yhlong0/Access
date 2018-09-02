@@ -29,7 +29,7 @@ class RolePage extends React.Component {
       toBeDelete: [],
     };
     
-  componentDidMount() {
+    componentDidMount() {
         this.props.dispatch(roleActions.fetchRoles())
     }
 
