@@ -18,14 +18,29 @@ export function createRole(role) {
 export const fetchRoles = () => {
     return dispatch => {
         axios.get('/roles')
-            .then((res) => {
-                dispatch({type: 'FETCH_ROLES_FULFILLED', payload: res.data})
-            })
-            .catch((err) => {
-                dispatch({type: 'FETCH_ROLES_REJECTED', payload: err})
-            });
+             .then((res) => {
+                 dispatch({type: 'FETCH_ROLES_FULFILLED', payload: res.data})
+             })
+             .catch((err) => {
+                 dispatch({type: 'FETCH_ROLES_REJECTED', payload: err})
+             });
     };
 };
+
+export const deleteRole = (id) => {
+    return dispatch => {
+        axios.delete('/roles/' + id)
+             .then((res) => {
+                axios.get('/roles')
+                .then((res) => {
+                   dispatch({type: 'FETCH_ROLES_FULFILLED', payload: res.data})
+                })
+             })
+             .catch((err) => {
+                dispatch({type: 'DELETE_ROLE_REJECTED', payload: err})
+            });
+    }
+}
 
 // export function fetchRole() {
 //     return {
