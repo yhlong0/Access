@@ -42,10 +42,10 @@ export const deleteRole = (id) => {
     };
 };
 
-export const selectRole = (id) => {
+export const selectRole = (selected) => {
     return {
         type: 'SELECT_ROLE',
-        payload: ['5b8a153d2052b911087507a0'],
+        payload: selected,
     }
 };
 

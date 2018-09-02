@@ -42,6 +42,10 @@ class RolePage extends React.Component {
         this.props.dispatch(roleActions.deleteRole(id));
     }
 
+    selectRole = (selected) => {
+        this.props.dispatch(roleActions.selectRole(selected));
+    }
+
     updateTBD = (selected) => {
         this.setState({ toBeDelete: ['test', 'test2'] });
         console.log(this.state.toBeDelete);
@@ -77,6 +81,7 @@ class RolePage extends React.Component {
                 data={this.props.roles}
                 updateTBD={this.updateTBD}
                 deleteRole={this.deleteRole}
+                selectRole={this.selectRole}
             />
         </div>
       );

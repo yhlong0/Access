@@ -37,7 +37,7 @@ export default function roleReducer(state = {
         case 'SELECT_ROLE': 
             return {
                 ...state,
-                selected: ['5b8a153d2052b911087507a0'],
+                selected: action.payload,
             }
         default: 
             return state;

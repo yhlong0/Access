@@ -86,6 +86,7 @@ class TableView extends React.Component {
         }
 
         this.setState({ selected: newSelected });
+        this.props.selectRole(newSelected);
     };
 
     handleChangePage = (event, page) => {
