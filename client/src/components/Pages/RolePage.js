@@ -30,12 +30,16 @@ class RolePage extends React.Component {
     };
     
     componentDidMount() {
-        this.props.dispatch(roleActions.fetchRoles())
+        this.props.dispatch(roleActions.fetchRoles());
     }
 
     updateData = (role) => {
         //this.setState({ data: res.data });
-        this.props.dispatch(roleActions.createRole(role))
+        this.props.dispatch(roleActions.createRole(role));
+    }
+
+    deleteRole = (id) => {
+        this.props.dispatch(roleActions.deleteRole(id));
     }
 
     updateTBD = (selected) => {
@@ -72,6 +76,7 @@ class RolePage extends React.Component {
                 tableData={tableData} 
                 data={this.props.roles}
                 updateTBD={this.updateTBD}
+                deleteRole={this.deleteRole}
             />
         </div>
       );
