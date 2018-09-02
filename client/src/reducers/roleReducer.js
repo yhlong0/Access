@@ -26,6 +26,13 @@ export default function roleReducer(state = {
                 fetched: true, 
                 role: action.payload,
             }
+        case 'DELETE_ROLE_PENDING':
+            return {
+                ...state,
+                fetching: true,
+                fetched: false, 
+                role: [{_id: 'pending', name: 'pending', description: 'pending'}],
+            }
         default: 
             return state;
     }
