@@ -85,6 +85,7 @@ EnhancedTableToolbar.propTypes = {
     numSelected: PropTypes.number.isRequired,
     deleteItem: PropTypes.func.isRequired,
     clearSelected: PropTypes.func.isRequired,
+    titleName: PropTypes.string.isRequired,
 };
 
 export default withStyles(toolbarStyles)(EnhancedTableToolbar);
