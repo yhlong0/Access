@@ -35,7 +35,6 @@ class RolePage extends React.Component {
     }
 
     updateData = (role) => {
-        //this.setState({ data: res.data });
         this.props.dispatch(roleActions.createRole(role));
     }
 
@@ -69,6 +68,7 @@ class RolePage extends React.Component {
     render() {
         console.log(this.props.roles);
         console.log(this.props.selected);
+        console.log(this.props.fetching);
       return (
         <div>
             

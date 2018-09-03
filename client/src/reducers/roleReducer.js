@@ -44,6 +44,11 @@ export default function roleReducer(state = {
                 ...state,
                 selected: action.payload,
             }
+        case 'FETCHING': 
+            return {
+                ...state,
+                fetching: true,
+            }
         default: 
             return state;
     }

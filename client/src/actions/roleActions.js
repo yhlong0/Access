@@ -2,6 +2,7 @@ import axios from 'axios';
 
 export function createRole(role) {
     return dispatch => {
+        dispatch({type: 'FETCHING'});
         axios.post('/roles', role)
              .then((res) => {
                 axios.get('/roles')
@@ -17,6 +18,7 @@ export function createRole(role) {
 
 export const fetchRoles = () => {
     return dispatch => {
+        dispatch({type: 'FETCHING'});
         axios.get('/roles')
              .then((res) => {
                  dispatch({type: 'FETCH_ROLES_FULFILLED', payload: res.data})
@@ -29,6 +31,7 @@ export const fetchRoles = () => {
 
 export const deleteRole = (selected) => {
     return dispatch => {
+        dispatch({type: 'FETCHING'});
         const arrayLength = selected.length;
         selected.map((id, index) => {
             axios.delete('/roles/' + id)
@@ -53,8 +56,15 @@ export const selectRole = (selected) => {
     return {
         type: 'SELECT_ROLE',
         payload: selected,
-    }
+    };
 };
+
+// export const fetching = () => {
+//     return {
+//         type: 'FETCHING',
+//         payload: true,
+//     };
+// };
 
 // export function fetchRole() {
 //     return {
