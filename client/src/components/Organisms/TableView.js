@@ -185,6 +185,10 @@ class TableView extends React.Component {
 
 TableView.propTypes = {
     classes: PropTypes.object.isRequired,
+    tableData: PropTypes.object.isRequired,
+    data: PropTypes.array.isRequired,
+    deleteItem: PropTypes.func.isRequired,
+    selectItem: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles)(TableView);
