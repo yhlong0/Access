@@ -1,4 +1,5 @@
 import React from 'react';
+import LinearProgress from '@material-ui/core/LinearProgress';
 import TextField from '../Organisms/TextField';
 import TableView from '../Organisms/TableView';
 import { connect } from 'react-redux';
@@ -66,16 +67,20 @@ class RolePage extends React.Component {
     }
   
     render() {
-        //console.log(this.props.roles);
+        console.log(this.props.roles);
         console.log(this.props.selected);
       return (
         <div>
+            
             <TextField 
                 name={'Role Name'} 
                 desc={'Role Description'} 
                 url={'/roles'}
                 updateData={this.updateData}
             />
+            {this.props.fetching && 
+                <LinearProgress />
+            }   
             <TableView 
                 tableData={tableData} 
                 data={this.props.roles}
@@ -92,6 +97,7 @@ function mapStateToProps(state, ownProps) {
     return {
         roles: state.role.role,
         selected: state.role.selected,
+        fetching: state.role.fetching,
     };
 }
 

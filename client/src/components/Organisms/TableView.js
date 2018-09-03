@@ -61,10 +61,12 @@ class TableView extends React.Component {
 
     handleSelectAllClick = (event, checked) => {
         if (checked) {
-            this.setState(state => ({ selected: state.data.map(n => n._id) }));
+            this.setState(state => ({ selected: this.props.data.map(n => n._id) }));
+            this.props.selectRole(this.props.data.map(n => n._id));
             return;
         }
         this.setState({ selected: [] });
+        this.props.selectRole([]);
     };
 
     handleClick = (event, _id) => {

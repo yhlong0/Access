@@ -1,7 +1,7 @@
 export default function roleReducer(state = {
     role: [],
     selected: [],
-    fetching: false,
+    fetching: true,
     fetched: false,
     error: null,
 }, action) {
