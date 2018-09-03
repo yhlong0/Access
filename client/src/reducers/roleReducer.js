@@ -2,23 +2,32 @@ export default function roleReducer(state = {
     role: [],
     selected: [],
     fetching: true,
-    fetched: false,
     error: null,
 }, action) {
     switch(action.type) {
-        case 'CREATE_ROLE_FULFILLED':
+        case 'CREATE_ROLE_REJECTED': 
             return {
-                ...state, 
+                ...state,
                 fetching: false,
-                fetched: true, 
-                role: action.payload,
-            };
+                error: action.payload,
+            }    
         case 'FETCH_ROLES_FULFILLED': 
             return {
                 ...state,
                 fetching: false,
-                fetched: true, 
                 role: action.payload,
+            }
+        case 'FETCH_ROLES_REJECTED': 
+            return {
+                ...state,
+                fetching: false,
+                error: action.payload,
+            }
+        case 'DELETE_ROLE_REJECTED': 
+            return {
+                ...state,
+                fetching: false,
+                error: action.payload,
             }
         case 'SELECT_ROLE': 
             return {
