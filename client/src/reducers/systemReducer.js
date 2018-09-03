@@ -1,35 +1,35 @@
-export default function roleReducer(state = {
-    role: [],
+export default function systemReducer(state = {
+    system: [],
     selected: [],
     fetching: true,
     error: null,
 }, action) {
     switch(action.type) {
-        case 'CREATE_ROLE_REJECTED': 
+        case 'CREATE_SYSTEM_REJECTED': 
             return {
                 ...state,
                 fetching: false,
                 error: action.payload,
             }    
-        case 'FETCH_ROLES_FULFILLED': 
+        case 'FETCH_SYSTEMS_FULFILLED': 
             return {
                 ...state,
                 fetching: false,
                 role: action.payload,
             }
-        case 'FETCH_ROLES_REJECTED': 
+        case 'FETCH_SYSTEMS_REJECTED': 
             return {
                 ...state,
                 fetching: false,
                 error: action.payload,
             }
-        case 'DELETE_ROLE_REJECTED': 
+        case 'DELETE_SYSTEM_REJECTED': 
             return {
                 ...state,
                 fetching: false,
                 error: action.payload,
             }
-        case 'SELECT_ROLE': 
+        case 'SELECT_SYSTEM': 
             return {
                 ...state,
                 selected: action.payload,
