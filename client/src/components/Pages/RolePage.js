@@ -4,7 +4,6 @@ import TextField from '../Organisms/TextField';
 import TableView from '../Organisms/TableView';
 import { connect } from 'react-redux';
 import * as roleActions from '../../actions/roleActions';
-import axios from 'axios';
 
 const tableData = {
     url: '/roles',
@@ -34,7 +33,7 @@ class RolePage extends React.Component {
         this.props.dispatch(roleActions.fetchRoles());
     }
 
-    updateData = (role) => {
+    createRole = (role) => {
         this.props.dispatch(roleActions.createRole(role));
     }
 
@@ -45,30 +44,11 @@ class RolePage extends React.Component {
     selectRole = (selected) => {
         this.props.dispatch(roleActions.selectRole(selected));
     }
-
-    updateTBD = (selected) => {
-        this.setState({ toBeDelete: ['test', 'test2'] });
-        console.log(this.state.toBeDelete);
-    }
-
-    deleteItem = (toBeDelete) => {
-        toBeDelete.map(id => {
-            axios.delete(`/roles/${id}`)
-                .then(res => {
-                    console.log(res.data);
-                    axios.get('/roles')
-                    .then(res => {
-                        this.setState({ data: res.data });
-                    });
-                });
-            return id;
-        });
-    }
   
     render() {
-        console.log(this.props.roles);
-        console.log(this.props.selected);
-        console.log(this.props.fetching);
+        //console.log(this.props.roles);
+        //console.log(this.props.selected);
+        //console.log(this.props.fetching);
       return (
         <div>
             
@@ -76,7 +56,7 @@ class RolePage extends React.Component {
                 name={'Role Name'} 
                 desc={'Role Description'} 
                 url={'/roles'}
-                updateData={this.updateData}
+                createRole={this.createRole}
             />
             {this.props.fetching && 
                 <LinearProgress />
@@ -84,7 +64,6 @@ class RolePage extends React.Component {
             <TableView 
                 tableData={tableData} 
                 data={this.props.roles}
-                updateTBD={this.updateTBD}
                 deleteRole={this.deleteRole}
                 selectRole={this.selectRole}
             />

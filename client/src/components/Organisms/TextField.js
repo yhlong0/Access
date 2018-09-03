@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import axios from 'axios';
-axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
 const styles = theme => ({
   container: {
@@ -41,23 +39,10 @@ class TextFields extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    this.props.updateData({
+    this.props.createRole({
       name: this.state.name,
       description: this.state.description,
     });
-    // console.log(this.props.url)
-    // axios.post(this.props.url, {
-    //   name: this.state.name,
-    //   description: this.state.description
-    // })
-    // .then(res => {
-    //   console.log(res);
-    //   axios.get(this.props.url)
-    //   .then(list => {
-    //       this.props.updateData(list);
-    //   });
-    // });
-    //this.props.createRole();
   };
 
   render() {
