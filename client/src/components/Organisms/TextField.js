@@ -39,7 +39,7 @@ class TextFields extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    this.props.createRole({
+    this.props.create({
       name: this.state.name,
       description: this.state.description,
     });

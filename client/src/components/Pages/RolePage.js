@@ -25,7 +25,7 @@ const tableData = {
 };
 
 class RolePage extends React.Component {
-    
+
     componentDidMount() {
         this.props.dispatch(roleActions.fetchRoles());
     }
@@ -52,8 +52,7 @@ class RolePage extends React.Component {
             <TextField 
                 name={'Role Name'} 
                 desc={'Role Description'} 
-                url={'/roles'}
-                createRole={this.createRole}
+                create={this.createRole}
             />
             {this.props.fetching && 
                 <LinearProgress />
@@ -61,8 +60,8 @@ class RolePage extends React.Component {
             <TableView 
                 tableData={tableData} 
                 data={this.props.roles}
-                deleteRole={this.deleteRole}
-                selectRole={this.selectRole}
+                deleteItem={this.deleteRole}
+                selectItem={this.selectRole}
             />
         </div>
       );

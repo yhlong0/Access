@@ -62,11 +62,11 @@ class TableView extends React.Component {
     handleSelectAllClick = (event, checked) => {
         if (checked) {
             this.setState(state => ({ selected: this.props.data.map(n => n._id) }));
-            this.props.selectRole(this.props.data.map(n => n._id));
+            this.props.selectItem(this.props.data.map(n => n._id));
             return;
         }
         this.setState({ selected: [] });
-        this.props.selectRole([]);
+        this.props.selectItem([]);
     };
 
     handleClick = (event, _id) => {
@@ -88,7 +88,7 @@ class TableView extends React.Component {
         }
 
         this.setState({ selected: newSelected });
-        this.props.selectRole(newSelected);
+        this.props.selectItem(newSelected);
     };
 
     handleChangePage = (event, page) => {
@@ -106,7 +106,7 @@ class TableView extends React.Component {
     isSelected = id => this.state.selected.indexOf(id) !== -1;
 
     render() {
-        const { classes, tableData, data, deleteRole } = this.props;
+        const { classes, tableData, data, deleteItem } = this.props;
         const { order, orderBy, selected, rowsPerPage, page } = this.state;
         const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
 
@@ -116,7 +116,7 @@ class TableView extends React.Component {
                 <EnhancedTableToolbar 
                     numSelected={selected.length}
                     titleName={tableData.title} 
-                    deleteRole={deleteRole}
+                    deleteItem={deleteItem}
                     clearSelected={this.clearSelected}
                 />
                 <div className={classes.tableWrapper}>

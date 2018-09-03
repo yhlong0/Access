@@ -30,15 +30,11 @@ class SystemPage extends React.Component {
     };
 
     componentDidMount() {
-        axios.get('/systems')
-            .then(res => {
-                this.setState({ data: res.data });
-            });
         this.props.dispatch(systemActions.fetchSystems());
     }
 
-    updateData = (res) => {
-        this.setState({ data: res.data });
+    createSystem = (system) => {
+        this.props.dispatch(systemActions.createSystem(system));
     }
 
     render() {
@@ -48,8 +44,7 @@ class SystemPage extends React.Component {
                 <TextField 
                     name={'System Name'} 
                     desc={'System Description'} 
-                    url={'/systems'}
-                    updateData={this.updateData}
+                    create={this.createSystem}
                 />
                 {this.props.fetching && 
                     <LinearProgress />

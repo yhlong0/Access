@@ -36,10 +36,10 @@ const toolbarStyles = theme => ({
 });
 
 let EnhancedTableToolbar = props => {
-    const { numSelected, classes, titleName, clearSelected, deleteRole } = props;
+    const { numSelected, classes, titleName, clearSelected, deleteItem } = props;
 
     let handleSubmit = event => {
-        deleteRole();
+        deleteItem();
         clearSelected();
     }
 
@@ -83,7 +83,7 @@ let EnhancedTableToolbar = props => {
 EnhancedTableToolbar.propTypes = {
     classes: PropTypes.object.isRequired,
     numSelected: PropTypes.number.isRequired,
-    //deleteRole: PropTypes.func.isRequired,
+    deleteItem: PropTypes.func.isRequired,
     clearSelected: PropTypes.func.isRequired,
 };
 
