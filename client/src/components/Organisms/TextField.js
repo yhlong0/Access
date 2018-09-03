@@ -46,7 +46,7 @@ class TextFields extends React.Component {
   };
 
   render() {
-    const { classes, name, desc } = this.props;
+    const { classes, name, description } = this.props;
 
     return (
       <form
@@ -68,7 +68,7 @@ class TextFields extends React.Component {
           required
           id="description"
           name="description"
-          label={desc}
+          label={description}
           className={(classes.textField, classes.descField)}
           margin="normal"
           onChange={this.handleChange}
@@ -89,6 +89,9 @@ class TextFields extends React.Component {
 
 TextFields.propTypes = {
   classes: PropTypes.object.isRequired,
+  name: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  create: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles)(TextFields);

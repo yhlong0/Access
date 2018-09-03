@@ -4,7 +4,6 @@ import TextField from '../Organisms/TextField';
 import TableView from '../Organisms/TableView';
 import { connect } from 'react-redux';
 import * as systemActions from '../../actions/systemActions';
-import axios from 'axios';
 
 const tableData = {
     title: 'Systems',
@@ -42,12 +41,11 @@ class SystemPage extends React.Component {
     }
 
     render() {
-        console.log(this.props.systems);
         return (
             <div>
                 <TextField 
                     name={'System Name'} 
-                    desc={'System Description'} 
+                    description={'System Description'} 
                     create={this.createSystem}
                 />
                 {this.props.fetching && 

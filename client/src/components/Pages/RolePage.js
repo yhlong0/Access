@@ -42,15 +42,11 @@ class RolePage extends React.Component {
     }
   
     render() {
-        //console.log(this.props.roles);
-        //console.log(this.props.selected);
-        //console.log(this.props.fetching);
       return (
         <div>
-            
             <TextField 
                 name={'Role Name'} 
-                desc={'Role Description'} 
+                description={'Role Description'} 
                 create={this.createRole}
             />
             {this.props.fetching && 
