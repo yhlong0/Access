@@ -6,7 +6,6 @@ import { connect } from 'react-redux';
 import * as roleActions from '../../actions/roleActions';
 
 const tableData = {
-    url: '/roles',
     title: 'Roles',
     rows: [
         { 

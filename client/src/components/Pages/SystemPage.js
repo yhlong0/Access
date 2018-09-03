@@ -7,7 +7,6 @@ import * as systemActions from '../../actions/systemActions';
 import axios from 'axios';
 
 const tableData = {
-    url: '/systems',
     title: 'Systems',
     rows: [
         {
@@ -25,9 +24,6 @@ const tableData = {
     ]
 };
 class SystemPage extends React.Component {
-    state = {
-        data: [],
-    };
 
     componentDidMount() {
         this.props.dispatch(systemActions.fetchSystems());
@@ -35,6 +31,14 @@ class SystemPage extends React.Component {
 
     createSystem = (system) => {
         this.props.dispatch(systemActions.createSystem(system));
+    }
+
+    deleteSystem = () => {
+        this.props.dispatch(systemActions.deleteSystem(this.props.selected));
+    }
+
+    selectSystem = (selected) => {
+        this.props.dispatch(systemActions.selectSystem(selected));
     }
 
     render() {
@@ -52,7 +56,8 @@ class SystemPage extends React.Component {
                 <TableView 
                     tableData={tableData} 
                     data={this.props.systems}
-                    handleDelete={this.handleDelete}
+                    deleteItem={this.deleteSystem}
+                    selectItem={this.selectSystem}
                 />
             </div>
         );
