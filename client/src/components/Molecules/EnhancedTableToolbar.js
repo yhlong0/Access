@@ -83,7 +83,7 @@ let EnhancedTableToolbar = props => {
 EnhancedTableToolbar.propTypes = {
     classes: PropTypes.object.isRequired,
     numSelected: PropTypes.number.isRequired,
-    deleteRole: PropTypes.func.isRequired,
+    //deleteRole: PropTypes.func.isRequired,
     clearSelected: PropTypes.func.isRequired,
 };
 

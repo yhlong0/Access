@@ -15,7 +15,7 @@ export default function systemReducer(state = {
             return {
                 ...state,
                 fetching: false,
-                role: action.payload,
+                system: action.payload,
             }
         case 'FETCH_SYSTEMS_REJECTED': 
             return {

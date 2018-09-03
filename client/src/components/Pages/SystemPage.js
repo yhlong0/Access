@@ -1,6 +1,9 @@
 import React from 'react';
+import LinearProgress from '@material-ui/core/LinearProgress';
 import TextField from '../Organisms/TextField';
 import TableView from '../Organisms/TableView';
+import { connect } from 'react-redux';
+import * as systemActions from '../../actions/systemActions';
 import axios from 'axios';
 
 const tableData = {
@@ -31,23 +34,15 @@ class SystemPage extends React.Component {
             .then(res => {
                 this.setState({ data: res.data });
             });
+        this.props.dispatch(systemActions.fetchSystems());
     }
 
     updateData = (res) => {
         this.setState({ data: res.data });
     }
 
-    // handleDelete = (selectedId) => {
-    //     selectedId.map(id => {
-    //         axios.delete(`/systems/${id}`)
-    //             .then(res => {
-    //                 console.log(res.data);
-    //             });
-    //         return id;
-    //     });
-    // }
-
     render() {
+        console.log(this.props.systems);
         return (
             <div>
                 <TextField 
@@ -56,15 +51,25 @@ class SystemPage extends React.Component {
                     url={'/systems'}
                     updateData={this.updateData}
                 />
+                {this.props.fetching && 
+                    <LinearProgress />
+                }  
                 <TableView 
                     tableData={tableData} 
-                    data={this.state.data}
+                    data={this.props.systems}
                     handleDelete={this.handleDelete}
                 />
             </div>
         );
     }
-
 }
 
-export default SystemPage;
+function mapStateToProps(state, ownProps) {
+    return {
+        systems: state.system.system,
+        selected: state.system.selected,
+        fetching: state.system.fetching,
+    };
+}
+
+export default connect(mapStateToProps)(SystemPage);

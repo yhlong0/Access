@@ -25,9 +25,6 @@ const tableData = {
 };
 
 class RolePage extends React.Component {
-    state = {
-      toBeDelete: [],
-    };
     
     componentDidMount() {
         this.props.dispatch(roleActions.fetchRoles());
