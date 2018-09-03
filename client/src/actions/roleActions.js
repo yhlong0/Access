@@ -29,17 +29,23 @@ export const fetchRoles = () => {
 
 export const deleteRole = (selected) => {
     return dispatch => {
-        axios.delete('/roles/' + selected[0])
-             .then((res) => {
-                dispatch({type: 'CLEAR_SELECTED', payload: []}); 
-                axios.get('/roles')
-                .then((res) => {
-                   dispatch({type: 'FETCH_ROLES_FULFILLED', payload: res.data})
-                })
-             })
-             .catch((err) => {
-                dispatch({type: 'DELETE_ROLE_REJECTED', payload: err})
-            });
+        const arrayLength = selected.length;
+        selected.map((id, index) => {
+            axios.delete('/roles/' + id)
+            .then((res) => {
+                //Last one in the array.
+                if(arrayLength === index + 1) {
+                    dispatch({type: 'CLEAR_SELECTED', payload: []}); 
+                    axios.get('/roles')
+                    .then((res) => {
+                       dispatch({type: 'FETCH_ROLES_FULFILLED', payload: res.data})
+                    });
+                }
+            })
+            .catch((err) => {
+               dispatch({type: 'DELETE_ROLE_REJECTED', payload: err})
+           });
+        });
     };
 };
 
