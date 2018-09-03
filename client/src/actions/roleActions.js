@@ -59,13 +59,6 @@ export const selectRole = (selected) => {
     };
 };
 
-// export const fetching = () => {
-//     return {
-//         type: 'FETCHING',
-//         payload: true,
-//     };
-// };
-
 // export function fetchRole() {
 //     return {
 //         type: "FETCH_ROLE",

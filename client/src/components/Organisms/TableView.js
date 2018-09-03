@@ -99,11 +99,6 @@ class TableView extends React.Component {
         this.setState({ rowsPerPage: event.target.value });
     };
 
-    handleUpdate = () => {
-        console.log(this.state.selected);
-        this.props.updateTBD(this.state.selected);
-    }
-
     clearSelected = () => {
         this.setState({ selected: [] });
     }
@@ -121,8 +116,6 @@ class TableView extends React.Component {
                 <EnhancedTableToolbar 
                     numSelected={selected.length}
                     titleName={tableData.title} 
-                    selectedId={this.state.selected}
-                    handleUpdate={this.handleUpdate}
                     deleteRole={deleteRole}
                     clearSelected={this.clearSelected}
                 />
