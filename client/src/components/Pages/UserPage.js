@@ -15,6 +15,7 @@ import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
 import SummaryPanel from '../Molecules/SummaryPanel';
 import RoleColumn from '../Molecules/RoleColumn';
+import SystemColumn from '../Molecules/SystemColumn';
 import NewUserTextField from '../Molecules/NewUserTextField';
 
 const styles = theme => ({
@@ -80,15 +81,7 @@ class UserPage extends React.Component {
                     </ExpansionPanelSummary>
                     <ExpansionPanelDetails className={classes.details}>
                         <RoleColumn />
-                        <div className={classes.column}>
-                            <Chip label="Domain Account 06/01/2018" className={classes.chip} onDelete={() => { }} />
-                            <Chip label="Phone 06/01/2018" className={classes.chip} onDelete={() => { }} />
-                            <Chip label="Internal Site 06/01/2018" className={classes.chip} onDelete={() => { }} />
-                            <Chip label="Domain Account 06/01/2018" className={classes.chip} onDelete={() => { }} />
-                            <Chip label="Domain Account 06/01/2018" className={classes.chip} onDelete={() => { }} />
-                            <Chip label="Domain Account 06/01/2018" className={classes.chip} onDelete={() => { }} />
-                            <Chip label="Domain Account 06/01/2018" className={classes.chip} onDelete={() => { }} />
-                        </div>
+                        <SystemColumn />
                         <div className={classNames(classes.column, classes.helper)}>
                             <Typography variant="caption">
                                 Select your action
