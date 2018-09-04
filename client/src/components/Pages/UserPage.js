@@ -16,7 +16,7 @@ import SummaryPanel from '../Molecules/SummaryPanel';
 import RoleColumn from '../Molecules/RoleColumn';
 import SystemColumn from '../Molecules/SystemColumn';
 import NewUserTextField from '../Molecules/NewUserTextField';
-import AccessDrawer from '../Organisms/AccessDrawer';
+import AccessDialog from '../Organisms/AccessDialog';
 
 
 const styles = theme => ({
@@ -63,7 +63,8 @@ const styles = theme => ({
 
 class UserPage extends React.Component {
     state= {
-        checkedB: true
+        checkedB: true,
+        dialogOpen: false,
     };
 
     handleChange = name => event => {
@@ -75,7 +76,7 @@ class UserPage extends React.Component {
 
         return (
             <div className={classes.root}>
-                <AccessDrawer />
+                <AccessDialog />
                 <NewUserTextField />
                 <ExpansionPanel >
                     <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
