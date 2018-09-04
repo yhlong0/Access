@@ -10,13 +10,14 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 import Typography from '@material-ui/core/Typography';
-import Chip from '@material-ui/core/Chip';
 import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
 import SummaryPanel from '../Molecules/SummaryPanel';
 import RoleColumn from '../Molecules/RoleColumn';
 import SystemColumn from '../Molecules/SystemColumn';
 import NewUserTextField from '../Molecules/NewUserTextField';
+import AccessDrawer from '../Organisms/AccessDrawer';
+
 
 const styles = theme => ({
     root: {
@@ -74,6 +75,7 @@ class UserPage extends React.Component {
 
         return (
             <div className={classes.root}>
+                <AccessDrawer />
                 <NewUserTextField />
                 <ExpansionPanel >
                     <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
