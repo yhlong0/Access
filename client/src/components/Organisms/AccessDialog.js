@@ -70,15 +70,15 @@ class AccessDialog extends React.Component {
                             </ListItem>
                             <ListItem>
                                 <Checkbox value="Something" />
-                                <ListItemText primary="test3" />
+                                <ListItemText primary="test4" />
                             </ListItem>
                             <ListItem>
                                 <Checkbox value="Something" />
-                                <ListItemText primary="test3" />
+                                <ListItemText primary="test5" />
                             </ListItem>
                             <ListItem>
                                 <Checkbox value="Something" />
-                                <ListItemText primary="test3" />
+                                <ListItemText primary="test6" />
                             </ListItem>
                         </List>
                     </DialogContent>
