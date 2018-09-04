@@ -17,6 +17,8 @@ import RoleColumn from '../Molecules/RoleColumn';
 import SystemColumn from '../Molecules/SystemColumn';
 import NewUserTextField from '../Molecules/NewUserTextField';
 import AccessDialog from '../Organisms/AccessDialog';
+import { connect } from 'react-redux';
+import * as userActions from '../../actions/userActions';
 
 
 const styles = theme => ({
@@ -67,17 +69,25 @@ class UserPage extends React.Component {
         dialogOpen: false,
     };
 
+    componentDidMount() {
+        this.props.dispatch(userActions.fetchUsers());
+    }
+
+    createUser = (user) => {
+        this.props.dispatch(userActions.createUser(user));
+    }
+
     handleChange = name => event => {
         this.setState({ [name]: event.target.checked });
     };
 
     render() {
         const{ classes } = this.props;
-
+        console.log(this.props.users);
         return (
             <div className={classes.root}>
                 <AccessDialog />
-                <NewUserTextField />
+                <NewUserTextField create={this.createUser}/>
                 <ExpansionPanel >
                     <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
                         <SummaryPanel />
@@ -126,4 +136,13 @@ UserPage.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(UserPage);
+function mapStateToProps(state, ownProps) {
+    return {
+        users: state.user.user,
+        fetching: state.user.fetching,
+    };
+}
+
+const StyledUserPage = withStyles(styles)(UserPage);
+
+export default connect(mapStateToProps)(StyledUserPage);
