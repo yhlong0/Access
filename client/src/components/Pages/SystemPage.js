@@ -43,14 +43,14 @@ class SystemPage extends React.Component {
     render() {
         return (
             <div>
+                {this.props.fetching &&
+                    <LinearProgress />
+                } 
                 <TextField 
                     name={'System Name'} 
                     description={'System Description'} 
                     create={this.createSystem}
                 />
-                {this.props.fetching && 
-                    <LinearProgress />
-                }  
                 <TableView 
                     tableData={tableData} 
                     data={this.props.systems}

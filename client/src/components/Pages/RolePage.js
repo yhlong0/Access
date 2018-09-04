@@ -44,14 +44,14 @@ class RolePage extends React.Component {
     render() {
       return (
         <div>
+            {this.props.fetching &&
+                <LinearProgress />
+            }  
             <TextField 
                 name={'Role Name'} 
                 description={'Role Description'} 
                 create={this.createRole}
-            />
-            {this.props.fetching && 
-                <LinearProgress />
-            }   
+            /> 
             <TableView 
                 tableData={tableData} 
                 data={this.props.roles}
