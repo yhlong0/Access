@@ -35,6 +35,7 @@ const styles = theme => ({
 
 const UsersList = props => {
     const { classes, userData } = props;
+    console.log(userData[0]);
 
     const panelList = userData.map((user) => { 
         return (
@@ -47,8 +48,8 @@ const UsersList = props => {
             />
         </ExpansionPanelSummary>
         <ExpansionPanelDetails className={classes.details}>
-            <RoleColumn />
-            <SystemColumn />
+            <RoleColumn roles={user.roles}/>
+            <SystemColumn sysAccess={user.sysAccess}/>
             <div className={classNames(classes.column, classes.helper)}>
                 <Typography variant="caption">
                     Select your action

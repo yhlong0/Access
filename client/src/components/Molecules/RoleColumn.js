@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Chip from '@material-ui/core/Chip';
@@ -15,11 +15,22 @@ const styles = theme => ({
 });
 
 let RoleColumn = props => {
-    const { classes } = props;
+    const { classes, roles } = props;
+
+    const rolesList = roles.map((role) => {
+        return (
+            <Chip 
+                label={role.name} 
+                className={classes.roleChip} 
+                onDelete={() => { }} 
+                key={role._id}
+            />
+        );
+    });
 
     return (
-        <div className={classes.column}>
-            <Chip label="System Admin 06/01/2018" className={classes.roleChip} onDelete={() => { }} />
+        <div className={classes.column} >
+            {rolesList}
         </div>
     );
 };
