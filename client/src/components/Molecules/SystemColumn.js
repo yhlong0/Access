@@ -14,16 +14,24 @@ const styles = theme => ({
 });
 
 let SystemColumn = props => {
-    const { classes } = props;
+    const { classes, sysAccess } = props;
+  
+    const sysAccessList = sysAccess.map((system) => {
+        return (
+            <Chip
+                label={system.name}
+                className={classes.chip}
+                onDelete={() => { }}
+                key={system._id}
+            />
+        );
+    });
 
+    const noAccess = <Chip label="No Access" />;
+    
     return (
         <div className={classes.column}>
-            <Chip label="Domain Account 06/01/2018" className={classes.chip} onDelete={() => { }} />
-            <Chip label="Phone 06/01/2018" className={classes.chip} onDelete={() => { }} />
-            <Chip label="Internal Site 06/01/2018" className={classes.chip} onDelete={() => { }} />
-            <Chip label="Domain Account 06/01/2018" className={classes.chip} onDelete={() => { }} />
-            <Chip label="Domain Account 06/01/2018" className={classes.chip} onDelete={() => { }} />
-            <Chip label="Domain Account 06/01/2018" className={classes.chip} onDelete={() => { }} />
+            {sysAccessList.length == 0 ? noAccess : sysAccessList}
         </div>
     );
 };

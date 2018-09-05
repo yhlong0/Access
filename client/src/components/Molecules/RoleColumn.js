@@ -28,9 +28,11 @@ let RoleColumn = props => {
         );
     });
 
+    const noRole = <Chip label="No Role" />;
+
     return (
         <div className={classes.column} >
-            {rolesList}
+            {rolesList.length == 0 ? noRole : rolesList}
         </div>
     );
 };
