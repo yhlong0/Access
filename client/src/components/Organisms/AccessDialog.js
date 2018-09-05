@@ -22,8 +22,15 @@ const styles = {
 class AccessDialog extends React.Component {
 
     render() {
-        const { classes, dialogOpenStatus, openDialog } = this.props;
-
+        const { classes, dialogOpenStatus, openDialog, systems } = this.props;
+        const systemList = systems.map(system => {
+            return (
+                <ListItem key={system._id}>
+                    <Checkbox value={system._id} />
+                    <ListItemText primary={system.name} />
+                </ListItem>
+            );
+        });
         return (
             <div>
                 <Dialog
@@ -44,34 +51,7 @@ class AccessDialog extends React.Component {
                             fullWidth
                         />
                         <List className={classes.list}>
-                            <ListItem>
-                                <Checkbox value="Something" />
-                                <ListItemText primary="test" />
-                            </ListItem>
-                            <ListItem>
-                                <Checkbox value="Something" /> 
-                                <ListItemText primary="test2" />
-                            </ListItem>
-                            <ListItem>
-                                <Checkbox value="Something" />
-                                <ListItemText primary="test3" />
-                            </ListItem>
-                            <ListItem>
-                                <Checkbox value="Something" />
-                                <ListItemText primary="test4" />
-                            </ListItem>
-                            <ListItem>
-                                <Checkbox value="Something" />
-                                <ListItemText primary="test5" />
-                            </ListItem>
-                            <ListItem>
-                                <Checkbox value="Something" />
-                                <ListItemText primary="test6" />
-                            </ListItem>
-                            <ListItem>
-                                <Checkbox value="Something" />
-                                <ListItemText primary="test6" />
-                            </ListItem>
+                            {systemList}
                         </List>
                     </DialogContent>
                     <DialogActions>
@@ -90,6 +70,8 @@ class AccessDialog extends React.Component {
 
 AccessDialog.propTypes = {
     classes: PropTypes.object.isRequired,
+    dialogOpenStatus: PropTypes.bool.isRequired,
+    openDialog: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles)(AccessDialog);

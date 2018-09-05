@@ -31,7 +31,7 @@ let SystemColumn = props => {
     
     return (
         <div className={classes.column}>
-            {sysAccessList.length == 0 ? noAccess : sysAccessList}
+            {sysAccessList.length === 0 ? noAccess : sysAccessList}
         </div>
     );
 };

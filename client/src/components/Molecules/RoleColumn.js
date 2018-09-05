@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Chip from '@material-ui/core/Chip';
@@ -32,7 +32,7 @@ let RoleColumn = props => {
 
     return (
         <div className={classes.column} >
-            {rolesList.length == 0 ? noRole : rolesList}
+            {rolesList.length === 0 ? noRole : rolesList}
         </div>
     );
 };

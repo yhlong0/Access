@@ -7,6 +7,7 @@ import NewUserTextField from '../Molecules/NewUserTextField';
 import AccessDialog from '../Organisms/AccessDialog';
 import { connect } from 'react-redux';
 import * as userActions from '../../actions/userActions';
+import * as systemActions from '../../actions/systemActions'
 
 
 const styles = theme => ({
@@ -45,6 +46,7 @@ class UserPage extends React.Component {
 
     componentDidMount() {
         this.props.dispatch(userActions.fetchUsers());
+        this.props.dispatch(systemActions.fetchSystems());
     }
 
     createUser = (user) => {
@@ -60,20 +62,21 @@ class UserPage extends React.Component {
     };
 
     render() {
-        const { classes, dialogOpenStatus } = this.props;
-        console.log(this.props.users);
+        const { classes, users, dialogOpenStatus, systems, fetching } = this.props;
+        console.log(systems);
         return (
             <div className={classes.root}>
-                {this.props.fetching &&
+                {fetching &&
                     <LinearProgress />
                 }
                 <AccessDialog 
                     dialogOpenStatus={dialogOpenStatus} 
                     openDialog={this.openDialog}
+                    systems={systems}
                 />
                 <NewUserTextField create={this.createUser} />
                 <UsersList 
-                    userData={this.props.users} 
+                    userData={users} 
                     openDialog={this.openDialog}
                 />
             </div>
@@ -90,6 +93,7 @@ function mapStateToProps(state, ownProps) {
         users: state.user.user,
         fetching: state.user.fetching,
         dialogOpenStatus: state.user.dialogOpenStatus,
+        systems: state.system.system,
     };
 }
 
