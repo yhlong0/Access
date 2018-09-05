@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
+import * as moment from 'moment';
 
 
 const styles = theme => ({
@@ -19,15 +20,17 @@ const styles = theme => ({
 });
 
 let SummaryPanel = props => {
-    const { classes } = props;
-
+    const { classes, lastname, firstname, joinDate } = props;
+    console.log(lastname);
     return (
         <Fragment>         
             <div className={classes.column}>
-                <Typography className={classes.heading}>Hailong Yang</Typography>
+                <Typography className={classes.heading}>
+                    {lastname}
+                </Typography>
             </div>
             <div className={classes.column}>
-                <Typography className={classes.secondaryHeading}>Join Date: 06/01/2018</Typography>
+                <Typography className={classes.secondaryHeading}>Join Date: {joinDate}</Typography>
             </div>
         </Fragment>
     );

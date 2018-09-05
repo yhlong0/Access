@@ -40,7 +40,11 @@ const UsersList = props => {
         return (
         <ExpansionPanel key={user._id} >
         <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-            <SummaryPanel />
+            <SummaryPanel 
+                lastname={user.lastname}
+                firstname={user.firstname}
+                joinDate={user.joinDate}
+            />
         </ExpansionPanelSummary>
         <ExpansionPanelDetails className={classes.details}>
             <RoleColumn />
