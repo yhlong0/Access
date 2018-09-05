@@ -51,10 +51,6 @@ const styles = theme => ({
 });
 
 class UserPage extends React.Component {
-    state= {
-        checkedB: true,
-        dialogOpen: false,
-    };
 
     componentDidMount() {
         this.props.dispatch(userActions.fetchUsers());
@@ -74,8 +70,8 @@ class UserPage extends React.Component {
         return (
             <div className={classes.root}>
                 <AccessDialog />
-                <NewUserTextField create={this.createUser}/>
-                <UsersList />
+                <NewUserTextField create={this.createUser} />
+                <UsersList userData={this.props.users} />
             </div>
         );
     }

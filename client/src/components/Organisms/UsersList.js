@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
@@ -28,51 +28,62 @@ const styles = theme => ({
         borderLeft: `2px solid ${theme.palette.divider}`,
         padding: `${theme.spacing.unit}px ${theme.spacing.unit * 2}px`,
     },
+    panel: {
+        margin: '10px',
+    }
 });
 
 const UsersList = props => {
-    const { classes } = props;
+    const { classes, userData } = props;
+
+    const panelList = userData.map((user) => { 
+        return (
+        <ExpansionPanel key={user._id} >
+        <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+            <SummaryPanel />
+        </ExpansionPanelSummary>
+        <ExpansionPanelDetails className={classes.details}>
+            <RoleColumn />
+            <SystemColumn />
+            <div className={classNames(classes.column, classes.helper)}>
+                <Typography variant="caption">
+                    Select your action
+                            <br />
+                    <br />
+                    <Button variant="contained" size="small" color="primary">
+                        Add Access
+                            </Button>
+                    <br />
+                    <br />
+                    <Button variant="contained" size="small">
+                        Add Role
+                            </Button>
+                </Typography>
+            </div>
+        </ExpansionPanelDetails>
+        <Divider />
+        <ExpansionPanelActions>
+            <FormControlLabel
+                label="Status"
+                labelPlacement="start"
+                control={
+                    <Switch
+                        checked={true}
+                        //onChange={this.handleChange('checkedB')}
+                        value="checkedB"
+                        color="primary"
+                    />
+                }
+            />
+        </ExpansionPanelActions>
+    </ExpansionPanel> 
+    
+    );});
 
     return (
-        <ExpansionPanel>
-            <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-                <SummaryPanel />
-            </ExpansionPanelSummary>
-            <ExpansionPanelDetails className={classes.details}>
-                <RoleColumn />
-                <SystemColumn />
-                <div className={classNames(classes.column, classes.helper)}>
-                    <Typography variant="caption">
-                        Select your action
-                                <br />
-                        <br />
-                        <Button variant="contained" size="small" color="primary">
-                            Add Access
-                                </Button>
-                        <br />
-                        <br />
-                        <Button variant="contained" size="small">
-                            Add Role
-                                </Button>
-                    </Typography>
-                </div>
-            </ExpansionPanelDetails>
-            <Divider />
-            <ExpansionPanelActions>
-                <FormControlLabel
-                    label="Status"
-                    labelPlacement="start"
-                    control={
-                        <Switch
-                            checked={true}
-                            //onChange={this.handleChange('checkedB')}
-                            value="checkedB"
-                            color="primary"
-                        />
-                    }
-                />
-            </ExpansionPanelActions>
-        </ExpansionPanel>
+        <Fragment>
+            {panelList}
+        </Fragment>
     );
 };
 
