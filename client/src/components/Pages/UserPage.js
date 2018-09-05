@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
+import LinearProgress from '@material-ui/core/LinearProgress';
 import UsersList from '../Organisms/UsersList';
 import NewUserTextField from '../Molecules/NewUserTextField';
 import AccessDialog from '../Organisms/AccessDialog';
@@ -69,6 +70,9 @@ class UserPage extends React.Component {
         console.log(this.props.users);
         return (
             <div className={classes.root}>
+                {this.props.fetching &&
+                    <LinearProgress />
+                }
                 <AccessDialog />
                 <NewUserTextField create={this.createUser} />
                 <UsersList userData={this.props.users} />
