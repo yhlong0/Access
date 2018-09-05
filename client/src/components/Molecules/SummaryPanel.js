@@ -21,16 +21,17 @@ const styles = theme => ({
 
 let SummaryPanel = props => {
     const { classes, lastname, firstname, joinDate } = props;
-    console.log(lastname);
+    const time = moment(joinDate).format('MM/DD/YYYY');
+    //console.log(joinDate);
     return (
         <Fragment>         
             <div className={classes.column}>
                 <Typography className={classes.heading}>
-                    {lastname}
+                    {firstname} {lastname}
                 </Typography>
             </div>
             <div className={classes.column}>
-                <Typography className={classes.secondaryHeading}>Join Date: {joinDate}</Typography>
+                <Typography className={classes.secondaryHeading}>Join Date: {time}</Typography>
             </div>
         </Fragment>
     );
