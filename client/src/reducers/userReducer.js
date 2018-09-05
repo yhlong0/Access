@@ -1,6 +1,7 @@
 export default function userReducer(state = {
     user:[],
     fetching: true,
+    dialogOpenStatus: false,
     error: null,
 }, action) {
     switch(action.type) {
@@ -32,6 +33,11 @@ export default function userReducer(state = {
             return {
                 ...state,
                 fetching: true,
+            }
+        case 'SWITCH':
+            return {
+                ...state,
+                dialogOpenStatus: !state.dialogOpenStatus, 
             }
         default: 
             return state;

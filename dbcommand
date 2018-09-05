@@ -18,3 +18,4 @@
 12. db.roles.insert({roleName:"support", roleDescription:"customer support"});
 13. db.systems.insert({sysName:"SolarWinds", sysDescription:"Network System Monitoring Tool"});
 14. db.roles.deleteMany({})
+15. db.users.updateOne({"lastname": "test_lastname"},{$set:{"status": false}})

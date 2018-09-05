@@ -28,3 +28,11 @@ export const fetchUsers = () => {
             });
     };
 };
+
+export const openDialog = () => {
+    return dispatch => {
+        dispatch({
+            type: 'SWITCH'
+        });
+    };
+};

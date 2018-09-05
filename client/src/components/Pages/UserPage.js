@@ -51,21 +51,31 @@ class UserPage extends React.Component {
         this.props.dispatch(userActions.createUser(user));
     }
 
+    openDialog = () => {
+        this.props.dispatch(userActions.openDialog());
+    }
+
     handleChange = name => event => {
         this.setState({ [name]: event.target.checked });
     };
 
     render() {
-        const{ classes } = this.props;
+        const { classes, dialogOpenStatus } = this.props;
         console.log(this.props.users);
         return (
             <div className={classes.root}>
                 {this.props.fetching &&
                     <LinearProgress />
                 }
-                <AccessDialog />
+                <AccessDialog 
+                    dialogOpenStatus={dialogOpenStatus} 
+                    openDialog={this.openDialog}
+                />
                 <NewUserTextField create={this.createUser} />
-                <UsersList userData={this.props.users} />
+                <UsersList 
+                    userData={this.props.users} 
+                    openDialog={this.openDialog}
+                />
             </div>
         );
     }
@@ -79,6 +89,7 @@ function mapStateToProps(state, ownProps) {
     return {
         users: state.user.user,
         fetching: state.user.fetching,
+        dialogOpenStatus: state.user.dialogOpenStatus,
     };
 }
 

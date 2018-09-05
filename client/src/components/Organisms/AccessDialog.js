@@ -20,27 +20,15 @@ const styles = {
 }
 
 class AccessDialog extends React.Component {
-    state = {
-        open: false,
-    };
-
-    handleClickOpen = () => {
-        this.setState({ open: true });
-    };
-
-    handleClose = () => {
-        this.setState({ open: false });
-    };
 
     render() {
-        const { classes } = this.props;
+        const { classes, dialogOpenStatus, openDialog } = this.props;
 
         return (
             <div>
-                <Button onClick={this.handleClickOpen}>Add Access</Button>
                 <Dialog
-                    open={this.state.open}
-                    onClose={this.handleClose}
+                    open={dialogOpenStatus}
+                    onClose={openDialog}
                     aria-labelledby="form-dialog-title"
                 >
                     <DialogTitle id="form-dialog-title">Add Access</DialogTitle>
@@ -87,10 +75,10 @@ class AccessDialog extends React.Component {
                         </List>
                     </DialogContent>
                     <DialogActions>
-                        <Button onClick={this.handleClose} color="primary">
+                        <Button onClick={openDialog} color="primary">
                             Cancel
                         </Button>
-                        <Button onClick={this.handleClose} color="primary">
+                        <Button onClick={openDialog} color="primary">
                             Add
                         </Button>
                     </DialogActions>

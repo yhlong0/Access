@@ -34,7 +34,7 @@ const styles = theme => ({
 });
 
 const UsersList = props => {
-    const { classes, userData } = props;
+    const { classes, userData, openDialog } = props;
     console.log(userData[0]);
 
     const panelList = userData.map((user) => { 
@@ -53,16 +53,21 @@ const UsersList = props => {
             <div className={classNames(classes.column, classes.helper)}>
                 <Typography variant="caption">
                     Select your action
-                            <br />
                     <br />
-                    <Button variant="contained" size="small" color="primary">
+                    <br />
+                    <Button 
+                        variant="contained" 
+                        size="small" 
+                        color="primary"
+                        onClick={openDialog}
+                    >
                         Add Access
-                            </Button>
+                    </Button>
                     <br />
                     <br />
                     <Button variant="contained" size="small">
                         Add Role
-                            </Button>
+                    </Button>
                 </Typography>
             </div>
         </ExpansionPanelDetails>
@@ -73,7 +78,7 @@ const UsersList = props => {
                 labelPlacement="start"
                 control={
                     <Switch
-                        checked={true}
+                        checked={user.status}
                         //onChange={this.handleChange('checkedB')}
                         value="checkedB"
                         color="primary"
