@@ -2,7 +2,11 @@ export default function userReducer(state = {
     user: [],
     fetching: true,
     dialogOpenStatus: false,
-    accessData: {},
+    accessData: {
+        userId: null,
+        newAccess: [],
+        currentAccess: [],
+    },
     error: null,
 }, action) {
     switch(action.type) {
@@ -36,15 +40,28 @@ export default function userReducer(state = {
                 fetching: false,
                 error: action.payload,
             }
-        case 'SET_USERID': 
+        case 'FETCH_ACCESS_DATA':
             return {
                 ...state,
-                accessData: {userId: action.payload},
+                fetching: false,
+                accessData: action.payload,
+            }
+        case 'CLICKED_ACCESS': 
+            return {
+                ...state,
+                accessData: { 
+                    ...state.accessData,
+                    newAccess: action.payload
+                },
             }
         case 'CLEAR_ACCESSDATA': 
             return {
                 ...state,
-                accessData: {},
+                accessData: {
+                    userId: null,
+                    newAccess: [],
+                    currentAccess: [],
+                },
             }        
         case 'FETCHING':
             return {

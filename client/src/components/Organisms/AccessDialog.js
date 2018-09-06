@@ -22,15 +22,28 @@ const styles = {
 class AccessDialog extends React.Component {
 
     render() {
-        const { classes, dialogOpenStatus, closeDialog, systems } = this.props;
-        const systemList = systems.map(system => {
+        const { 
+            classes, 
+            dialogOpenStatus, 
+            closeDialog, 
+            clickedAccess, 
+            systems, 
+            addAccess,
+        } = this.props;
+        
+        const systemList = systems.map(system => {                 
             return (
                 <ListItem key={system._id}>
-                    <Checkbox value={system._id} />
+                    <Checkbox 
+                        value={system._id}
+                        //checked={checked} 
+                        onChange={() => clickedAccess(system._id)}
+                    />
                     <ListItemText primary={system.name} />
                 </ListItem>
             );
         });
+
         return (
             <div>
                 <Dialog
@@ -58,7 +71,7 @@ class AccessDialog extends React.Component {
                         <Button onClick={closeDialog} color="primary">
                             Cancel
                         </Button>
-                        <Button onClick={closeDialog} color="primary">
+                        <Button onClick={addAccess} color="primary">
                             Add
                         </Button>
                     </DialogActions>

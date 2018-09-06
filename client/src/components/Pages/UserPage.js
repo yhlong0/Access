@@ -57,6 +57,14 @@ class UserPage extends React.Component {
         this.props.dispatch(userActions.openDialog(userId));
     }
 
+    clickedAccess = (accessId) => {
+        this.props.dispatch(userActions.clickedAccess(accessId));
+    }
+
+    addAccess = () => {
+        this.props.dispatch(userActions.addAccess(this.props.accessData));
+    }
+
     closeDialog = () => {
         this.props.dispatch(userActions.closeDialog());
     }
@@ -66,8 +74,16 @@ class UserPage extends React.Component {
     };
 
     render() {
-        const { classes, users, dialogOpenStatus, systems, fetching } = this.props;
-        console.log(this.props.accessData);
+        const { 
+            classes, 
+            users, 
+            dialogOpenStatus, 
+            systems, 
+            fetching,
+            accessData,
+        } = this.props;
+
+        console.log(accessData);
         return (
             <div className={classes.root}>
                 {fetching &&
@@ -76,7 +92,11 @@ class UserPage extends React.Component {
                 <AccessDialog 
                     dialogOpenStatus={dialogOpenStatus} 
                     closeDialog={this.closeDialog}
+                    clickedAccess={this.clickedAccess}
+                    users={users}
                     systems={systems}
+                    accessData={accessData}
+                    addAccess={this.addAccess}
                 />
                 <NewUserTextField create={this.createUser} />
                 <UsersList 

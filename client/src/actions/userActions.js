@@ -34,10 +34,16 @@ export const openDialog = (userId) => {
         dispatch({
             type: 'SWITCH'
         });
-        dispatch({
-            type: 'SET_USERID',
-            payload: userId
-        });
+        axios.get(`/users/${userId}/access`)
+             .then((res) => {
+                 dispatch({
+                     type: 'FETCH_ACCESS_DATA',
+                     payload: {
+                         userId: userId,
+                         currentAccess: res.data,
+                     }
+                 })
+             });
     };
 };
 
@@ -52,14 +58,32 @@ export const closeDialog = () => {
     };
 };
 
+export const clickedAccess = (accessId) => {
+    return dispatch => {
+        dispatch({
+            type: 'CLICKED_ACCESS',
+            payload: accessId
+        });
+    };
+};
+
 export const addAccess = (accessData) => {
     return dispatch => {
         dispatch({ type: 'FETCHING' });
-        axios.post(`/users/${accessData.user_id}/access`, {roleId:accessData.roleId})
+        dispatch({
+            type: 'SWITCH'
+        });
+        axios.post(`/users/${accessData.userId}/access`, { systemId: accessData.newAccess })
              .then((res) => {
                 axios.get('/users')
                 .then((res) => {
-                    dispatch({type: 'FETCH_USERS_FULFILLED', payload: res.data})
+                    dispatch({
+                        type: 'FETCH_USERS_FULFILLED', 
+                        payload: res.data
+                    });
+                    dispatch({
+                        type: 'CLEAR_ACCESSDATA'
+                    });
                 });
              })
              .catch((err) => {
