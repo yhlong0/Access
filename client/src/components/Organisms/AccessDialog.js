@@ -71,7 +71,7 @@ class AccessDialog extends React.Component {
 AccessDialog.propTypes = {
     classes: PropTypes.object.isRequired,
     dialogOpenStatus: PropTypes.bool.isRequired,
-    openDialog: PropTypes.func.isRequired,
+    closeDialog: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles)(AccessDialog);

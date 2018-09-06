@@ -35,7 +35,7 @@ const styles = theme => ({
 
 const UsersList = props => {
     const { classes, userData, openDialog } = props;
-    console.log(userData[0]);
+    //console.log(userData[0]);
 
     const panelList = userData.map((user) => { 
         return (
@@ -59,7 +59,7 @@ const UsersList = props => {
                         variant="contained" 
                         size="small" 
                         color="primary"
-                        onClick={openDialog}
+                        onClick={() => openDialog(user._id)}
                     >
                         Add Access
                     </Button>

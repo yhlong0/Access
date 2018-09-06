@@ -39,7 +39,7 @@ export default function userReducer(state = {
         case 'SET_USERID': 
             return {
                 ...state,
-                accessData: action.payload,
+                accessData: {userId: action.payload},
             }
         case 'CLEAR_ACCESSDATA': 
             return {
