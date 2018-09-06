@@ -46,6 +46,18 @@ UserSchema.statics.addUserAccess = function (userId, sysAccess, callback) {
         callback
     );
 };
+//https://docs.mongodb.com/manual/reference/operator/update/pull/
+UserSchema.statics.deleteUserAccess = function (userId, accessId, callback) {
+    this.update(
+        { _id: userId },
+        {
+            $pull: {
+                sysAccess: {_id: accessId}
+            }
+        },
+        callback
+    );
+};
 
 UserSchema.statics.addUserRole = function (userId, roleAccess, callback) {
     this.update(

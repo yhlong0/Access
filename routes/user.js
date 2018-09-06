@@ -27,4 +27,7 @@ router.post('/:userId/role', relationController.addUserRole);
 /* Add access for user. */
 router.post('/:userId/access', relationController.addUserAccess);
 
+/* Delete access for user. */
+router.delete('/:userId/access/:accessId', userController.deleteUserAccess);
+
 module.exports = router;

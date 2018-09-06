@@ -91,3 +91,25 @@ export const addAccess = (accessData) => {
              });
     };
 };
+
+export const removeAccess = (accessData) => {
+    return dispatch => {
+        dispatch({ type: 'FETCHING' });
+        axios.delete(`/users/${accessData.userId}/access`, { systemId: accessData.newAccess })
+            .then((res) => {
+                axios.get('/users')
+                    .then((res) => {
+                        dispatch({
+                            type: 'FETCH_USERS_FULFILLED',
+                            payload: res.data
+                        });
+                        dispatch({
+                            type: 'CLEAR_ACCESSDATA'
+                        });
+                    });
+            })
+            .catch((err) => {
+                dispatch({ type: 'ADD_ACCESS_REJECTED', payload: err })
+            });
+    };
+};
