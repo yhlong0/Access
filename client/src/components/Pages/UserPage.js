@@ -53,8 +53,12 @@ class UserPage extends React.Component {
         this.props.dispatch(userActions.createUser(user));
     }
 
-    openDialog = () => {
-        this.props.dispatch(userActions.openDialog());
+    openDialog = (userId) => {
+        this.props.dispatch(userActions.openDialog(userId));
+    }
+
+    closeDialog = () => {
+        this.props.dispatch(userActions.closeDialog());
     }
 
     handleChange = name => event => {
@@ -63,7 +67,7 @@ class UserPage extends React.Component {
 
     render() {
         const { classes, users, dialogOpenStatus, systems, fetching } = this.props;
-        console.log(systems);
+        console.log(users);
         return (
             <div className={classes.root}>
                 {fetching &&
@@ -94,6 +98,7 @@ function mapStateToProps(state, ownProps) {
         fetching: state.user.fetching,
         dialogOpenStatus: state.user.dialogOpenStatus,
         systems: state.system.system,
+        accessData: state.user.accessData,
     };
 }
 

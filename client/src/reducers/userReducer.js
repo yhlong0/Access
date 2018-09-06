@@ -1,7 +1,8 @@
 export default function userReducer(state = {
-    user:[],
+    user: [],
     fetching: true,
     dialogOpenStatus: false,
+    accessData: {},
     error: null,
 }, action) {
     switch(action.type) {
@@ -29,6 +30,22 @@ export default function userReducer(state = {
                 fetching: false,
                 error: action.payload,
             }
+        case 'ADD_ACCESS_REJECTED':
+            return {
+                ...state,
+                fetching: false,
+                error: action.payload,
+            }
+        case 'SET_USERID': 
+            return {
+                ...state,
+                accessData: action.payload,
+            }
+        case 'CLEAR_ACCESSDATA': 
+            return {
+                ...state,
+                accessData: {},
+            }        
         case 'FETCHING':
             return {
                 ...state,
