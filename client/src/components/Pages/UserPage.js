@@ -67,7 +67,7 @@ class UserPage extends React.Component {
 
     render() {
         const { classes, users, dialogOpenStatus, systems, fetching } = this.props;
-        console.log(users);
+        console.log(this.props.accessData);
         return (
             <div className={classes.root}>
                 {fetching &&
@@ -75,7 +75,7 @@ class UserPage extends React.Component {
                 }
                 <AccessDialog 
                     dialogOpenStatus={dialogOpenStatus} 
-                    openDialog={this.openDialog}
+                    closeDialog={this.closeDialog}
                     systems={systems}
                 />
                 <NewUserTextField create={this.createUser} />

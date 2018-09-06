@@ -22,7 +22,7 @@ const styles = {
 class AccessDialog extends React.Component {
 
     render() {
-        const { classes, dialogOpenStatus, openDialog, systems } = this.props;
+        const { classes, dialogOpenStatus, closeDialog, systems } = this.props;
         const systemList = systems.map(system => {
             return (
                 <ListItem key={system._id}>
@@ -35,7 +35,7 @@ class AccessDialog extends React.Component {
             <div>
                 <Dialog
                     open={dialogOpenStatus}
-                    onClose={openDialog}
+                    onClose={closeDialog}
                     aria-labelledby="form-dialog-title"
                 >
                     <DialogTitle id="form-dialog-title">Add Access</DialogTitle>
@@ -55,10 +55,10 @@ class AccessDialog extends React.Component {
                         </List>
                     </DialogContent>
                     <DialogActions>
-                        <Button onClick={openDialog} color="primary">
+                        <Button onClick={closeDialog} color="primary">
                             Cancel
                         </Button>
-                        <Button onClick={openDialog} color="primary">
+                        <Button onClick={closeDialog} color="primary">
                             Add
                         </Button>
                     </DialogActions>
