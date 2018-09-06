@@ -36,7 +36,6 @@ class AccessDialog extends React.Component {
                 <ListItem key={system._id}>
                     <Checkbox 
                         value={system._id}
-                        //checked={checked} 
                         onChange={() => clickedAccess(system._id)}
                     />
                     <ListItemText primary={system.name} />

@@ -80,10 +80,8 @@ class UserPage extends React.Component {
             dialogOpenStatus, 
             systems, 
             fetching,
-            accessData,
         } = this.props;
 
-        console.log(accessData);
         return (
             <div className={classes.root}>
                 {fetching &&
@@ -93,9 +91,7 @@ class UserPage extends React.Component {
                     dialogOpenStatus={dialogOpenStatus} 
                     closeDialog={this.closeDialog}
                     clickedAccess={this.clickedAccess}
-                    users={users}
                     systems={systems}
-                    accessData={accessData}
                     addAccess={this.addAccess}
                 />
                 <NewUserTextField create={this.createUser} />
