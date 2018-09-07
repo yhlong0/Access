@@ -41,7 +41,7 @@ class AccessDialog extends React.Component {
 
         let filteredSystems = systems.filter(
             (system) => {
-                return system.name.indexOf(search) !== -1;
+                return system.name.toLowerCase().indexOf(search.toLowerCase()) !== -1;
             }
         );
         
