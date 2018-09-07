@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Chip from '@material-ui/core/Chip';
+import * as moment from 'moment';
 
 
 const styles = theme => ({
@@ -17,9 +18,10 @@ let SystemColumn = props => {
     const { classes, sysAccess, removeAccess, userId } = props;
   
     const sysAccessList = sysAccess.map((system) => {
+        const time = moment(system.accessDate).format('MM/DD/YYYY');
         return (
             <Chip
-                label={system.name}
+                label={`${system.name} ${time}`}
                 className={classes.chip}
                 onDelete={() => removeAccess(system._id, userId)}
                 key={system._id}
