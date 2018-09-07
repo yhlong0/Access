@@ -20,6 +20,15 @@ const styles = {
 }
 
 class AccessDialog extends React.Component {
+    state = {
+        search: ''
+    };
+
+    updateSearch = event => {
+        this.setState({
+            search: event.target.value
+        })
+    }
 
     render() {
         const { 
@@ -61,6 +70,7 @@ class AccessDialog extends React.Component {
                             id="name"
                             label="System Name"
                             fullWidth
+                            onChange={this.updateSearch}
                         />
                         <List className={classes.list}>
                             {systemList}

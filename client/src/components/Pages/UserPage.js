@@ -73,10 +73,6 @@ class UserPage extends React.Component {
         this.props.dispatch(userActions.closeDialog());
     }
 
-    handleChange = name => event => {
-        this.setState({ [name]: event.target.checked });
-    };
-
     render() {
         const { 
             classes, 
