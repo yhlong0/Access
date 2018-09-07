@@ -25,9 +25,7 @@ class AccessDialog extends React.Component {
     };
 
     updateSearch = event => {
-        this.setState({
-            search: event.target.value
-        })
+        this.props.updateSearch(event.target.value);
     }
 
     render() {
@@ -38,9 +36,16 @@ class AccessDialog extends React.Component {
             clickedAccess, 
             systems, 
             addAccess,
+            search,
         } = this.props;
+
+        let filteredSystems = systems.filter(
+            (system) => {
+                return system.name.indexOf(search) !== -1;
+            }
+        );
         
-        const systemList = systems.map(system => {                 
+        const systemList = filteredSystems.map(system => {                 
             return (
                 <ListItem key={system._id}>
                     <Checkbox 

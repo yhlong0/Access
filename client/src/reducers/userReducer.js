@@ -7,6 +7,7 @@ export default function userReducer(state = {
         newAccess: [],
         currentAccess: [],
     },
+    search: '',
     error: null,
 }, action) {
     switch(action.type) {
@@ -54,6 +55,11 @@ export default function userReducer(state = {
                     newAccess: action.payload
                 },
             }
+        case 'UPDATE_SEARCH': 
+            return {
+                ...state,
+                search: action.payload,
+            }
         case 'CLEAR_ACCESSDATA': 
             return {
                 ...state,
@@ -72,6 +78,11 @@ export default function userReducer(state = {
             return {
                 ...state,
                 dialogOpenStatus: !state.dialogOpenStatus, 
+            }
+        case 'CLEAR_SEARCH': 
+            return {
+                ...state,
+                search: '',
             }
         default: 
             return state;

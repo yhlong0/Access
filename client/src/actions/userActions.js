@@ -55,6 +55,18 @@ export const closeDialog = () => {
         dispatch({
             type: 'CLEAR_ACCESSDATA'
         });
+        dispatch({
+            type: 'CLEAR_SEARCH'
+        });
+    };
+};
+
+export const updateSearch = (search) => {
+    return dispatch => {
+        dispatch({
+            type: 'UPDATE_SEARCH',
+            payload: search
+        });
     };
 };
 
@@ -84,6 +96,9 @@ export const addAccess = (accessData) => {
                     dispatch({
                         type: 'CLEAR_ACCESSDATA'
                     });
+                    dispatch({
+                        type: 'CLEAR_SEARCH'
+                    });
                 });
              })
              .catch((err) => {
@@ -93,7 +108,6 @@ export const addAccess = (accessData) => {
 };
 
 export const removeAccess = (systemId, userId) => {
-    debugger;
     return dispatch => {
         dispatch({ type: 'FETCHING' });
         axios.delete(`/users/${userId}/access/${systemId}`)

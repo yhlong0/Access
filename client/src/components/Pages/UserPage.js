@@ -73,6 +73,10 @@ class UserPage extends React.Component {
         this.props.dispatch(userActions.closeDialog());
     }
 
+    updateSearch = (search) => {
+        this.props.dispatch(userActions.updateSearch(search));
+    }
+
     render() {
         const { 
             classes, 
@@ -80,6 +84,7 @@ class UserPage extends React.Component {
             dialogOpenStatus, 
             systems, 
             fetching,
+            search,
         } = this.props;
 
         return (
@@ -92,7 +97,9 @@ class UserPage extends React.Component {
                     closeDialog={this.closeDialog}
                     clickedAccess={this.clickedAccess}
                     systems={systems}
+                    search={search}
                     addAccess={this.addAccess}
+                    updateSearch={this.updateSearch}
                 />
                 <NewUserTextField create={this.createUser} />
                 <UsersList 
@@ -116,6 +123,7 @@ function mapStateToProps(state, ownProps) {
         dialogOpenStatus: state.user.dialogOpenStatus,
         systems: state.system.system,
         accessData: state.user.accessData,
+        search: state.user.search,
     };
 }
 
