@@ -65,8 +65,8 @@ class UserPage extends React.Component {
         this.props.dispatch(userActions.addAccess(this.props.accessData));
     }
 
-    removeAccess = () => {
-        this.props.dispatch(userActions.removeAccess());
+    removeAccess = (systemId, userId) => {
+        this.props.dispatch(userActions.removeAccess(systemId, userId));
     }
 
     closeDialog = () => {

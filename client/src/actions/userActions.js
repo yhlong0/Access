@@ -92,10 +92,11 @@ export const addAccess = (accessData) => {
     };
 };
 
-export const removeAccess = (accessData) => {
+export const removeAccess = (systemId, userId) => {
+    debugger;
     return dispatch => {
         dispatch({ type: 'FETCHING' });
-        axios.delete(`/users/${accessData.userId}/access/`, { systemId: accessData.newAccess })
+        axios.delete(`/users/${userId}/access/${systemId}`)
             .then((res) => {
                 axios.get('/users')
                     .then((res) => {
@@ -103,13 +104,10 @@ export const removeAccess = (accessData) => {
                             type: 'FETCH_USERS_FULFILLED',
                             payload: res.data
                         });
-                        dispatch({
-                            type: 'CLEAR_ACCESSDATA'
-                        });
                     });
             })
             .catch((err) => {
-                dispatch({ type: 'ADD_ACCESS_REJECTED', payload: err })
+                dispatch({ type: 'REMOVE_ACCESS_REJECTED', payload: err })
             });
     };
 };

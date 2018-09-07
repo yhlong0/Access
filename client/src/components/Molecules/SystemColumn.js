@@ -14,14 +14,14 @@ const styles = theme => ({
 });
 
 let SystemColumn = props => {
-    const { classes, sysAccess } = props;
+    const { classes, sysAccess, removeAccess, userId } = props;
   
     const sysAccessList = sysAccess.map((system) => {
         return (
             <Chip
                 label={system.name}
                 className={classes.chip}
-                onDelete={() => { }}
+                onDelete={() => removeAccess(system._id, userId)}
                 key={system._id}
             />
         );
