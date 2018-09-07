@@ -65,8 +65,6 @@ exports.showUserAccess = function (req, res) {
 exports.deleteUserAccess = function(req, res) {
     let userId = req.params.userId;
     let accessId = req.params.accessId;
-    console.log(accessId);
-    console.log(userId);
 
     UserModel.deleteUserAccess(userId, accessId, function(err) {
         if (!err) {
