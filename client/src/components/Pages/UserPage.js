@@ -65,6 +65,10 @@ class UserPage extends React.Component {
         this.props.dispatch(userActions.addAccess(this.props.accessData));
     }
 
+    removeAccess = () => {
+        this.props.dispatch(userActions.removeAccess());
+    }
+
     closeDialog = () => {
         this.props.dispatch(userActions.closeDialog());
     }
@@ -98,6 +102,7 @@ class UserPage extends React.Component {
                 <UsersList 
                     userData={users} 
                     openDialog={this.openDialog}
+                    removeAccess={this.removeAccess}
                 />
             </div>
         );

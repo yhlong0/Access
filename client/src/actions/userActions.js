@@ -95,7 +95,7 @@ export const addAccess = (accessData) => {
 export const removeAccess = (accessData) => {
     return dispatch => {
         dispatch({ type: 'FETCHING' });
-        axios.delete(`/users/${accessData.userId}/access`, { systemId: accessData.newAccess })
+        axios.delete(`/users/${accessData.userId}/access/`, { systemId: accessData.newAccess })
             .then((res) => {
                 axios.get('/users')
                     .then((res) => {
