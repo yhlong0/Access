@@ -111,6 +111,43 @@ describe('Clean Users', () => {
         /*
         * Test the /PUT:userId route
         */
+       describe('/PUT:userId update a user', () => {
+            it('it should UPDATE a user on /users/:userId PUT', (done) => {
+                let user = new User({
+                    lastname: 'old_lastname',
+                    firstname: 'old_firstname',
+                    joinDate: new Date(),
+                    status: true,
+                    sysAccess: [
+                    ],
+                    roles: [
+                    ]
+                });
+                user.save((err, user) => {
+                    chai.request(app)
+                        .put('/users/' + user.id)
+                        .send({
+                            lastname: 'update_lastname',
+                            firstname: 'update_firstname',
+                            joinDate: new Date(),
+                            status: false,
+                        })
+                        .end((err, res) => {
+                            res.should.have.status(200);
+                            res.body.should.be.a('object');
+                            res.body.should.have.property('lastname').eql('update_lastname');
+                            res.body.should.have.property('firstname').eql('update_firstname');
+                            res.body.should.have.property('joinDate');
+                            res.body.should.have.property('status').eql(false);
+                            res.body.should.have.property('sysAccess').which.is.a('array');
+                            res.body.should.have.property('roles').which.is.a('array');
+                            res.body.should.have.property('_id').eql(user.id);
+                            done();
+                        });
+                });
+            });
+        });
+
 
     });
 });
