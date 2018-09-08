@@ -29,15 +29,16 @@ export const fetchUsers = () => {
     };
 };
 
-export const openDialog = (userId) => {
+export const openDialog = (userId, dialog) => {
+    const upperCaseDialog = dialog.toUpperCase()
     return dispatch => {
         dispatch({
             type: 'SWITCH'
         });
-        axios.get(`/users/${userId}/access`)
+        axios.get(`/users/${userId}/${dialog}`)
              .then((res) => {
                  dispatch({
-                     type: 'FETCH_ACCESS_DATA',
+                     type: `FETCH_${upperCaseDialog}_DATA`,
                      payload: {
                          userId: userId,
                          currentAccess: res.data,
