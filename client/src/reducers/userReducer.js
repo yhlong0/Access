@@ -47,6 +47,12 @@ export default function userReducer(state = {
                 fetching: false,
                 accessData: action.payload,
             }
+        case 'FETCH_ROLE_DATA':
+            return {
+                ...state,
+                fetching: false,
+                accessData: action.payload,
+            }
         case 'CLICKED_ACCESS': 
             return {
                 ...state,
