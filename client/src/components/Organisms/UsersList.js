@@ -69,7 +69,11 @@ const UsersList = props => {
                     </Button>
                     <br />
                     <br />
-                    <Button variant="contained" size="small">
+                    <Button 
+                        variant="contained" 
+                        size="small"
+                        onClick={() => openDialog(user._id)}
+                    >
                         Add Role
                     </Button>
                 </Typography>
