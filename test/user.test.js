@@ -148,6 +148,34 @@ describe('Clean Users', () => {
             });
         });
 
+        /*
+        * Test the /DELETE:userId route
+        */
+       
+       describe('/DELETE:userId delete user by Id', () => {
+            it('it should DELETE the user by Id', (done) => {
+                let user = new User({
+                    lastname: 'old_lastname',
+                    firstname: 'old_firstname',
+                    joinDate: new Date(),
+                    status: true,
+                    sysAccess: [
+                    ],
+                    roles: [
+                    ]
+                });
+                user.save((err, user) => {
+                    chai.request(app)
+                    .delete('/users/'+ user.id)
+                    .end((err, res) => {
+                        res.should.have.status(200);
+                        res.body.should.be.a('object');
+                        res.body.should.have.property('message').eql('delete success');
+                        done();
+                    });
+                });
 
+            });
+        });
     });
 });
