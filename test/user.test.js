@@ -148,10 +148,30 @@ describe('Clean Users', () => {
             });
         });
 
+        
+        /*
+        * Test the /POST:userId/role route
+        */
+
+                
+        /*
+        * Test the /POST:userId/access route
+        */
+            
+        
+        /*
+        * Test the /GET:userId/access route
+        */
+
+
+        /*
+        * Test the /DELETE:userId/access/:accessId route
+        */
+
+
         /*
         * Test the /DELETE:userId route
         */
-       
        describe('/DELETE:userId delete user by Id', () => {
             it('it should DELETE the user by Id', (done) => {
                 let user = new User({
@@ -176,6 +196,7 @@ describe('Clean Users', () => {
                 });
             });
         });
+
         
     });
 });
