@@ -22,23 +22,6 @@ describe('Clean Users', () => {
     describe('Users', () => {
 
         /*
-        * Test the /Get route
-        */
-
-        describe('/GET get all users', () => {
-            it('it should GET all the users', (done) => {
-                chai.request(app)
-                    .get('/users')
-                    .end((err, res) => {
-                        res.should.have.status(200);
-                        res.body.should.be.a('array');
-                        res.body.length.should.be.eql(0);
-                        done();
-                    });
-            });
-        });
-
-        /*
         * Test the /POST route
         */
 
@@ -258,4 +241,69 @@ describe('Clean Users', () => {
 
 
     });
+});
+
+
+describe('Add User', () => {
+    /*
+    * Clean users from database after each test case;
+    */
+    
+    afterEach((done) => {
+        User.remove({}, (err) => {
+            done();
+        });
+    });
+
+    /*
+    * Add one user to database before each test;
+    */
+    beforeEach(function(done){
+        var newUser = new User({
+            lastname: 'new_lastname',
+            firstname: 'new_firstname',
+            joinDate: new Date(),
+            status: true,
+            sysAccess: [
+                {
+                    id: '1234567890',
+                    name: 'new_system',
+                    description: 'new_system_description',
+                    accessDate: new Date(),
+                }
+            ],
+            roles: [
+                {
+                    id: '1234567890',
+                    name: 'new_role',
+                    description: 'new_role_description',
+                    accessDate: new Date(),
+                }
+            ]
+        });
+        newUser.save(function(err) {
+            done();
+        });
+    });
+
+    describe('Users', () => {
+        /*
+        * Test the /Get route
+        */
+
+        describe('/GET get all users', () => {
+            it('it should GET all the users', (done) => {
+                chai.request(app)
+                    .get('/users')
+                    .end((err, res) => {
+                        res.should.have.status(200);
+                        res.body.should.be.a('array');
+                        res.body.length.should.be.eql(1);
+                        done();
+                });
+            });
+        });
+
+    });
+
 });
