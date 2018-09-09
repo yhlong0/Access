@@ -299,6 +299,12 @@ describe('Add User', () => {
                         res.should.have.status(200);
                         res.body.should.be.a('array');
                         res.body.length.should.be.eql(1);
+                        res.body[0].should.have.property('lastname').eql('new_lastname');
+                        res.body[0].should.have.property('firstname').eql('new_firstname');
+                        res.body[0].should.have.property('joinDate');
+                        res.body[0].should.have.property('status').eql(true);
+                        res.body[0].should.have.property('sysAccess').which.is.a('array');
+                        res.body[0].should.have.property('roles').which.is.a('array');
                         done();
                 });
             });
