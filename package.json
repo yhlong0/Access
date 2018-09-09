@@ -4,8 +4,8 @@
   "description": "record access for users",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon app.js",
-    "test": "mocha"
+    "start": "set NODE_ENV=development&& nodemon app.js",
+    "test": "set NODE_ENV=test&& mocha"
   },
   "repository": {
     "type": "git",
