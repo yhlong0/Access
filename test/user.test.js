@@ -174,8 +174,8 @@ describe('Clean Users', () => {
                         done();
                     });
                 });
-
             });
         });
+        
     });
 });
