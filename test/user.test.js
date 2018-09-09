@@ -152,7 +152,35 @@ describe('Clean Users', () => {
         /*
         * Test the /POST:userId/role route
         */
+        // describe('/POST:userId/role add role to a user', () => {
+        //     it('it should POST add a role to a user', (done) => {
+        //         let role = {
+        //             lastname: 'test_lastname',
+        //             firstname: 'test_firstname',
+        //             joinDate: new Date(),
+        //             status: true,
+        //             sysAccess: [
+        //             ],
+        //             roles: [
+        //             ]
+        //         };
 
+        //         chai.request(app)
+        //             .post('/users')
+        //             .send(user)
+        //             .end((err, res) => {
+        //                 res.should.have.status(200);
+        //                 res.body.should.be.a('object');
+        //                 res.body.should.have.property('lastname');
+        //                 res.body.should.have.property('firstname');
+        //                 res.body.should.have.property('joinDate');
+        //                 res.body.should.have.property('status').eql(true);
+        //                 res.body.should.have.property('sysAccess').which.is.a('array');
+        //                 res.body.should.have.property('roles').which.is.a('array');
+        //                 done();
+        //             });
+        //     }).timeout(10000);
+        // });
                 
         /*
         * Test the /POST:userId/access route
@@ -162,6 +190,37 @@ describe('Clean Users', () => {
         /*
         * Test the /GET:userId/access route
         */
+    //    describe('/GET:userId/access get a user access', () => {
+    //         it('it should GET a user access by the given id', (done) => {
+    //             let user = new User({
+    //                 lastname: 'test_lastname',
+    //                 firstname: 'test_firstname',
+    //                 joinDate: new Date(),
+    //                 status: true,
+    //                 sysAccess: [
+    //                 ],
+    //                 roles: [
+    //                 ]
+    //             });
+    //             user.save((err, user) => {
+    //                 chai.request(app)
+    //                     .get('/users/' + user.id)
+    //                     .send(user)
+    //                     .end((err, res) => {
+    //                         res.should.have.status(200);
+    //                         res.body.should.be.a('object');
+    //                         res.body.should.have.property('lastname');
+    //                         res.body.should.have.property('firstname');
+    //                         res.body.should.have.property('joinDate');
+    //                         res.body.should.have.property('status').eql(true);
+    //                         res.body.should.have.property('sysAccess').which.is.a('array');
+    //                         res.body.should.have.property('roles').which.is.a('array');
+    //                         res.body.should.have.property('_id').eql(user.id);
+    //                         done();
+    //                     });
+    //             });
+    //         });
+    //     });
 
 
         /*
@@ -197,6 +256,6 @@ describe('Clean Users', () => {
             });
         });
 
-        
+
     });
 });
