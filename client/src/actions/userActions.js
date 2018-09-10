@@ -7,11 +7,11 @@ export function createUser(user) {
              .then((res) => {
                  axios.get('/users')
                       .then((res) => {
-                          dispatch({type: 'FETCH_USERS_FULFILLED', payload: res.data})
+                          dispatch({type: 'FETCH_USERS_FULFILLED', payload: res.data});
                       })
              })
              .catch((err) => {
-                 dispatch({type: 'CREATE_USER_REJECTED', payload: err})
+                 dispatch({ type: 'API_CALL_REJECTED', payload: err});
              });
     };
 };
@@ -21,10 +21,10 @@ export const fetchUsers = () => {
         dispatch({ type: 'FETCHING' });
         axios.get('/users')
             .then((res) => {
-                dispatch({ type: 'FETCH_USERS_FULFILLED', payload: res.data })
+                dispatch({ type: 'FETCH_USERS_FULFILLED', payload: res.data });
             })
             .catch((err) => {
-                dispatch({ type: 'FETCH_USERS_REJECTED', payload: err })
+                dispatch({ type: 'API_CALL_REJECTED', payload: err });
             });
     };
 };
@@ -43,8 +43,11 @@ export const openDialog = (userId, dialog) => {
                          userId: userId,
                          currentAccess: res.data,
                      }
-                 })
-             });
+                 });
+            })
+            .catch((err) => {
+                dispatch({ type: 'API_CALL_REJECTED', payload: err });
+            });
     };
 };
 
@@ -103,7 +106,7 @@ export const addAccess = (accessData) => {
                 });
              })
              .catch((err) => {
-                dispatch({ type: 'ADD_ACCESS_REJECTED', payload: err })
+                 dispatch({ type: 'API_CALL_REJECTED', payload: err });
              });
     };
 };
@@ -122,7 +125,7 @@ export const removeAccess = (systemId, userId) => {
                     });
             })
             .catch((err) => {
-                dispatch({ type: 'REMOVE_ACCESS_REJECTED', payload: err });
+                dispatch({ type: 'API_CALL_REJECTED', payload: err });
             });
     };
 };
@@ -138,7 +141,7 @@ export const changeStatus = (userId) => {
                 });
             })
             .catch((err) => {
-                dispatch({ type: 'ChANGE_STATUS_REJECTED', payload: err });
+                dispatch({ type: 'API_CALL_REJECTED', payload: err });
             });
     };
 };
