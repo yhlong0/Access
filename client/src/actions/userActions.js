@@ -1,18 +1,23 @@
 import axios from 'axios';
 
 export function createUser(user) {
-    return dispatch => {
+    return async dispatch => {
         dispatch({type: 'FETCHING'});
-        axios.post('/users', user)
-             .then((res) => {
-                 axios.get('/users')
-                      .then((res) => {
-                          dispatch({type: 'FETCH_USERS_FULFILLED', payload: res.data});
-                      });
-             })
-             .catch((err) => {
-                 dispatch({ type: 'API_CALL_REJECTED', payload: err});
-             });
+
+        try{
+            await axios.post('/users', user);
+            let users = await axios.get('/users');
+
+            dispatch({
+                type: 'FETCH_USERS_FULFILLED',
+                payload: users.data
+            });
+        } catch (err) {
+            dispatch({
+                type: 'API_CALL_REJECTED',
+                payload: err
+            });
+        }
     };
 };
 
@@ -21,10 +26,16 @@ export const fetchUsers = () => {
         dispatch({ type: 'FETCHING' });
         axios.get('/users')
             .then((res) => {
-                dispatch({ type: 'FETCH_USERS_FULFILLED', payload: res.data });
+                dispatch({ 
+                    type: 'FETCH_USERS_FULFILLED', 
+                    payload: res.data 
+                });
             })
             .catch((err) => {
-                dispatch({ type: 'API_CALL_REJECTED', payload: err });
+                dispatch({ 
+                    type: 'API_CALL_REJECTED', 
+                    payload: err 
+                });
             });
     };
 };
@@ -45,7 +56,10 @@ export const openDialog = (userId, dialog) => {
                  });
             })
             .catch((err) => {
-                dispatch({ type: 'API_CALL_REJECTED', payload: err });
+                dispatch({ 
+                    type: 'API_CALL_REJECTED', 
+                    payload: err 
+                });
             });
     };
 };
@@ -100,7 +114,10 @@ export const addAccess = (accessData) => {
             });
 
         } catch (err) {
-            dispatch({ type: 'API_CALL_REJECTED', payload: err });
+            dispatch({ 
+                type: 'API_CALL_REJECTED', 
+                payload: err 
+            });
         }
     };
 };
@@ -108,6 +125,7 @@ export const addAccess = (accessData) => {
 export const removeAccess = (systemId, userId) => {
     return async dispatch => {
         dispatch({ type: 'FETCHING' });
+
         try {
             await axios.delete(`/users/${userId}/access/${systemId}`);
             let users = await axios.get('/users');
@@ -116,7 +134,10 @@ export const removeAccess = (systemId, userId) => {
                 payload: users.data
             });
         } catch (err) {
-            dispatch({ type: 'API_CALL_REJECTED', payload: err });
+            dispatch({ 
+                type: 'API_CALL_REJECTED', 
+                payload: err 
+            });
         }
     };
 };
@@ -124,14 +145,24 @@ export const removeAccess = (systemId, userId) => {
 export const changeStatus = (userId) => {
     return async dispatch => {
         dispatch({ type: 'FETCHING' });
+
         try {
             let user = await axios.get(`/users/${userId}`);
             await axios.put(`/users/${userId}`, { status: !user.data.status });
+
             dispatch({ type: 'CHANGE_STATUS_FULFILLED' });
+
             let updateUser = await axios.get('/users');
-            dispatch({ type: 'FETCH_USERS_FULFILLED', payload: updateUser.data });
+
+            dispatch({ 
+                type: 'FETCH_USERS_FULFILLED', 
+                payload: updateUser.data 
+            });
         } catch (err) {
-            dispatch({ type: 'API_CALL_REJECTED', payload: err });
+            dispatch({ 
+                type: 'API_CALL_REJECTED', 
+                payload: err 
+            });
         }  
     };
 };
