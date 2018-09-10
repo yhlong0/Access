@@ -41,6 +41,12 @@ export default function userReducer(state = {
                 fetching: false,
                 error: action.payload,
             }
+        case 'ChANGE_STATUS_REJECTED':
+            return {
+                ...state,
+                fetching: false,
+                error: action.payload,
+            }
         case 'FETCH_ACCESS_DATA':
             return {
                 ...state,

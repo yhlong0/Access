@@ -122,7 +122,23 @@ export const removeAccess = (systemId, userId) => {
                     });
             })
             .catch((err) => {
-                dispatch({ type: 'REMOVE_ACCESS_REJECTED', payload: err })
+                dispatch({ type: 'REMOVE_ACCESS_REJECTED', payload: err });
+            });
+    };
+};
+
+export const changeStatus = (userId) => {
+    return dispatch => {
+        dispatch({ type: 'FETCHING' });
+        axios.put(`/users/${userId}`)
+            .then((res) => {
+                dispatch({
+                    type: 'CHANGE_STATUS_FULFILLED',
+                    payload: res.data
+                });
+            })
+            .catch((err) => {
+                dispatch({ type: 'ChANGE_STATUS_REJECTED', payload: err });
             });
     };
 };

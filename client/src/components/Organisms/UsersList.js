@@ -87,7 +87,7 @@ const UsersList = props => {
                 control={
                     <Switch
                         checked={user.status}
-                        //onChange={this.handleChange('checkedB')}
+                        onChange={() => changeStatus(user._id)}
                         value="checkedB"
                         color="primary"
                     />
