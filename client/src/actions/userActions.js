@@ -131,24 +131,16 @@ export const removeAccess = (systemId, userId) => {
 };
 
 export const changeStatus = (userId) => {
-    return dispatch => {
+    return async dispatch => {
         dispatch({ type: 'FETCHING' });
-        axios.get(`/users/${userId}`)
-            .then((res) => {
-                axios.put(`/users/${userId}`, {status: !res.data.status})
-                    .then((res) => {
-                        dispatch({
-                            type: 'CHANGE_STATUS_FULFILLED',
-                        });
-                        axios.get('/users')
-                            .then((res) => {
-                                dispatch({ type: 'FETCH_USERS_FULFILLED', payload: res.data });
-                            });
-                    })
-                    .catch((err) => {
-                        dispatch({ type: 'API_CALL_REJECTED', payload: err });
-                    });
-            })
-        
+        try {
+            let user = await axios.get(`/users/${userId}`);
+            let update = await axios.put(`/users/${userId}`, { status: !user.data.status });
+            dispatch({ type: 'CHANGE_STATUS_FULFILLED' });
+            let updateUser = await axios.get('/users');
+            dispatch({ type: 'FETCH_USERS_FULFILLED', payload: updateUser.data });
+        } catch (err) {
+            dispatch({ type: 'API_CALL_REJECTED', payload: err });
+        }  
     };
 };
