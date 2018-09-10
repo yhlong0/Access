@@ -32,9 +32,8 @@ export const fetchUsers = () => {
 export const openDialog = (userId, dialog) => {
     const upperCaseDialog = dialog.toUpperCase()
     return dispatch => {
-        dispatch({
-            type: 'SWITCH'
-        });
+        dispatch({ type: 'SWITCH' });
+
         axios.get(`/users/${userId}/${dialog}`)
              .then((res) => {
                  dispatch({
@@ -53,15 +52,9 @@ export const openDialog = (userId, dialog) => {
 
 export const closeDialog = () => {
     return dispatch => {
-        dispatch({
-            type: 'SWITCH'
-        });
-        dispatch({
-            type: 'CLEAR_ACCESSDATA'
-        });
-        dispatch({
-            type: 'CLEAR_SEARCH'
-        });
+        dispatch({ type: 'SWITCH' });
+        dispatch({ type: 'CLEAR_ACCESSDATA' });
+        dispatch({ type: 'CLEAR_SEARCH' });
     };
 };
 
@@ -84,30 +77,31 @@ export const clickedAccess = (accessId) => {
 };
 
 export const addAccess = (accessData) => {
-    return dispatch => {
+    return async dispatch => {
         dispatch({ type: 'FETCHING' });
-        dispatch({
-            type: 'SWITCH'
-        });
-        axios.post(`/users/${accessData.userId}/access`, { systemId: accessData.newAccess })
-             .then((res) => {
-                axios.get('/users')
-                .then((res) => {
-                    dispatch({
-                        type: 'FETCH_USERS_FULFILLED', 
-                        payload: res.data
-                    });
-                    dispatch({
-                        type: 'CLEAR_ACCESSDATA'
-                    });
-                    dispatch({
-                        type: 'CLEAR_SEARCH'
-                    });
-                });
-             })
-             .catch((err) => {
-                 dispatch({ type: 'API_CALL_REJECTED', payload: err });
-             });
+        dispatch({ type: 'SWITCH' });
+
+        try {
+            await axios.post(
+                `/users/${accessData.userId}/access`, 
+                { systemId: accessData.newAccess });
+
+            let users = await axios.get('/users');
+
+            dispatch({
+                type: 'FETCH_USERS_FULFILLED',
+                payload: users.data
+            }); 
+            dispatch({
+                type: 'CLEAR_ACCESSDATA'
+            });
+            dispatch({
+                type: 'CLEAR_SEARCH'
+            });
+
+        } catch (err) {
+            dispatch({ type: 'API_CALL_REJECTED', payload: err });
+        }
     };
 };
 
