@@ -72,6 +72,11 @@ export default function userReducer(state = {
                 ...state,
                 search: '',
             }
+        case 'CHANGE_STATUS_FULFILLED':
+            return {
+                ...state,
+                fetching: false,
+            }
         default: 
             return state;
     }

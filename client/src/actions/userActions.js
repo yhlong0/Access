@@ -133,15 +133,19 @@ export const removeAccess = (systemId, userId) => {
 export const changeStatus = (userId) => {
     return dispatch => {
         dispatch({ type: 'FETCHING' });
-        axios.put(`/users/${userId}`)
+        axios.get(`/users/${userId}`)
             .then((res) => {
-                dispatch({
-                    type: 'CHANGE_STATUS_FULFILLED',
-                    payload: res.data
-                });
+                axios.put(`/users/${userId}`, {status: !res.data.status})
+                    .then((res) => {
+                        debugger;
+                        dispatch({
+                            type: 'CHANGE_STATUS_FULFILLED',
+                        });
+                    })
+                    .catch((err) => {
+                        dispatch({ type: 'API_CALL_REJECTED', payload: err });
+                    });
             })
-            .catch((err) => {
-                dispatch({ type: 'API_CALL_REJECTED', payload: err });
-            });
+
     };
 };

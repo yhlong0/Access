@@ -34,7 +34,13 @@ const styles = theme => ({
 });
 
 const UsersList = props => {
-    const { classes, userData, openDialog, removeAccess } = props;
+    const { 
+        classes, 
+        userData, 
+        openDialog, 
+        removeAccess,
+        changeStatus, 
+    } = props;
     //console.log(userData[0]);
 
     const panelList = userData.map((user) => { 
