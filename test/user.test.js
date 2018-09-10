@@ -92,7 +92,7 @@ describe('Clean Users', () => {
         });
 
         /*
-        * Test the /PUT:userId route
+        * Test the /PUT:userId route fix this
         */
        describe('/PUT:userId update a user', () => {
             it('it should UPDATE a user on /users/:userId PUT', (done) => {
