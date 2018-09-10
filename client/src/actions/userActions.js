@@ -8,7 +8,7 @@ export function createUser(user) {
                  axios.get('/users')
                       .then((res) => {
                           dispatch({type: 'FETCH_USERS_FULFILLED', payload: res.data});
-                      })
+                      });
              })
              .catch((err) => {
                  dispatch({ type: 'API_CALL_REJECTED', payload: err});
@@ -137,15 +137,18 @@ export const changeStatus = (userId) => {
             .then((res) => {
                 axios.put(`/users/${userId}`, {status: !res.data.status})
                     .then((res) => {
-                        debugger;
                         dispatch({
                             type: 'CHANGE_STATUS_FULFILLED',
                         });
+                        axios.get('/users')
+                            .then((res) => {
+                                dispatch({ type: 'FETCH_USERS_FULFILLED', payload: res.data });
+                            });
                     })
                     .catch((err) => {
                         dispatch({ type: 'API_CALL_REJECTED', payload: err });
                     });
             })
-
+        
     };
 };
