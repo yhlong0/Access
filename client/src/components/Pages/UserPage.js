@@ -5,6 +5,7 @@ import LinearProgress from '@material-ui/core/LinearProgress';
 import UsersList from '../Organisms/UsersList';
 import NewUserTextField from '../Molecules/NewUserTextField';
 import AccessDialog from '../Organisms/AccessDialog';
+import Dialog from '../Organisms/Dialog';
 import { connect } from 'react-redux';
 import * as userActions from '../../actions/userActions';
 import * as systemActions from '../../actions/systemActions'
@@ -105,6 +106,15 @@ class UserPage extends React.Component {
                     closeDialog={this.closeDialog}
                     clickedAccess={this.clickedAccess}
                     systems={systems}
+                    search={search}
+                    addAccess={this.addAccess}
+                    updateSearch={this.updateSearch}
+                />
+                <Dialog 
+                    dialogOpenStatus={dialogOpenStatus}
+                    closeDialog={this.closeDialog}
+                    clickedAccess={this.clickedAccess}
+                    listItems={systems}
                     search={search}
                     addAccess={this.addAccess}
                     updateSearch={this.updateSearch}
