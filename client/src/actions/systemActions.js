@@ -1,18 +1,21 @@
 import axios from 'axios';
 
 export function createSystem(system) {
-    return dispatch => {
+    return async dispatch => {
         dispatch({type: 'FETCHING'});
-        axios.post('/systems', system)
-             .then((res) => {
-                axios.get('/systems')
-                     .then((res) => {
-                        dispatch({type: 'FETCH_SYSTEMS_FULFILLED', payload: res.data})
-                     })
-             })
-             .catch((err) => {
-                 dispatch({type: 'CREATE_SYSTEM_REJECTED', payload: err})
+        try {
+            await axios.post('/systems', system);
+            let systems = await axios.get('/systems')
+            dispatch({
+                type: 'FETCH_SYSTEMS_FULFILLED', 
+                payload: systems.data
+            })
+        } catch (err) {
+            dispatch({
+                type: 'CREATE_SYSTEM_REJECTED', 
+                payload: err
             });
+        }
     };
 };
 
@@ -30,26 +33,21 @@ export const fetchSystems = () => {
 };
 
 export const deleteSystem = (selected) => {
-    return dispatch => {
+    return async dispatch => {
         dispatch({type: 'FETCHING'});
-        const arrayLength = selected.length;
-        selected.map((id, index) => {
-            axios.delete('/systems/' + id)
-                .then((res) => {
-                    //Last one in the array.
-                    if(arrayLength === index + 1) {
-                        dispatch({type: 'CLEAR_SELECTED', payload: []}); 
-                        axios.get('/systems')
-                        .then((res) => {
-                        dispatch({type: 'FETCH_SYSTEMS_FULFILLED', payload: res.data})
-                        });
-                    }
-                })
-                .catch((err) => {
-                    dispatch({type: 'DELETE_SYSTEM_REJECTED', payload: err})
-                });
-           return id;
+
+        const promises = selected.map(async id => {
+            await axios.delete('/systems/' + id);
         });
+
+        console.log(promises);
+
+        await Promise.all(promises);
+
+        dispatch({type: 'CLEAR_SELECTED', payload: []}); 
+
+        let systems = await axios.get('/systems');
+        dispatch({type: 'FETCH_SYSTEMS_FULFILLED', payload: systems.data})
     };
 };
 
@@ -60,15 +58,3 @@ export const selectSystem = (selected) => {
     };
 };
 
-// export function fetchSystem() {
-//     return {
-//         type: "FETCH_SYSTEM",
-//         payload: new Promise(function(resolve, reject){
-//             resolve([{
-//                 _id: '11111111',
-//                 name: 'Customer Support',
-//                 description: 'Customer support level 1',
-//             }])
-//         }),
-//     }
-// };
