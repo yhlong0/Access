@@ -30,4 +30,7 @@ router.post('/:userId/access', relationController.addUserAccess);
 /* Delete access for user. */
 router.delete('/:userId/access/:accessId', userController.deleteUserAccess);
 
+/* Delete role for user. */
+router.delete('/:userId/role/:roleId', userController.deleteUserRole);
+
 module.exports = router;

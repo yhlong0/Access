@@ -67,6 +67,18 @@ UserSchema.statics.deleteUserAccess = function (userId, accessId, callback) {
     );
 };
 
+UserSchema.statics.deleteUserRole = function (userId, roleId, callback) {
+    this.update(
+        { _id: userId },
+        {
+            $pull: {
+                roles: { _id: roleId }
+            }
+        },
+        callback
+    );
+};
+
 UserSchema.statics.addUserRole = function (userId, roleAccess, callback) {
     this.update(
         {_id: userId},

@@ -72,8 +72,21 @@ exports.deleteUserAccess = function(req, res) {
         } else {
             res.json({ message: 'delete failed' });
         }
-    })
-}
+    });
+};
+
+exports.deleteUserRole = function (req, res) {
+    let userId = req.params.userId;
+    let roleId = req.params.roleId;
+
+    UserModel.deleteUserAccess(userId, roleId, function (err) {
+        if (!err) {
+            res.json({ message: 'delete success' });
+        } else {
+            res.json({ message: 'delete failed' });
+        }
+    });
+};
 
 exports.updateUser = function(req, res) {
     let userId = req.params.userId;
@@ -82,6 +95,6 @@ exports.updateUser = function(req, res) {
     UserModel.updateUser(userId, updateContent, function(err, user) {
         res.json(user);
     });
-}
+};
 
 
