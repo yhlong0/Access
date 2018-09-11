@@ -12,8 +12,11 @@ const styles = theme => ({
     chip: {
         margin: '5px',
     },
-    roleChip: {
+    blueChip: {
         color: theme.palette.primary.main,
+    },
+    redChip: {
+        color: theme.palette.secondary.main,
     }
 });
 
@@ -35,7 +38,7 @@ let Column = props => {
                 className={
                     classNames(
                         classes.chip, 
-                        {[classes.roleChip]: chipColor === 'blue'}
+                        {[classes.blueChip]: chipColor === 'blue'}
                     )
                 }
                 onDelete={() => removeItem(item._id, userId)}
@@ -44,15 +47,7 @@ let Column = props => {
         );
     });
 
-    const empty = <Chip 
-                        label={emptyLabel} 
-                        className={
-                            classNames(
-                                classes.chip, 
-                                { [classes.roleChip]: chipColor === 'blue' }
-                            )
-                        }
-                  />;
+    const empty = <Chip label={emptyLabel} className={classes.redChip} />;
 
     return (
         <div className={classes.column}>
