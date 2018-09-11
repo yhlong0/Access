@@ -16,6 +16,7 @@ import Divider from '@material-ui/core/Divider';
 import SummaryPanel from '../Molecules/SummaryPanel';
 import RoleColumn from '../Molecules/RoleColumn';
 import SystemColumn from '../Molecules/SystemColumn';
+import Column from '../Molecules/Column';
 
 const styles = theme => ({
     details: {
@@ -59,6 +60,12 @@ const UsersList = props => {
                 userId={user._id}
                 sysAccess={user.sysAccess}
                 removeAccess={removeAccess}
+            />
+            <Column 
+                userId={user._id}
+                listItems={user.sysAccess}
+                removeItem={removeAccess}
+                emptylabel="No Access"
             />
             <div className={classNames(classes.column, classes.helper)}>
                 <Typography variant="caption">
