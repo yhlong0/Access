@@ -53,19 +53,21 @@ const UsersList = props => {
                 joinDate={user.joinDate}
             />
         </ExpansionPanelSummary>
-        <ExpansionPanelDetails className={classes.details}>
+        <ExpansionPanelDetails className={classes.details}>       
             <Column
                 userId={user._id}
                 listItems={user.roles}
                 removeItem={removeRole}
                 emptylabel="No Role"
             />
-            <Column 
-                userId={user._id}
-                listItems={user.sysAccess}
-                removeItem={removeAccess}
-                emptylabel="No Access"
-            />
+            <div className={classNames(classes.column, classes.helper)}>
+                <Column 
+                    userId={user._id}
+                    listItems={user.sysAccess}
+                    removeItem={removeAccess}
+                    emptylabel="No Access"
+                />
+            </div>
             <div className={classNames(classes.column, classes.helper)}>
                 <Typography variant="caption">
                     Select your action
