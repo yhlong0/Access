@@ -69,6 +69,10 @@ class UserPage extends React.Component {
         this.props.dispatch(userActions.removeAccess(systemId, userId));
     }
 
+    removeRole = (roleId, userId) => {
+        this.props.dispatch(userActions.removeRole(roleId, userId));
+    }
+
     changeStatus = (userId) => {
         this.props.dispatch(userActions.changeStatus(userId));
     }
@@ -110,6 +114,7 @@ class UserPage extends React.Component {
                     userData={users} 
                     openDialog={this.openDialog}
                     removeAccess={this.removeAccess}
+                    removeRole={this.removeRole}
                     changeStatus={this.changeStatus}
                 />
             </div>

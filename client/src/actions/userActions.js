@@ -142,6 +142,26 @@ export const removeAccess = (systemId, userId) => {
     };
 };
 
+export const removeRole = (roleId, userId) => {
+    return async dispatch => {
+        dispatch({ type: 'FETCHING' });
+
+        try {
+            await axios.delete(`/users/${userId}/role/${roleId}`);
+            let users = await axios.get('/users');
+            dispatch({
+                type: 'FETCH_USERS_FULFILLED',
+                payload: users.data
+            });
+        } catch (err) {
+            dispatch({
+                type: 'API_CALL_REJECTED',
+                payload: err
+            });
+        }
+    };
+};
+
 export const changeStatus = (userId) => {
     return async dispatch => {
         dispatch({ type: 'FETCHING' });

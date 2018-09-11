@@ -14,8 +14,6 @@ import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
 
 import SummaryPanel from '../Molecules/SummaryPanel';
-import RoleColumn from '../Molecules/RoleColumn';
-import SystemColumn from '../Molecules/SystemColumn';
 import Column from '../Molecules/Column';
 
 const styles = theme => ({
@@ -40,6 +38,7 @@ const UsersList = props => {
         userData, 
         openDialog, 
         removeAccess,
+        removeRole,
         changeStatus, 
     } = props;
     //console.log(userData[0]);
@@ -55,11 +54,11 @@ const UsersList = props => {
             />
         </ExpansionPanelSummary>
         <ExpansionPanelDetails className={classes.details}>
-            <RoleColumn roles={user.roles}/>
-            <SystemColumn 
+            <Column
                 userId={user._id}
-                sysAccess={user.sysAccess}
-                removeAccess={removeAccess}
+                listItems={user.roles}
+                removeItem={removeRole}
+                emptylabel="No Role"
             />
             <Column 
                 userId={user._id}
