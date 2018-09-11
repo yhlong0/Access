@@ -58,14 +58,15 @@ const UsersList = props => {
                 userId={user._id}
                 listItems={user.roles}
                 removeItem={removeRole}
-                emptylabel="No Role"
+                emptyLabel="No Role"
+                chipColor="blue"
             />
             <div className={classNames(classes.column, classes.helper)}>
                 <Column 
                     userId={user._id}
                     listItems={user.sysAccess}
                     removeItem={removeAccess}
-                    emptylabel="No Access"
+                    emptyLabel="No Access"
                 />
             </div>
             <div className={classNames(classes.column, classes.helper)}>

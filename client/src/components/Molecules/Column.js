@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Chip from '@material-ui/core/Chip';
+import classNames from 'classnames';
 import * as moment from 'moment';
 
 const styles = theme => ({
@@ -10,6 +11,9 @@ const styles = theme => ({
     },
     chip: {
         margin: '5px',
+    },
+    roleChip: {
+        color: theme.palette.primary.main,
     }
 });
 
@@ -19,7 +23,8 @@ let Column = props => {
         listItems, 
         removeItem, 
         userId, 
-        emptylabel 
+        emptyLabel,
+        chipColor, 
     } = props;
 
     const List = listItems.map((item) => {
@@ -27,14 +32,27 @@ let Column = props => {
         return (
             <Chip
                 label={`${item.name} ${time}`}
-                className={classes.chip}
+                className={
+                    classNames(
+                        classes.chip, 
+                        {[classes.roleChip]: chipColor === 'blue'}
+                    )
+                }
                 onDelete={() => removeItem(item._id, userId)}
                 key={item._id}
             />
         );
     });
 
-    const empty = <Chip label={emptylabel} />;
+    const empty = <Chip 
+                        label={emptyLabel} 
+                        className={
+                            classNames(
+                                classes.chip, 
+                                { [classes.roleChip]: chipColor === 'blue' }
+                            )
+                        }
+                  />;
 
     return (
         <div className={classes.column}>
