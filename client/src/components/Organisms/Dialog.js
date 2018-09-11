@@ -13,6 +13,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Checkbox from '@material-ui/core/Checkbox';
 
+//https://stackoverflow.com/questions/40868189/how-to-create-a-dynamic-prop-name-in-react
 const styles = {
     list: {
         maxHeight: 300,
