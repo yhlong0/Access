@@ -79,7 +79,7 @@ exports.deleteUserRole = function (req, res) {
     let userId = req.params.userId;
     let roleId = req.params.roleId;
 
-    UserModel.deleteUserAccess(userId, roleId, function (err) {
+    UserModel.deleteUserRole(userId, roleId, function (err) {
         if (!err) {
             res.json({ message: 'delete success' });
         } else {
