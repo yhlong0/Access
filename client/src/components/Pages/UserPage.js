@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import UsersList from '../Organisms/UsersList';
 import AddingDialog from '../Organisms/Dialog';
 import NewUserTextField from '../Molecules/NewUserTextField';
+import LabeledSwitch from '../Molecules/LabeledSwitch';
 
 import * as userActions from '../../actions/userActions';
 import * as systemActions from '../../actions/systemActions';
@@ -100,9 +101,7 @@ class UserPage extends React.Component {
         
         return (
             <div className={classes.root}>
-                {fetching &&
-                    <LinearProgress />
-                }
+                { fetching && <LinearProgress /> }
                 <AddingDialog 
                     dialogOpenStatus={dialogOpenStatus}
                     closeDialog={this.closeDialog}
@@ -112,6 +111,7 @@ class UserPage extends React.Component {
                     addItem={this.addAccess}
                     updateSearch={this.updateSearch}
                 />
+                <LabeledSwitch />
                 <NewUserTextField create={this.createUser} />
                 <UsersList 
                     userData={users} 

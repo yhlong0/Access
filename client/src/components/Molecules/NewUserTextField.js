@@ -104,6 +104,7 @@ class TextFields extends React.Component {
 
 TextFields.propTypes = {
     classes: PropTypes.object.isRequired,
+    create: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles)(TextFields);
