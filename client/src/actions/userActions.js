@@ -41,13 +41,21 @@ export const fetchUsers = () => {
 };
 
 export const openDialog = (userId, dialog, systems, roles) => {
-    return dispatch => {
+    return async dispatch => {
         dispatch({ type: 'SWITCH' });
         dispatch({ type: 'SET_USERID', payload: userId });
         dispatch({ type: 'SET_DIALOG', payload: dialog });
-        dialog === 'role' ? 
-            dispatch({ type: 'SET_RENDERLIST', payload: roles }) : 
-            dispatch({ type: 'SET_RENDERLIST', payload: systems });
+        
+        let users = await axios.get(`/users/${userId}`);
+        let roleList = users.data.roles.map(item => item._id);
+        let sysList = users.data.sysAccess.map(item => item._id);
+        if(dialog === 'role') {
+            let result = await roles.filter(item => !roleList.includes(item._id));
+            dispatch({ type: 'SET_RENDERLIST', payload: result });
+        } else {
+            let result = await systems.filter(item => !sysList.includes(item._id));
+            dispatch({ type: 'SET_RENDERLIST', payload: result });
+        }
     };
 };
 
