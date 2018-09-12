@@ -13,17 +13,14 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Checkbox from '@material-ui/core/Checkbox';
 
-//https://stackoverflow.com/questions/40868189/how-to-create-a-dynamic-prop-name-in-react
+
 const styles = {
     list: {
         maxHeight: 300,
     },
 }
 
-class Dialog extends React.Component {
-    state = {
-        search: ''
-    };
+class AddingDialog extends React.Component {
 
     updateSearch = event => {
         this.props.updateSearch(event.target.value);
@@ -34,9 +31,9 @@ class Dialog extends React.Component {
             classes,
             dialogOpenStatus,
             closeDialog,
-            clickedAccess,
+            checkedItem,
             listItems,
-            addAccess,
+            addItem,
             search,
         } = this.props;
 
@@ -51,7 +48,7 @@ class Dialog extends React.Component {
                 <ListItem key={item._id}>
                     <Checkbox
                         value={item._id}
-                        onChange={() => clickedAccess(item._id)}
+                        onChange={() => checkedItem(item._id)}
                     />
                     <ListItemText primary={item.name} />
                 </ListItem>
@@ -86,7 +83,7 @@ class Dialog extends React.Component {
                         <Button onClick={closeDialog} color="primary">
                             Cancel
                         </Button>
-                        <Button onClick={addAccess} color="primary">
+                        <Button onClick={addItem} color="primary">
                             Add
                         </Button>
                     </DialogActions>
@@ -96,10 +93,10 @@ class Dialog extends React.Component {
     };
 }
 
-AccessDialog.propTypes = {
+AddingDialog.propTypes = {
     classes: PropTypes.object.isRequired,
     dialogOpenStatus: PropTypes.bool.isRequired,
     closeDialog: PropTypes.func.isRequired,
 };
 
-export default withStyles(styles)(Dialog);
+export default withStyles(styles)(AddingDialog);
