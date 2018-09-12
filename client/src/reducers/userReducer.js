@@ -5,6 +5,7 @@ export default function userReducer(state = {
     renderList: [],
     accessData: {
         userId: null,
+        dialog: '',
         newAccess: [],
         currentAccess: [],
     },
@@ -55,6 +56,14 @@ export default function userReducer(state = {
                 accessData: {
                     ...state.accessData,
                     userId: action.payload,
+                }
+            }
+        case 'SET_DIALOG':
+            return {
+                ...state,
+                accessData: {
+                    ...state.accessData,
+                    dialog: action.payload,
                 }
             }
         case 'UPDATE_SEARCH': 

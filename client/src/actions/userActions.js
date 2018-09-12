@@ -43,27 +43,11 @@ export const fetchUsers = () => {
 export const openDialog = (userId, dialog, systems, roles) => {
     return dispatch => {
         dispatch({ type: 'SWITCH' });
-        dispatch({ type: 'SET_USERID', payload: userId});
+        dispatch({ type: 'SET_USERID', payload: userId });
+        dispatch({ type: 'SET_DIALOG', payload: dialog });
         dialog === 'role' ? 
             dispatch({ type: 'SET_RENDERLIST', payload: roles }) : 
             dispatch({ type: 'SET_RENDERLIST', payload: systems });
-
-        // axios.get(`/users/${userId}/${dialog}`)
-        // .then((res) => {
-        //     dispatch({
-        //         type: `FETCH_${upperCaseDialog}_DATA`,
-        //         payload: {
-        //             userId: userId,
-        //             currentAccess: res.data,
-        //         }
-        //     });
-        // })
-        // .catch((err) => {
-        //     dispatch({ 
-        //         type: 'API_CALL_REJECTED', 
-        //         payload: err 
-        //     });
-        // });
     };
 };
 
@@ -101,8 +85,8 @@ export const addAccess = (accessData) => {
 
         try {
             await axios.post(
-                `/users/${accessData.userId}/access`, 
-                { systemId: accessData.newAccess });
+                `/users/${accessData.userId}/${accessData.dialog}`, 
+                { id: accessData.newAccess });
 
             let users = await axios.get('/users');
 
