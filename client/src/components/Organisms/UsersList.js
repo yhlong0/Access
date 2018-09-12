@@ -78,7 +78,7 @@ const UsersList = props => {
                         variant="contained" 
                         size="small" 
                         color="primary"
-                        onClick={() => openDialog('access')}
+                        onClick={() => openDialog(user._id, 'access')}
                     >
                         Add Access
                     </Button>
@@ -87,7 +87,7 @@ const UsersList = props => {
                     <Button 
                         variant="contained" 
                         size="small"
-                        onClick={() => openDialog('role')}
+                        onClick={() => openDialog(user._id, 'role')}
                     >
                         Add Role
                     </Button>

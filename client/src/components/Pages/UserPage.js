@@ -9,8 +9,8 @@ import AddingDialog from '../Organisms/Dialog';
 import NewUserTextField from '../Molecules/NewUserTextField';
 
 import * as userActions from '../../actions/userActions';
-import * as systemActions from '../../actions/systemActions'
-
+import * as systemActions from '../../actions/systemActions';
+import * as roleActions from '../../actions/roleActions';
 
 const styles = theme => ({
     root: {
@@ -49,14 +49,15 @@ class UserPage extends React.Component {
     componentDidMount() {
         this.props.dispatch(userActions.fetchUsers());
         this.props.dispatch(systemActions.fetchSystems());
+        this.props.dispatch(roleActions.fetchRoles());
     }
 
     createUser = (user) => {
         this.props.dispatch(userActions.createUser(user));
     }
 
-    openDialog = (dialog) => {
-        this.props.dispatch(userActions.openDialog(dialog, this.props.systems, this.props.roles));
+    openDialog = (userId, dialog) => {
+        this.props.dispatch(userActions.openDialog(userId, dialog, this.props.systems, this.props.roles));
     }
 
     clickedAccess = (accessId) => {

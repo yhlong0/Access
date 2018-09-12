@@ -49,6 +49,14 @@ export default function userReducer(state = {
                 ...state,
                 renderList: action.payload,
             }
+        case 'SET_USERID':
+            return {
+                ...state,
+                accessData: {
+                    ...state.accessData,
+                    userId: action.payload,
+                }
+            }
         case 'UPDATE_SEARCH': 
             return {
                 ...state,
@@ -62,6 +70,11 @@ export default function userReducer(state = {
                     newAccess: [],
                     currentAccess: [],
                 },
+            } 
+        case 'CLEAR_RENDERLIST':
+            return {
+                ...state,
+                renderList: [],
             }        
         case 'FETCHING':
             return {

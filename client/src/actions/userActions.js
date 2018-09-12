@@ -40,13 +40,13 @@ export const fetchUsers = () => {
     };
 };
 
-export const openDialog = (dialog, systems, roles) => {
+export const openDialog = (userId, dialog, systems, roles) => {
     return dispatch => {
         dispatch({ type: 'SWITCH' });
-
+        dispatch({ type: 'SET_USERID', payload: userId});
         dialog === 'role' ? 
             dispatch({ type: 'SET_RENDERLIST', payload: roles }) : 
-            dispatch({ type: 'SET_RENDERLIST', payload: systems })
+            dispatch({ type: 'SET_RENDERLIST', payload: systems });
 
         // axios.get(`/users/${userId}/${dialog}`)
         // .then((res) => {
@@ -72,6 +72,7 @@ export const closeDialog = () => {
         dispatch({ type: 'SWITCH' });
         dispatch({ type: 'CLEAR_ACCESSDATA' });
         dispatch({ type: 'CLEAR_SEARCH' });
+        dispatch({ type: 'CLEAR_RENDERLIST' });
     };
 };
 
