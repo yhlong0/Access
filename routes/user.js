@@ -21,6 +21,9 @@ router.delete('/:userId', userController.deleteUser);
 /* Show user access. */
 router.get('/:userId/access', userController.showUserAccess);
 
+/* Show user roles. */
+router.get('/:userId/role', userController.showUserRoles);
+
 /* Add role for user. */
 router.post('/:userId/role', relationController.addUserRole);
 

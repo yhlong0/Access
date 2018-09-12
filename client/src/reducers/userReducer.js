@@ -2,6 +2,7 @@ export default function userReducer(state = {
     user: [],
     fetching: true,
     dialogOpenStatus: false,
+    renderList: [],
     accessData: {
         userId: null,
         newAccess: [],
@@ -42,6 +43,11 @@ export default function userReducer(state = {
                     ...state.accessData,
                     newAccess: action.payload
                 },
+            }
+        case 'SET_RENDERLIST': 
+            return {
+                ...state,
+                renderList: action.payload,
             }
         case 'UPDATE_SEARCH': 
             return {

@@ -58,7 +58,22 @@ exports.addUser = function (req, res) {
 exports.showUserAccess = function (req, res) {
     let userId = req.params.userId;
     UserModel.getUser(userId, function (err, user) {
-        res.json(user.sysAccess);
+        if(err) {
+            console.log(err);
+        } else {
+            res.json(user.sysAccess);
+        }  
+    });
+};
+
+exports.showUserRoles = function (req, res) {
+    let userId = req.params.userId;
+    UserModel.getUser(userId, function (err, user) {
+        if(err) {
+            console.log(err);
+        } else {
+            res.json(user.roles);
+        } 
     });
 };
 

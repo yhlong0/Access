@@ -2,11 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import LinearProgress from '@material-ui/core/LinearProgress';
-import UsersList from '../Organisms/UsersList';
-import NewUserTextField from '../Molecules/NewUserTextField';
-import AccessDialog from '../Organisms/AccessDialog';
-import AddingDialog from '../Organisms/Dialog';
 import { connect } from 'react-redux';
+
+import UsersList from '../Organisms/UsersList';
+import AddingDialog from '../Organisms/Dialog';
+import NewUserTextField from '../Molecules/NewUserTextField';
+
 import * as userActions from '../../actions/userActions';
 import * as systemActions from '../../actions/systemActions'
 
@@ -54,8 +55,8 @@ class UserPage extends React.Component {
         this.props.dispatch(userActions.createUser(user));
     }
 
-    openDialog = (userId, dialog) => {
-        this.props.dispatch(userActions.openDialog(userId, dialog));
+    openDialog = (dialog) => {
+        this.props.dispatch(userActions.openDialog(dialog, this.props.systems, this.props.roles));
     }
 
     clickedAccess = (accessId) => {
@@ -91,30 +92,21 @@ class UserPage extends React.Component {
             classes, 
             users, 
             dialogOpenStatus, 
-            systems, 
+            renderList, 
             fetching,
             search,
         } = this.props;
-
+        
         return (
             <div className={classes.root}>
                 {fetching &&
                     <LinearProgress />
                 }
-                <AccessDialog 
-                    dialogOpenStatus={dialogOpenStatus} 
-                    closeDialog={this.closeDialog}
-                    clickedAccess={this.clickedAccess}
-                    systems={systems}
-                    search={search}
-                    addAccess={this.addAccess}
-                    updateSearch={this.updateSearch}
-                />
                 <AddingDialog 
                     dialogOpenStatus={dialogOpenStatus}
                     closeDialog={this.closeDialog}
                     checkedItem={this.clickedAccess}
-                    listItems={systems}
+                    listItems={renderList}
                     search={search}
                     addItem={this.addAccess}
                     updateSearch={this.updateSearch}
@@ -142,8 +134,10 @@ function mapStateToProps(state, ownProps) {
         fetching: state.user.fetching,
         dialogOpenStatus: state.user.dialogOpenStatus,
         systems: state.system.system,
+        roles: state.role.role,
         accessData: state.user.accessData,
         search: state.user.search,
+        renderList: state.user.renderList,
     };
 }
 

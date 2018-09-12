@@ -40,27 +40,30 @@ export const fetchUsers = () => {
     };
 };
 
-export const openDialog = (userId, dialog) => {
-    const upperCaseDialog = dialog.toUpperCase()
+export const openDialog = (dialog, systems, roles) => {
     return dispatch => {
         dispatch({ type: 'SWITCH' });
 
-        axios.get(`/users/${userId}/${dialog}`)
-             .then((res) => {
-                 dispatch({
-                     type: `FETCH_${upperCaseDialog}_DATA`,
-                     payload: {
-                         userId: userId,
-                         currentAccess: res.data,
-                     }
-                 });
-            })
-            .catch((err) => {
-                dispatch({ 
-                    type: 'API_CALL_REJECTED', 
-                    payload: err 
-                });
-            });
+        dialog === 'role' ? 
+            dispatch({ type: 'SET_RENDERLIST', payload: roles }) : 
+            dispatch({ type: 'SET_RENDERLIST', payload: systems })
+
+        // axios.get(`/users/${userId}/${dialog}`)
+        // .then((res) => {
+        //     dispatch({
+        //         type: `FETCH_${upperCaseDialog}_DATA`,
+        //         payload: {
+        //             userId: userId,
+        //             currentAccess: res.data,
+        //         }
+        //     });
+        // })
+        // .catch((err) => {
+        //     dispatch({ 
+        //         type: 'API_CALL_REJECTED', 
+        //         payload: err 
+        //     });
+        // });
     };
 };
 
