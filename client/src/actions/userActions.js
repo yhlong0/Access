@@ -49,6 +49,7 @@ export const openDialog = (userId, dialog, systems, roles) => {
         let users = await axios.get(`/users/${userId}`);
         let roleList = users.data.roles.map(item => item._id);
         let sysList = users.data.sysAccess.map(item => item._id);
+        
         if(dialog === 'role') {
             let result = await roles.filter(item => !roleList.includes(item._id));
             dispatch({ type: 'SET_RENDERLIST', payload: result });
