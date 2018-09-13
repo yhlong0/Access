@@ -2,6 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import LinearProgress from '@material-ui/core/LinearProgress';
+import Tooltip from '@material-ui/core/Tooltip';
+import Button from '@material-ui/core/Button';
+import AddIcon from '@material-ui/icons/Add';
 import { connect } from 'react-redux';
 
 import UsersList from '../Organisms/UsersList';
@@ -42,7 +45,10 @@ const styles = theme => ({
     roleChip: {
         margin: '5px',
         color: theme.palette.primary.main,
-    }
+    },
+    fab: {
+        margin: theme.spacing.unit * 2,
+    },
 });
 
 class UserPage extends React.Component {
@@ -89,6 +95,10 @@ class UserPage extends React.Component {
         this.props.dispatch(userActions.updateSearch(search));
     }
 
+    changeRenderNewUser = () => {
+        this.props.dispatch(userActions.changeRenderNewUser());
+    }
+
     render() {
         const { 
             classes, 
@@ -97,6 +107,7 @@ class UserPage extends React.Component {
             renderList, 
             fetching,
             search,
+            renderNewUser,
         } = this.props;
         
         return (
@@ -110,9 +121,22 @@ class UserPage extends React.Component {
                     search={search}
                     addItem={this.addAccess}
                     updateSearch={this.updateSearch}
-                />
+                />        
+                <Tooltip title="Add">
+                    <Button 
+                        variant="fab" 
+                        color="primary" 
+                        aria-label="Add" 
+                        className={classes.fab}
+                        onClick={this.changeRenderNewUser}
+                    >
+                        <AddIcon />
+                    </Button>
+                </Tooltip>
                 <LabeledSwitch />
-                <NewUserTextField create={this.createUser} />
+                {renderNewUser &&
+                    <NewUserTextField create={this.createUser} />
+                }
                 <UsersList 
                     userData={users} 
                     openDialog={this.openDialog}
@@ -139,6 +163,7 @@ function mapStateToProps(state, ownProps) {
         accessData: state.user.accessData,
         search: state.user.search,
         renderList: state.user.renderList,
+        renderNewUser: state.user.renderNewUser,
     };
 }
 

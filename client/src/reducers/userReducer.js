@@ -10,6 +10,7 @@ export default function userReducer(state = {
         currentAccess: [],
     },
     search: '',
+    renderNewUser: false,
     error: null,
 }, action) {
     switch(action.type) {
@@ -99,6 +100,11 @@ export default function userReducer(state = {
             return {
                 ...state,
                 search: '',
+            }
+        case 'RENDER_FORM': 
+            return {
+                ...state,
+                renderNewUser: !state.renderNewUser,
             }
         case 'CHANGE_STATUS_FULFILLED':
             return {

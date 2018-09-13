@@ -183,3 +183,9 @@ export const changeStatus = (userId) => {
         }  
     };
 };
+
+export const changeRenderNewUser = () => {
+    return dispatch => {
+        dispatch({ type: 'RENDER_FORM' });
+    }
+}
