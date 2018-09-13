@@ -40,6 +40,30 @@ export const fetchUsers = () => {
     };
 };
 
+export const showAllUsers = (status) => {
+    return dispatch => {
+        dispatch({ type: 'FETCHING' });
+        axios.get('/users')
+            .then((res) => {
+                status ? 
+                dispatch({ 
+                    type: 'FETCH_USERS_FULFILLED', 
+                    payload: res.data.filter(item => item.status === true) 
+                }) :
+                dispatch({ 
+                    type: 'FETCH_USERS_FULFILLED', 
+                    payload: res.data
+                })
+            })
+            .catch((err) => {
+                dispatch({ 
+                    type: 'API_CALL_REJECTED', 
+                    payload: err 
+                });
+            });
+    };
+};
+
 export const openDialog = (userId, dialog, systems, roles) => {
     return async dispatch => {
         dispatch({ type: 'SWITCH' });

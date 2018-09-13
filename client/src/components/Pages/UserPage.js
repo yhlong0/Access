@@ -97,6 +97,10 @@ class UserPage extends React.Component {
         this.props.dispatch(userActions.changeRenderNewUser());
     }
 
+    showAllUsers = (status) => {
+        this.props.dispatch(userActions.showAllUsers(status));
+    }
+
     render() {
         const { 
             classes, 
@@ -121,7 +125,7 @@ class UserPage extends React.Component {
                     updateSearch={this.updateSearch}
                 />        
                 <AddIconButton changeRenderNewUser={this.changeRenderNewUser} />
-                <LabeledSwitch />
+                <LabeledSwitch showAllUsers={this.showAllUsers} />
                 {renderNewUser &&
                     <NewUserTextField create={this.createUser} />
                 }

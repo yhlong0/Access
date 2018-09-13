@@ -12,13 +12,15 @@ class LabeledSwitch extends React.Component {
     };
 
     render() {
+        const { showAllUsers } = this.props;
         return (
             <FormControlLabel
                 control={
                     <Switch
                         checked={this.state.checkedB}
                         onChange={this.handleChange('checked')}
-                        value="checkedB"
+                        onClick={() => showAllUsers(this.state.checked)}
+                        value="checked"
                         color="primary"
                     />
                 }
