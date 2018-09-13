@@ -19,12 +19,12 @@ class LabeledSwitch extends React.Component {
                     <Switch
                         checked={this.state.checkedB}
                         onChange={this.handleChange('checked')}
-                        onClick={() => showAllUsers(this.state.checked)}
+                        onClick={() => showAllUsers()}
                         value="checked"
                         color="primary"
                     />
                 }
-                label="Hide Disabled User"
+                label="Show Disabled User"
             />
         );
     }

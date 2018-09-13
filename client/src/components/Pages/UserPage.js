@@ -52,7 +52,7 @@ const styles = theme => ({
 class UserPage extends React.Component {
 
     componentDidMount() {
-        this.props.dispatch(userActions.fetchUsers());
+        this.props.dispatch(userActions.showAllUsers(this.props.showAllUsers));
         this.props.dispatch(systemActions.fetchSystems());
         this.props.dispatch(roleActions.fetchRoles());
     }
@@ -82,7 +82,7 @@ class UserPage extends React.Component {
     }
 
     changeStatus = (userId) => {
-        this.props.dispatch(userActions.changeStatus(userId));
+        this.props.dispatch(userActions.changeStatus(userId, this.props.showAllUsers));
     }
 
     closeDialog = () => {
@@ -97,8 +97,8 @@ class UserPage extends React.Component {
         this.props.dispatch(userActions.changeRenderNewUser());
     }
 
-    showAllUsers = (status) => {
-        this.props.dispatch(userActions.showAllUsers(status));
+    fetchUsers = () => {
+        this.props.dispatch(userActions.showAllUsers(this.props.showAllUsers));
     }
 
     render() {
@@ -125,7 +125,7 @@ class UserPage extends React.Component {
                     updateSearch={this.updateSearch}
                 />        
                 <AddIconButton changeRenderNewUser={this.changeRenderNewUser} />
-                <LabeledSwitch showAllUsers={this.showAllUsers} />
+                <LabeledSwitch showAllUsers={this.fetchUsers} />
                 {renderNewUser &&
                     <NewUserTextField create={this.createUser} />
                 }
@@ -156,6 +156,7 @@ function mapStateToProps(state, ownProps) {
         search: state.user.search,
         renderList: state.user.renderList,
         renderNewUser: state.user.renderNewUser,
+        showAllUsers: state.user.showAllUsers,
     };
 }
 

@@ -28,7 +28,7 @@ const AddIconButton = (props) => {
     );
 }
 
-AddIconButton.PropTypes = {
+AddIconButton.propTypes = {
     classes: PropTypes.object.isRequired,
     changeRenderNewUser: PropTypes.func.isRequired,
 };

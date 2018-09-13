@@ -11,6 +11,7 @@ export default function userReducer(state = {
     },
     search: '',
     renderNewUser: false,
+    showAllUsers: false,
     error: null,
 }, action) {
     switch(action.type) {
@@ -50,6 +51,11 @@ export default function userReducer(state = {
             return {
                 ...state,
                 renderList: action.payload,
+            }
+        case 'SET_SHOW_ALL_USERS' : 
+            return {
+                ...state,
+                showAllUsers: !state.showAllUsers,
             }
         case 'SET_USERID':
             return {

@@ -48,12 +48,13 @@ export const showAllUsers = (status) => {
                 status ? 
                 dispatch({ 
                     type: 'FETCH_USERS_FULFILLED', 
-                    payload: res.data.filter(item => item.status === true) 
+                    payload: res.data
                 }) :
                 dispatch({ 
                     type: 'FETCH_USERS_FULFILLED', 
-                    payload: res.data
+                    payload: res.data.filter(item => item.status === true) 
                 })
+                dispatch({ type: 'SET_SHOW_ALL_USERS' });
             })
             .catch((err) => {
                 dispatch({ 
@@ -183,7 +184,7 @@ export const removeRole = (roleId, userId) => {
     };
 };
 
-export const changeStatus = (userId) => {
+export const changeStatus = (userId, showAllUsers) => {
     return async dispatch => {
         dispatch({ type: 'FETCHING' });
 
@@ -194,11 +195,15 @@ export const changeStatus = (userId) => {
             dispatch({ type: 'CHANGE_STATUS_FULFILLED' });
 
             let updateUser = await axios.get('/users');
-
+            showAllUsers ? 
             dispatch({ 
                 type: 'FETCH_USERS_FULFILLED', 
-                payload: updateUser.data 
-            });
+                payload: updateUser.data.filter(item => item.status === true)  
+            }) :
+            dispatch({
+                type: 'FETCH_USERS_FULFILLED',
+                payload: updateUser.data
+            })
         } catch (err) {
             dispatch({ 
                 type: 'API_CALL_REJECTED', 
