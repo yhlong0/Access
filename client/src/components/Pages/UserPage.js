@@ -2,15 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import LinearProgress from '@material-ui/core/LinearProgress';
-import Tooltip from '@material-ui/core/Tooltip';
-import Button from '@material-ui/core/Button';
-import AddIcon from '@material-ui/icons/Add';
 import { connect } from 'react-redux';
 
 import UsersList from '../Organisms/UsersList';
 import AddingDialog from '../Organisms/Dialog';
 import NewUserTextField from '../Molecules/NewUserTextField';
 import LabeledSwitch from '../Molecules/LabeledSwitch';
+import AddIconButton from '../Molecules/AddIconButton';
 
 import * as userActions from '../../actions/userActions';
 import * as systemActions from '../../actions/systemActions';
@@ -122,17 +120,7 @@ class UserPage extends React.Component {
                     addItem={this.addAccess}
                     updateSearch={this.updateSearch}
                 />        
-                <Tooltip title="Add">
-                    <Button 
-                        variant="fab" 
-                        color="primary" 
-                        aria-label="Add" 
-                        className={classes.fab}
-                        onClick={this.changeRenderNewUser}
-                    >
-                        <AddIcon />
-                    </Button>
-                </Tooltip>
+                <AddIconButton changeRenderNewUser={this.changeRenderNewUser} />
                 <LabeledSwitch />
                 {renderNewUser &&
                     <NewUserTextField create={this.createUser} />
