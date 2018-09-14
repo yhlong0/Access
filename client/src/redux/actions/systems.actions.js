@@ -2,10 +2,10 @@
 export const SYSTEMS = '[Systems]';
 
 // action types
-export const FETCH_SYSTEMS = `${SYSTEMS} Fetch`;
-export const SET_SYSTEMS = `${SYSTEMS} Set`;
+export const FETCH_SYSTEMS = `${SYSTEMS} FETCH`;
+export const SET_SYSTEMS = `${SYSTEMS} SET`;
 
-
+// action creators
 export const fetchSystems = (query) => ({
     type: FETCH_SYSTEMS,
     payload: {
