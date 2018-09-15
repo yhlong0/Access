@@ -2,6 +2,13 @@
 Record and track users access.
 MERN app, NodeJS Restful API, MongoDB, Express framework and ReactJS, Redux, Material-UI for frontend.  
 
+
+##Installation
+
+All you need to do is clone this repository
+
+
+
 ### FRONT-END 
 
 Redux to store the state, Material-UI for UI/UX design.  
