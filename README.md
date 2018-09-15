@@ -7,9 +7,8 @@ MERN app, NodeJS Restful API, MongoDB, Express framework and ReactJS, Redux, Mat
 
 All you need to do is clone this repository
 
-```javascript
-var s = "JavaScript syntax highlighting";
-alert(s);
+```
+git clone https://github.com/yhlong0/access
 ```
 
 
