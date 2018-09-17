@@ -13,9 +13,10 @@ export const fetchSystems = (query) => ({
     }
 });
 
-export const setSystems = (systems) => ({
+export const setSystems = ({systems, normalizeKey}) => ({
     type: SET_SYSTEMS,
     payload: {
         data: systems
-    }
+    },
+    meta: {normalizeKey, feature: SYSTEMS}
 });
