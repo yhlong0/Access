@@ -1,17 +1,17 @@
+import { SET_LOADER } from '../actions/ui.actions';
+
 const initState = {
-    loader: false
+    loading: false
 };
 
 export const uiReducer = (ui = initState, action) => {
-    const { payload } = action;
-
-    switch (action.type) {
-        case SET_LOADER: 
+    switch (true) {
+        case action.type.includes(SET_LOADER):
             return {
                 ...ui,
-                loading: payload
-            };
-        default: 
+                loading: action.payload
+            } 
+        default:
             return ui;
     }
 }
