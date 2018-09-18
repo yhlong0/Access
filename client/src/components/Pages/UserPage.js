@@ -1,22 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import classNames from 'classnames';
-import ExpansionPanel from '@material-ui/core/ExpansionPanel';
-import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
-import ExpansionPanelActions from '@material-ui/core/ExpansionPanelActions';
-import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Switch from '@material-ui/core/Switch';
-import Typography from '@material-ui/core/Typography';
-import Chip from '@material-ui/core/Chip';
-import Button from '@material-ui/core/Button';
-import Divider from '@material-ui/core/Divider';
-import SummaryPanel from '../Molecules/SummaryPanel';
-import RoleColumn from '../Molecules/RoleColumn';
-import NewUserTextField from '../Molecules/NewUserTextField';
+import LinearProgress from '@material-ui/core/LinearProgress';
+import { connect } from 'react-redux';
 
+import UsersList from '../Organisms/UsersList';
+import AddingDialog from '../Organisms/Dialog';
+import NewUserTextField from '../Molecules/NewUserTextField';
+import LabeledSwitch from '../Molecules/LabeledSwitch';
+import AddIconButton from '../Molecules/AddIconButton';
+
+import * as userActions from '../../actions/userActions';
+import * as systemActions from '../../actions/systemActions';
+import * as roleActions from '../../actions/roleActions';
+//test branch.
 const styles = theme => ({
     root: {
         width: '100%',
@@ -33,16 +30,6 @@ const styles = theme => ({
         height: 20,
         width: 20,
     },
-    details: {
-        alignItems: 'center',
-    },
-    column: {
-        flexBasis: '33.33%',
-    },
-    helper: {
-        borderLeft: `2px solid ${theme.palette.divider}`,
-        padding: `${theme.spacing.unit}px ${theme.spacing.unit * 2}px`,
-    },
     link: {
         color: theme.palette.primary.main,
         textDecoration: 'none',
@@ -56,71 +43,99 @@ const styles = theme => ({
     roleChip: {
         margin: '5px',
         color: theme.palette.primary.main,
-    }
+    },
+    fab: {
+        margin: theme.spacing.unit * 2,
+    },
 });
 
 class UserPage extends React.Component {
-    state= {
-        checkedB: true
-    };
 
-    handleChange = name => event => {
-        this.setState({ [name]: event.target.checked });
-    };
+    componentDidMount() {
+        this.props.dispatch(userActions.showAllUsers(this.props.showAllUsers));
+        this.props.dispatch(systemActions.fetchSystems());
+        this.props.dispatch(roleActions.fetchRoles());
+    }
+
+    createUser = (user) => {
+        this.props.dispatch(userActions.createUser(user));
+    }
+
+    openDialog = (userId, dialog) => {
+        this.props.dispatch(userActions.openDialog(userId, dialog, this.props.systems, this.props.roles));
+    }
+
+    clickedAccess = (accessId) => {
+        this.props.dispatch(userActions.clickedAccess(accessId));
+    }
+
+    addAccess = () => {
+        this.props.dispatch(userActions.addAccess(this.props.accessData));
+    }
+
+    removeAccess = (systemId, userId) => {
+        this.props.dispatch(userActions.removeAccess(systemId, userId));
+    }
+
+    removeRole = (roleId, userId) => {
+        this.props.dispatch(userActions.removeRole(roleId, userId));
+    }
+
+    changeStatus = (userId) => {
+        this.props.dispatch(userActions.changeStatus(userId, this.props.showAllUsers));
+    }
+
+    closeDialog = () => {
+        this.props.dispatch(userActions.closeDialog());
+    }
+
+    updateSearch = (search) => {
+        this.props.dispatch(userActions.updateSearch(search));
+    }
+
+    changeRenderNewUser = () => {
+        this.props.dispatch(userActions.changeRenderNewUser());
+    }
+
+    fetchUsers = () => {
+        this.props.dispatch(userActions.showAllUsers(this.props.showAllUsers));
+    }
 
     render() {
-        const{ classes } = this.props;
-
+        const { 
+            classes, 
+            users, 
+            dialogOpenStatus, 
+            renderList, 
+            fetching,
+            search,
+            renderNewUser,
+        } = this.props;
+        
         return (
             <div className={classes.root}>
-                <NewUserTextField />
-                <ExpansionPanel >
-                    <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-                        <SummaryPanel />
-                    </ExpansionPanelSummary>
-                    <ExpansionPanelDetails className={classes.details}>
-                        <RoleColumn />
-                        <div className={classes.column}>
-                            <Chip label="Domain Account 06/01/2018" className={classes.chip} onDelete={() => { }} />
-                            <Chip label="Phone 06/01/2018" className={classes.chip} onDelete={() => { }} />
-                            <Chip label="Internal Site 06/01/2018" className={classes.chip} onDelete={() => { }} />
-                            <Chip label="Domain Account 06/01/2018" className={classes.chip} onDelete={() => { }} />
-                            <Chip label="Domain Account 06/01/2018" className={classes.chip} onDelete={() => { }} />
-                            <Chip label="Domain Account 06/01/2018" className={classes.chip} onDelete={() => { }} />
-                            <Chip label="Domain Account 06/01/2018" className={classes.chip} onDelete={() => { }} />
-                        </div>
-                        <div className={classNames(classes.column, classes.helper)}>
-                            <Typography variant="caption">
-                                Select your action
-                                <br />
-                                <br />
-                                <Button variant="contained" size="small" color="primary">
-                                    Add Access
-                                </Button>
-                                <br />
-                                <br />
-                                <Button variant="contained" size="small">
-                                    Add Role
-                                </Button>
-                            </Typography>
-                        </div>
-                    </ExpansionPanelDetails>
-                    <Divider />
-                    <ExpansionPanelActions>
-                        <FormControlLabel
-                            label="Status"
-                            labelPlacement="start"
-                            control={
-                                <Switch
-                                    checked={this.state.checkedB}
-                                    onChange={this.handleChange('checkedB')}
-                                    value="checkedB"
-                                    color="primary"
-                                />
-                            }
-                        />
-                    </ExpansionPanelActions>
-                </ExpansionPanel>
+                { fetching && <LinearProgress /> }
+                <AddingDialog 
+                    dialogOpenStatus={dialogOpenStatus}
+                    closeDialog={this.closeDialog}
+                    checkedItem={this.clickedAccess}
+                    listItems={renderList}
+                    search={search}
+                    addItem={this.addAccess}
+                    updateSearch={this.updateSearch}
+                />        
+                <AddIconButton changeRenderNewUser={this.changeRenderNewUser} />
+                <LabeledSwitch showAllUsers={this.fetchUsers} />
+                {renderNewUser &&
+                    <NewUserTextField create={this.createUser} />
+                }
+                <UsersList 
+                    userData={users} 
+                    openDialog={this.openDialog}
+                    removeAccess={this.removeAccess}
+                    removeRole={this.removeRole}
+                    changeStatus={this.changeStatus}
+                />
             </div>
         );
     }
@@ -130,4 +145,21 @@ UserPage.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(UserPage);
+function mapStateToProps(state, ownProps) {
+    return {
+        users: state.user.user,
+        fetching: state.user.fetching,
+        dialogOpenStatus: state.user.dialogOpenStatus,
+        systems: state.system.system,
+        roles: state.role.role,
+        accessData: state.user.accessData,
+        search: state.user.search,
+        renderList: state.user.renderList,
+        renderNewUser: state.user.renderNewUser,
+        showAllUsers: state.user.showAllUsers,
+    };
+}
+
+const StyledUserPage = withStyles(styles)(UserPage);
+
+export default connect(mapStateToProps)(StyledUserPage);

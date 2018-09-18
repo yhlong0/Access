@@ -21,10 +21,19 @@ router.delete('/:userId', userController.deleteUser);
 /* Show user access. */
 router.get('/:userId/access', userController.showUserAccess);
 
+/* Show user roles. */
+router.get('/:userId/role', userController.showUserRoles);
+
 /* Add role for user. */
 router.post('/:userId/role', relationController.addUserRole);
 
 /* Add access for user. */
 router.post('/:userId/access', relationController.addUserAccess);
+
+/* Delete access for user. */
+router.delete('/:userId/access/:accessId', userController.deleteUserAccess);
+
+/* Delete role for user. */
+router.delete('/:userId/role/:roleId', userController.deleteUserRole);
 
 module.exports = router;

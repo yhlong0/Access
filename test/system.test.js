@@ -117,5 +117,27 @@ describe('Clean Systems', () => {
             });
         });
 
+        /*
+        * Test the /DELETE:systemId route
+        */
+       describe('/DELETE:systemId delete system by Id', () => {
+            it('it should DELETE the system by Id', (done) => {
+                let system = new System({
+                    name: 'system_name',
+                    description: 'system_description'
+                });
+                system.save((err, system) => {
+                    chai.request(app)
+                    .delete('/systems/'+ system.id)
+                    .end((err, res) => {
+                        res.should.have.status(200);
+                        res.body.should.be.a('object');
+                        res.body.should.have.property('message').eql('delete success');
+                        done();
+                    });
+                });
+            });
+        });
+
     });
 });

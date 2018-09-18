@@ -1,10 +1,12 @@
 import React from 'react';
+import LinearProgress from '@material-ui/core/LinearProgress';
 import TextField from '../Organisms/TextField';
 import TableView from '../Organisms/TableView';
-import axios from 'axios';
+import { connect } from 'react-redux';
+import * as systemActions from '../../actions/systemActions';
+import { fetchSystems } from '../../redux/actions/systems.actions';
 
 const tableData = {
-    url: '/systems',
     title: 'Systems',
     rows: [
         {
@@ -22,49 +24,52 @@ const tableData = {
     ]
 };
 class SystemPage extends React.Component {
-    state = {
-        data: [],
-    };
 
     componentDidMount() {
-        axios.get('/systems')
-            .then(res => {
-                this.setState({ data: res.data });
-            });
+        this.props.dispatch(fetchSystems());
     }
 
-    updateData = (res) => {
-        this.setState({ data: res.data });
+    createSystem = (system) => {
+        this.props.dispatch(systemActions.createSystem(system));
     }
 
-    // handleDelete = (selectedId) => {
-    //     selectedId.map(id => {
-    //         axios.delete(`/systems/${id}`)
-    //             .then(res => {
-    //                 console.log(res.data);
-    //             });
-    //         return id;
-    //     });
-    // }
+    deleteSystem = () => {
+        this.props.dispatch(systemActions.deleteSystem(this.props.selected));
+    }
+
+    selectSystem = (selected) => {
+        this.props.dispatch(systemActions.selectSystem(selected));
+    }
 
     render() {
+        console.log(this.props.systems);
         return (
             <div>
+                {this.props.fetching &&
+                    <LinearProgress />
+                } 
                 <TextField 
                     name={'System Name'} 
-                    desc={'System Description'} 
-                    url={'/systems'}
-                    updateData={this.updateData}
+                    description={'System Description'} 
+                    create={this.createSystem}
                 />
                 <TableView 
                     tableData={tableData} 
-                    data={this.state.data}
-                    handleDelete={this.handleDelete}
+                    data={this.props.systems}
+                    deleteItem={this.deleteSystem}
+                    selectItem={this.selectSystem}
                 />
             </div>
         );
     }
-
 }
 
-export default SystemPage;
+function mapStateToProps(state, ownProps) {
+    return {
+        systems: state.systems,
+        //selected: state.system.selected,
+        //fetching: state.system.fetching,
+    };
+}
+
+export default connect(mapStateToProps)(SystemPage);

@@ -58,7 +58,48 @@ exports.addUser = function (req, res) {
 exports.showUserAccess = function (req, res) {
     let userId = req.params.userId;
     UserModel.getUser(userId, function (err, user) {
-        res.json(user.sysAccess);
+        if(err) {
+            console.log(err);
+        } else {
+            res.json(user.sysAccess);
+        }  
+    });
+};
+
+exports.showUserRoles = function (req, res) {
+    let userId = req.params.userId;
+    UserModel.getUser(userId, function (err, user) {
+        if(err) {
+            console.log(err);
+        } else {
+            res.json(user.roles);
+        } 
+    });
+};
+
+exports.deleteUserAccess = function(req, res) {
+    let userId = req.params.userId;
+    let accessId = req.params.accessId;
+
+    UserModel.deleteUserAccess(userId, accessId, function(err) {
+        if (!err) {
+            res.json({ message: 'delete success' });
+        } else {
+            res.json({ message: 'delete failed' });
+        }
+    });
+};
+
+exports.deleteUserRole = function (req, res) {
+    let userId = req.params.userId;
+    let roleId = req.params.roleId;
+
+    UserModel.deleteUserRole(userId, roleId, function (err) {
+        if (!err) {
+            res.json({ message: 'delete success' });
+        } else {
+            res.json({ message: 'delete failed' });
+        }
     });
 };
 
@@ -69,6 +110,6 @@ exports.updateUser = function(req, res) {
     UserModel.updateUser(userId, updateContent, function(err, user) {
         res.json(user);
     });
-}
+};
 
 

@@ -5,8 +5,16 @@ const UserSchema = new mongoose.Schema({
     firstname: String,
     joinDate: Date,
     status: Boolean,
-    sysAccess: { type: Array, "default": [] },
-    roles: { type: Array, "default": [] },
+    sysAccess: [{
+        name: String,
+        description: String,
+        accessDate: Date
+    }],
+    roles: [{
+        name: String,
+        description: String,
+        accessDate: Date
+    }],
 });
 
 UserSchema.statics.getUser = function (id, callback) {
@@ -37,10 +45,34 @@ UserSchema.statics.deleteUser = function(userId, callback) {
 
 UserSchema.statics.addUserAccess = function (userId, sysAccess, callback) {
     this.update(
-        {_id: userId},
+        { _id: userId },
         {
             $push: {
                 sysAccess: sysAccess
+            }
+        },
+        callback
+    );
+};
+
+UserSchema.statics.deleteUserAccess = function (userId, accessId, callback) {
+    this.update(
+        { _id: userId },
+        {
+            $pull: {
+                sysAccess: { _id: accessId }
+            }
+        },
+        callback
+    );
+};
+
+UserSchema.statics.deleteUserRole = function (userId, roleId, callback) {
+    this.update(
+        { _id: userId },
+        {
+            $pull: {
+                roles: { _id: roleId }
             }
         },
         callback

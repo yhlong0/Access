@@ -61,10 +61,12 @@ class TableView extends React.Component {
 
     handleSelectAllClick = (event, checked) => {
         if (checked) {
-            this.setState(state => ({ selected: state.data.map(n => n._id) }));
+            this.setState(state => ({ selected: this.props.data.map(n => n._id) }));
+            this.props.selectItem(this.props.data.map(n => n._id));
             return;
         }
         this.setState({ selected: [] });
+        this.props.selectItem([]);
     };
 
     handleClick = (event, _id) => {
@@ -86,6 +88,7 @@ class TableView extends React.Component {
         }
 
         this.setState({ selected: newSelected });
+        this.props.selectItem(newSelected);
     };
 
     handleChangePage = (event, page) => {
@@ -96,25 +99,25 @@ class TableView extends React.Component {
         this.setState({ rowsPerPage: event.target.value });
     };
 
-    handleUpdate = () => {
-        console.log(this.state.selected);
-        this.props.updateTBD(this.state.selected);
+    clearSelected = () => {
+        this.setState({ selected: [] });
     }
 
     isSelected = id => this.state.selected.indexOf(id) !== -1;
 
     render() {
-        const { classes, tableData, data } = this.props;
+        const { classes, tableData, data, deleteItem } = this.props;
         const { order, orderBy, selected, rowsPerPage, page } = this.state;
         const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
+
 
         return (
             <Paper className={classes.root}>
                 <EnhancedTableToolbar 
                     numSelected={selected.length}
                     titleName={tableData.title} 
-                    selectedId={this.state.selected}
-                    handleUpdate={this.handleUpdate}
+                    deleteItem={deleteItem}
+                    clearSelected={this.clearSelected}
                 />
                 <div className={classes.tableWrapper}>
                     <Table className={classes.table} aria-labelledby="tableTitle">
@@ -182,6 +185,10 @@ class TableView extends React.Component {
 
 TableView.propTypes = {
     classes: PropTypes.object.isRequired,
+    tableData: PropTypes.object.isRequired,
+    data: PropTypes.array.isRequired,
+    deleteItem: PropTypes.func.isRequired,
+    selectItem: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles)(TableView);

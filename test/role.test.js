@@ -118,6 +118,29 @@ describe('Clean Roles', () => {
             });
         });
 
+        /*
+        * Test the /DELETE:roleId route
+        */
+
+        describe('/DELETE:roleId delete role by Id', () => {
+            it('it should DELETE the role by Id', (done) => {
+                let role = new Role({
+                    name: 'role_name',
+                    description: 'role_description'
+                });
+                role.save((err, role) => {
+                    chai.request(app)
+                    .delete('/roles/'+ role.id)
+                    .end((err, res) => {
+                        res.should.have.status(200);
+                        res.body.should.be.a('object');
+                        res.body.should.have.property('message').eql('delete success');
+                        done();
+                    });
+                });
+            });
+        });
+
 
     });
 });

@@ -36,22 +36,11 @@ const toolbarStyles = theme => ({
 });
 
 let EnhancedTableToolbar = props => {
-    const { numSelected, classes, titleName, selectedId, handleUpdate } = props;
-
-    /*let handleDelete = () => {
-        console.log(selectedId);
-        selectedId.map(id => {
-            axios.delete(`/systems/${id}`)
-                .then(res => {
-                    console.log(res.data);
-                });
-            return id;
-        });
-    };*/
+    const { numSelected, classes, titleName, clearSelected, deleteItem } = props;
 
     let handleSubmit = event => {
-        debugger;
-        handleUpdate(selectedId);
+        deleteItem();
+        clearSelected();
     }
 
     return (
@@ -94,6 +83,9 @@ let EnhancedTableToolbar = props => {
 EnhancedTableToolbar.propTypes = {
     classes: PropTypes.object.isRequired,
     numSelected: PropTypes.number.isRequired,
+    deleteItem: PropTypes.func.isRequired,
+    clearSelected: PropTypes.func.isRequired,
+    titleName: PropTypes.string.isRequired,
 };
 
 export default withStyles(toolbarStyles)(EnhancedTableToolbar);

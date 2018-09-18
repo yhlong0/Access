@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import axios from 'axios';
-axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
 const styles = theme => ({
   container: {
@@ -41,23 +39,14 @@ class TextFields extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    console.log(this.props.url)
-    axios.post(this.props.url, {
+    this.props.create({
       name: this.state.name,
-      description: this.state.description
-    })
-    .then(res => {
-      console.log(res);
-      axios.get(this.props.url)
-      .then(list => {
-        debugger
-          this.props.updateData(list);
-      });
+      description: this.state.description,
     });
   };
 
   render() {
-    const { classes, name, desc } = this.props;
+    const { classes, name, description } = this.props;
 
     return (
       <form
@@ -79,7 +68,7 @@ class TextFields extends React.Component {
           required
           id="description"
           name="description"
-          label={desc}
+          label={description}
           className={(classes.textField, classes.descField)}
           margin="normal"
           onChange={this.handleChange}
@@ -100,6 +89,9 @@ class TextFields extends React.Component {
 
 TextFields.propTypes = {
   classes: PropTypes.object.isRequired,
+  name: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  create: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles)(TextFields);

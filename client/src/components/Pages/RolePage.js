@@ -1,12 +1,11 @@
 import React from 'react';
+import LinearProgress from '@material-ui/core/LinearProgress';
 import TextField from '../Organisms/TextField';
 import TableView from '../Organisms/TableView';
 import { connect } from 'react-redux';
 import * as roleActions from '../../actions/roleActions';
-import axios from 'axios';
 
 const tableData = {
-    url: '/roles',
     title: 'Roles',
     rows: [
         { 
@@ -25,56 +24,39 @@ const tableData = {
 };
 
 class RolePage extends React.Component {
-    state = {
-      data: [],
-      toBeDelete: [],
-    };
-    
-  componentDidMount() {
-        axios.get('/roles')
-            .then(res => {
-                this.setState({ data: res.data });
-            });
-        this.props.dispatch(roleActions.fetchRole())
+
+    componentDidMount() {
+        this.props.dispatch(roleActions.fetchRoles());
     }
 
-    updateData = (res) => {
-        this.setState({ data: res.data });
+    createRole = (role) => {
+        this.props.dispatch(roleActions.createRole(role));
     }
 
-    updateTBD = (selected) => {
-        this.setState({ toBeDelete: ['test', 'test2'] });
-        console.log(this.state.toBeDelete);
+    deleteRole = () => {
+        this.props.dispatch(roleActions.deleteRole(this.props.selected));
     }
 
-    deleteItem = (toBeDelete) => {
-        toBeDelete.map(id => {
-            axios.delete(`/roles/${id}`)
-                .then(res => {
-                    console.log(res.data);
-                    axios.get('/roles')
-                    .then(res => {
-                        this.setState({ data: res.data });
-                    });
-                });
-            return id;
-        });
+    selectRole = (selected) => {
+        this.props.dispatch(roleActions.selectRole(selected));
     }
   
     render() {
-        console.log(this.props);
       return (
         <div>
+            {this.props.fetching &&
+                <LinearProgress />
+            }  
             <TextField 
                 name={'Role Name'} 
-                desc={'Role Description'} 
-                url={'/roles'}
-                updateData={this.updateData}
-            />
+                description={'Role Description'} 
+                create={this.createRole}
+            /> 
             <TableView 
                 tableData={tableData} 
-                data={this.state.data}
-                updateTBD={this.updateTBD}
+                data={this.props.roles}
+                deleteItem={this.deleteRole}
+                selectItem={this.selectRole}
             />
         </div>
       );
@@ -83,7 +65,9 @@ class RolePage extends React.Component {
 
 function mapStateToProps(state, ownProps) {
     return {
-        roles: state.role.role
+        roles: state.role.role,
+        selected: state.role.selected,
+        fetching: state.role.fetching,
     };
 }
 

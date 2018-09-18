@@ -5,7 +5,7 @@ const RoleModel = require('../models/role');
 
 exports.addUserAccess = function (req, res) {
     let userId = req.params.userId;
-    let systemId = req.body.systemId;
+    let systemId = req.body.id;
 
     SystemModel.getSystem(systemId, function(err, system) {
         if(err) {
@@ -23,7 +23,7 @@ exports.addUserAccess = function (req, res) {
 
 exports.addUserRole = function (req, res) {
     let userId = req.params.userId;
-    let roleId = req.body.roleId;
+    let roleId = req.body.id;
     
     RoleModel.getRole(roleId, function(err, role) {
         if(err) {
