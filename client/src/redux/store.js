@@ -1,8 +1,6 @@
 import { applyMiddleware, createStore, combineReducers } from 'redux';
 
 import logger from 'redux-logger';
-import thunk from 'redux-thunk';
-import promise from 'redux-promise-middleware';
 
 import { systemsReducer } from './reducers/systems.reducer';
 import { notificationsReducer } from './reducers/notifications.reducer';
@@ -28,6 +26,6 @@ const coreMiddleware = [
     notificationMiddleware,
 ];
 
-const middleware = applyMiddleware(thunk, logger, promise(), ...coreMiddleware, ...featureMiddleware);
+const middleware = applyMiddleware(logger, ...featureMiddleware, ...coreMiddleware);
 
 export const store = createStore(rootReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(), middleware);
