@@ -1,6 +1,6 @@
 import { SET_SYSTEMS } from '../actions/systems.actions';
 
-export const systemReducer = (systems = [], action) => {
+export const systemsReducer = (systems = [], action) => {
     const { payload } = action;
 
     switch (action.type) {
