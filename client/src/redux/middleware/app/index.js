@@ -1,3 +1,3 @@
-import {usersMiddleware} from './users';
+import { usersMiddleware } from './users';
 
 export const appMiddleware = [usersMiddleware];
