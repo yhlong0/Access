@@ -1,4 +1,4 @@
-import { API_REQUEST, apiError, apiSucess } from '../../actions/api.actions';
+import { API_REQUEST, apiError, apiSuccess } from '../../actions/api.actions';
 
 export const apiMiddleware = ({dispatch}) => next => action => {
     next(action);
@@ -8,7 +8,7 @@ export const apiMiddleware = ({dispatch}) => next => action => {
 
         fetch(url, {method})
             .then( res => res.json())
-            .then( data => dispatch(apiSucess(data, entity)))
+            .then( data => dispatch(apiSuccess(data, entity)))
             .catch( error => dispatch(apiError(error, entity)))
     }
 }
