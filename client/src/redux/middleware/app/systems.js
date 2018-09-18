@@ -22,6 +22,6 @@ export const systemsMiddleware = () => next => action => {
                 entity: SYSTEMS
             }));
             next(setLoader({ state: false, entity: SYSTEMS}));
-            break;
+            break;           
     }
 };

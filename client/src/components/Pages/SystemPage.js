@@ -4,6 +4,7 @@ import TextField from '../Organisms/TextField';
 import TableView from '../Organisms/TableView';
 import { connect } from 'react-redux';
 import * as systemActions from '../../actions/systemActions';
+import { fetchSystems } from '../../redux/actions/systems.actions';
 
 const tableData = {
     title: 'Systems',
@@ -25,7 +26,7 @@ const tableData = {
 class SystemPage extends React.Component {
 
     componentDidMount() {
-        this.props.dispatch(systemActions.fetchSystems());
+        this.props.dispatch(fetchSystems());
     }
 
     createSystem = (system) => {

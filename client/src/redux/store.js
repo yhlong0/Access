@@ -6,6 +6,7 @@ import promise from 'redux-promise-middleware';
 
 import { systemsReducer } from './reducers/systems.reducer';
 import { notificationsReducer } from './reducers/notifications.reducer';
+import { uiReducer } from './reducers/ui.reducer';
 
 import { systemsMiddleware } from './middleware/app/systems';
 
@@ -14,7 +15,8 @@ import { notificationMiddleware } from './middleware/core/notifications';
  
 const rootReducer = combineReducers({
     systems: systemsReducer,
-    notification: notificationsReducer
+    notification: notificationsReducer,
+    ui: uiReducer
 });
 
 const featureMiddleware = [
