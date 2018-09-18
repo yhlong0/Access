@@ -6,11 +6,9 @@ export const FETCH_SYSTEMS = `${SYSTEMS} FETCH`;
 export const SET_SYSTEMS = `${SYSTEMS} SET`;
 
 // action creators
-export const fetchSystems = (query) => ({
+export const fetchSystems = ({query}) => ({
     type: FETCH_SYSTEMS,
-    payload: {
-        data: query
-    }
+    payload: query
 });
 
 export const setSystems = ({systems, normalizeKey}) => ({
