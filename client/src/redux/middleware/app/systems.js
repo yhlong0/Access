@@ -13,7 +13,7 @@ export const systemsMiddleware = () => next => action => {
             next(setLoader({ state: true, entity: SYSTEMS }));
             break;
         case `${SYSTEMS} ${API_SUCCESS}`:
-            next(setSystems({systems: action.payload, normalizeKey: 'id'}));
+            next(setSystems({systems: action.payload.items, normalizeKey: 'id'}));
             next(setLoader({ state: false, entity: SYSTEMS }));
             break;
         case `${SYSTEMS} ${API_ERROR}`: 

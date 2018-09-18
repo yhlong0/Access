@@ -42,6 +42,7 @@ class SystemPage extends React.Component {
     }
 
     render() {
+        console.log(this.props.systems);
         return (
             <div>
                 {this.props.fetching &&
@@ -65,9 +66,9 @@ class SystemPage extends React.Component {
 
 function mapStateToProps(state, ownProps) {
     return {
-        systems: state.system.system,
-        selected: state.system.selected,
-        fetching: state.system.fetching,
+        systems: state.systems,
+        //selected: state.system.selected,
+        //fetching: state.system.fetching,
     };
 }
 
