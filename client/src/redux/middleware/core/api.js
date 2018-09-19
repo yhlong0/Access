@@ -8,7 +8,10 @@ export const apiMiddleware = ({dispatch}) => next => action => {
         const { url, method, entity } = action.meta;
         axios({ method: method, url: url })
             .then(res => res.data)
-            .then(data => dispatch(apiSuccess({ data, entity })))
+            .then(data => {
+                console.log(data);
+                dispatch(apiSuccess({ data, entity }))
+            })
             .catch(error => dispatch(apiError({ error, entity })))
     }
 }

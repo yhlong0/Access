@@ -12,6 +12,7 @@ export const systemsMiddleware = () => next => action => {
             next(setLoader({ state: true, entity: SYSTEMS }));
             break;
         case `${SYSTEMS} ${API_SUCCESS}`:
+            console.log("actionpayload " + action.payload)
             next(setSystems({ systems: action.payload }));
             next(setLoader({ state: false, entity: SYSTEMS }));
             break;
