@@ -10,7 +10,7 @@ export const fetchSystems = () => ({
     type: FETCH_SYSTEMS
 });
 
-export const setSystems = ({systems}) => ({
+export const setSystems = ({ systems }) => ({
     type: SET_SYSTEMS,
     payload: systems,
 });
