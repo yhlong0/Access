@@ -9,11 +9,11 @@ export const systemsMiddleware = () => next => action => {
 
     switch (action.type) {
         case FETCH_SYSTEMS:
-            next(apiRequest(null, 'GET', API.SYSTEMS, SYSTEMS));
-            next(setLoader(true));
+            next(apiRequest({ body: null, method: 'GET', url: API.SYSTEMS, entity: SYSTEMS }));
+            next(setLoader({ state: true, entity: SYSTEMS }));
             break;
         case `${SYSTEMS} ${API_SUCCESS}`:
-            next(setSystems({systems: action.payload, normalizeKey: 'id'}));
+            next(setSystems({systems: action.payload.items}));
             next(setLoader({ state: false, entity: SYSTEMS }));
             break;
         case `${SYSTEMS} ${API_ERROR}`: 
@@ -22,6 +22,6 @@ export const systemsMiddleware = () => next => action => {
                 entity: SYSTEMS
             }));
             next(setLoader({ state: false, entity: SYSTEMS}));
-            break;
+            break;           
     }
 };

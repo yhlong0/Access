@@ -4,6 +4,7 @@ import TextField from '../Organisms/TextField';
 import TableView from '../Organisms/TableView';
 import { connect } from 'react-redux';
 import * as systemActions from '../../actions/systemActions';
+import { fetchSystems } from '../../redux/actions/systems.actions';
 
 const tableData = {
     title: 'Systems',
@@ -25,7 +26,7 @@ const tableData = {
 class SystemPage extends React.Component {
 
     componentDidMount() {
-        this.props.dispatch(systemActions.fetchSystems());
+        this.props.dispatch(fetchSystems());
     }
 
     createSystem = (system) => {
@@ -41,6 +42,7 @@ class SystemPage extends React.Component {
     }
 
     render() {
+        console.log(this.props.systems);
         return (
             <div>
                 {this.props.fetching &&
@@ -64,9 +66,9 @@ class SystemPage extends React.Component {
 
 function mapStateToProps(state, ownProps) {
     return {
-        systems: state.system.system,
-        selected: state.system.selected,
-        fetching: state.system.fetching,
+        systems: state.systems,
+        //selected: state.system.selected,
+        //fetching: state.system.fetching,
     };
 }
 

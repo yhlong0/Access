@@ -1,12 +1,11 @@
 import { SET_SYSTEMS } from '../actions/systems.actions';
 
-export const systemReducer = (systems = [], action) => {
-    const { payload } = action;
+const initState = [];
 
+export const systemsReducer = (systems = initState, action) => {
     switch (action.type) {
         case SET_SYSTEMS:
-            return payload.data;
-    
+            return action.payload;
         default:
             return systems;
     }

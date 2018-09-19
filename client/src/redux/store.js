@@ -1,11 +1,31 @@
-import { applyMiddleware, createStore } from 'redux';
+import { applyMiddleware, createStore, combineReducers } from 'redux';
 
 import logger from 'redux-logger';
-import thunk from 'redux-thunk';
-import promise from 'redux-promise-middleware';
 
-import reducer from './reducers';
+import { systemsReducer } from './reducers/systems.reducer';
+import { notificationsReducer } from './reducers/notifications.reducer';
+import { uiReducer } from './reducers/ui.reducer';
 
-const middleware = applyMiddleware(thunk, logger, promise());
+import { systemsMiddleware } from './middleware/app/systems';
 
-export default createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(), middleware);
+import { apiMiddleware } from './middleware/core/api';
+import { notificationMiddleware } from './middleware/core/notifications';
+ 
+const rootReducer = combineReducers({
+    systems: systemsReducer,
+    notification: notificationsReducer,
+    ui: uiReducer
+});
+
+const featureMiddleware = [
+    systemsMiddleware
+];
+
+const coreMiddleware = [
+    apiMiddleware,
+    notificationMiddleware,
+];
+
+const middleware = applyMiddleware(logger, ...featureMiddleware, ...coreMiddleware);
+
+export const store = createStore(rootReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(), middleware);
