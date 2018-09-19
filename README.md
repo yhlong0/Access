@@ -9,7 +9,21 @@ All you need to do is clone this repository
 
 ```
 git clone https://github.com/yhlong0/access
+npm install
+npm start && cd client && npm start
+
 ```
+
+Mongodb setup
+
+```
+mongod --port 27017 --dbpath e:\data
+
+db.createCollection('users');
+db.createCollection('systems');
+db.createCollection('roles');
+```
+
 
 
 
