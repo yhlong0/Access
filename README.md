@@ -19,6 +19,8 @@ Mongodb setup
 ```
 mongod --port 27017 --dbpath e:\data
 
+use access
+
 db.createCollection('users');
 db.createCollection('systems');
 db.createCollection('roles');
