@@ -13,8 +13,8 @@ import { notificationMiddleware } from './middleware/core/notifications';
  
 const rootReducer = combineReducers({
     systems: systemsReducer,
-    notification: notificationsReducer,
-    ui: uiReducer
+    ui: uiReducer,
+    notification: notificationsReducer
 });
 
 const featureMiddleware = [
@@ -26,6 +26,6 @@ const coreMiddleware = [
     notificationMiddleware,
 ];
 
-const middleware = applyMiddleware(logger, ...featureMiddleware, ...coreMiddleware);
+const middleware = applyMiddleware(...featureMiddleware, ...coreMiddleware, logger);
 
 export const store = createStore(rootReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(), middleware);

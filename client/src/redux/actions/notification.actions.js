@@ -7,7 +7,7 @@ export const setNotification = ({ message, entity }) => ({
     meta: {entity}
 });
 
-export const removeNotification = (notificationId, entity) => ({
+export const removeNotification = ({ notificationId, entity }) => ({
     type: `${entity} ${REMOVE_NOTIFICATION}`,
     payload: notificationId,
     meta: {entity}

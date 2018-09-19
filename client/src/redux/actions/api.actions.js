@@ -5,7 +5,7 @@ export const API_ERROR = 'API_ERROR';
 export const apiRequest = ({ body, method, url, entity }) => ({
     type: `${entity} ${API_REQUEST}`,
     payload: body,
-    meta: {method, url, entity}
+    meta: { method, url, entity }
 });
 
 export const apiSuccess = ({ response, entity }) => ({

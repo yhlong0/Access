@@ -12,8 +12,5 @@ export const fetchSystems = () => ({
 
 export const setSystems = ({systems}) => ({
     type: SET_SYSTEMS,
-    payload: {
-        data: systems
-    },
-    meta: {feature: SYSTEMS}
+    payload: systems,
 });
