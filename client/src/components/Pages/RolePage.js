@@ -3,7 +3,8 @@ import LinearProgress from '@material-ui/core/LinearProgress';
 import TextField from '../Organisms/TextField';
 import TableView from '../Organisms/TableView';
 import { connect } from 'react-redux';
-import * as roleActions from '../../actions/roleActions';
+import * as roleActions from '../../redux/actions/roles.actions';
+
 
 const tableData = {
     title: 'Roles',
