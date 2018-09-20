@@ -9,6 +9,7 @@ import { uiReducer } from './reducers/ui.reducer';
 import { systemsMiddleware } from './middleware/app/systems';
 
 import { apiMiddleware } from './middleware/core/api';
+import { api } from './middleware/api';
 import { notificationMiddleware } from './middleware/core/notifications';
  
 const rootReducer = combineReducers({
@@ -22,6 +23,7 @@ const featureMiddleware = [
 ];
 
 const coreMiddleware = [
+    api,
     apiMiddleware,
     notificationMiddleware,
 ];

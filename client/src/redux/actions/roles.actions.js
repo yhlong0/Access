@@ -9,6 +9,6 @@ export const fetchRoles = () => ({
     type: actions.API,
     payload: {
         url: '/roles',
-        success: ({ entities }) => setRoles(entities.roles)
+        success: setRoles
     }
 });
