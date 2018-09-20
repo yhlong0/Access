@@ -3,16 +3,18 @@ import { applyMiddleware, createStore, combineReducers } from 'redux';
 import logger from 'redux-logger';
 
 import { systemsReducer } from './reducers/systems.reducer';
+import rolesReducer from './reducers/roles.reducer';
 import { notificationsReducer } from './reducers/notifications.reducer';
 import { uiReducer } from './reducers/ui.reducer';
 
 import { systemsMiddleware } from './middleware/app/systems';
 
 import { apiMiddleware } from './middleware/core/api';
-import { api } from './middleware/api';
+import  api from './middleware/api';
 import { notificationMiddleware } from './middleware/core/notifications';
  
 const rootReducer = combineReducers({
+    roles: rolesReducer,
     systems: systemsReducer,
     ui: uiReducer,
     notification: notificationsReducer
