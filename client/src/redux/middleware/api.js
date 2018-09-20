@@ -6,6 +6,7 @@ const api = ({ dispatch, getState }) => next => action => {
     }
 
     const { url, success } = action.payload;
+    
     fetch(url)
         .then(res => res.json())
         .then(data => dispatch(success(data)));

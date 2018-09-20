@@ -9,6 +9,13 @@ export const fetchRoles = () => ({
     type: actions.API,
     payload: {
         url: '/roles',
-        success: setRoles
+        success: setRoles,
     }
 });
+
+export const selectRole = (selected) => {
+    return {
+        type: 'SELECT_ROLE',
+        payload: selected,
+    };
+};
