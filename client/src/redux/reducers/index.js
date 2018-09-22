@@ -1,8 +1,12 @@
-import { combineReducers } from 'redux;
+import { combineReducers } from 'redux';
 
-import xxx from './xxx;
+import rolesReducer from './roles.reducer;
+import systemsReducer from './systems.reducer;
+import usersReducer from './users.reducer;
+
 
 export default combineReducers({
-  xxx,
-  xxx,
-})
+  rolesReducer,
+  systemsReducer,
+  usersReducer
+});
