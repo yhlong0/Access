@@ -1,12 +1,14 @@
 import  { FETCH_BOOKS, SET_BOOKS, setBooks } from '../../actions/books.action';
+import axios from 'axios';
 
 export const booksMiddleware = () => next => action => {
+    next(action);
     if(action.type === `${FETCH_BOOKS}`) {
-        console.log('haha')
-        next(setBooks());
-    }
-    if (action.type === `${SET_BOOKS}`) {
-        console.log('set book');
-        next(action);
+        axios({method: 'GET', url: '/systems'})
+            .then(res => res.data)
+            .then(data => {
+                console.log(data);
+                next(setBooks(data));
+            })
     }
 }

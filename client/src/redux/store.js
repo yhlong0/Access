@@ -22,7 +22,11 @@ const coreMiddleware = [
 
 ];
 
-const middleware = applyMiddleware(...featureMiddleware, ...coreMiddleware, logger);
+const middleware = applyMiddleware(
+    ...featureMiddleware, 
+    ...coreMiddleware, 
+    logger
+);
 
 export const store = createStore(
     reducer, 

@@ -4,10 +4,11 @@ export const FETCH_BOOKS = `${BOOKS} FETCH`;
 export const SET_BOOKS = `${BOOKS} SET`;
 
 export const fetchBooks = () => ({
-    type: FETCH_BOOKS
+    type: FETCH_BOOKS,
+    payload: ['test']
 });
 
-export const setBooks = () => ({
+export const setBooks = (data) => ({
     type: SET_BOOKS,
-    payload: ['new book', 'new book 2']
+    payload: data
 });

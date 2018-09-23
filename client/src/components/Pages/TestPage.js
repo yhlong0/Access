@@ -9,10 +9,10 @@ class TestPage extends React.Component {
         this.props.dispatch(fetchBooks());
     }
     render() {
-        console.log(this.props.books);
+        console.log('render: ' + this.props.books);
         return (
             <div>
-                {this.props.books}
+                {this.props.books && this.props.books.map(book => book.name)}
             </div>            
         );
     }
