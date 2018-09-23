@@ -2,12 +2,11 @@ import { SET_USERS } from '../actions/users.actions';
 
 const initState = [];
 
-export const usersReducer = (users = initState, action) => {
-    const { payload } = action;
+export default function usersReducer(users = initState, action) {
 
     switch (action.type) {
         case SET_USERS:
-            return payload.data;
+            return action.payload.data;
         default:
             return users;
     }

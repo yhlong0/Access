@@ -1,6 +1,6 @@
 const initState = [];
 
-const roleReducer = (roles = initState, action) => {
+export default function roleReducer (roles = initState, action) {
 
     switch (action.type) {
         case 'SET_ROLES':
@@ -15,5 +15,3 @@ const roleReducer = (roles = initState, action) => {
             return roles;
     }
 }
-
-export default roleReducer;
