@@ -2,7 +2,7 @@ import { REMOVE_NOTIFICATION, SET_NOTIFICATION } from '../actions/notification.a
 
 const initState = [];
 
-export const notificationsReducer = (notifications = initState, action) => {
+export default function notificationsReducer (notifications = initState, action) {
     switch (true) {
         case action.type.includes(SET_NOTIFICATION):
             return [...notifications, action.payload];

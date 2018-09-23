@@ -4,7 +4,7 @@ const initState = {
     loading: false
 };
 
-export const uiReducer = (ui = initState, action) => {
+export default function uiReducer (ui = initState, action) {
     switch (true) {
         case action.type.includes(SET_LOADER):
             return {
