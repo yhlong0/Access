@@ -6,7 +6,7 @@ import { fetchBooks, setBooks } from '../../redux/actions/books.action';
 class TestPage extends React.Component {
 
     componentDidMount() {
-        this.props.dispatch(setBooks());
+        this.props.dispatch(fetchBooks());
     }
     render() {
         console.log(this.props.books);
@@ -21,7 +21,7 @@ class TestPage extends React.Component {
 
 function mapStateToProps(state, ownProps) {
     return {
-        books: state.booksReducer,
+        books: state.booksReducer.books,
     };
 }
 

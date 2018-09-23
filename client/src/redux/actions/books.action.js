@@ -8,5 +8,6 @@ export const fetchBooks = () => ({
 });
 
 export const setBooks = () => ({
-    type: SET_BOOKS
+    type: SET_BOOKS,
+    payload: ['new book', 'new book 2']
 });

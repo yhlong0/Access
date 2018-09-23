@@ -6,6 +6,7 @@ import { createLogger } from 'redux-logger';
 import { apiMiddleware } from './middleware/core/api';
 import { notificationMiddleware } from './middleware/core/notifications';
 import { systemsMiddleware } from './middleware/app/systems';
+import { booksMiddleware } from './middleware/app/books';
 import  api from './middleware/api';
 
 const logger = createLogger({
@@ -14,13 +15,11 @@ const logger = createLogger({
 });
 
 const featureMiddleware = [
-    systemsMiddleware
+    booksMiddleware,
 ];
 
 const coreMiddleware = [
-    api,
-    apiMiddleware,
-    notificationMiddleware,
+
 ];
 
 const middleware = applyMiddleware(...featureMiddleware, ...coreMiddleware, logger);

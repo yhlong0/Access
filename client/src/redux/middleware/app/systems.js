@@ -5,7 +5,7 @@ import { API } from '../../constants/constants';
 import { setNotification } from '../../actions/notification.actions';
 
 export const systemsMiddleware = () => next => action => {
-    //next(action);
+    next(action);
     switch (action.type) {
         case FETCH_SYSTEMS:
             next(apiRequest({ body: null, method: 'GET', url: API.SYSTEMS, entity: SYSTEMS }));

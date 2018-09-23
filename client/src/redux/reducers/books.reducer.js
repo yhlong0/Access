@@ -5,7 +5,10 @@ const initState = ['TextTrackCueList'];
 export default function booksReducer(books = initState, action) {
     switch (action.type) {
         case SET_BOOKS:
-            return action.payload;
+            return {
+                ...books,
+                books: action.payload
+            }
         default: 
             return books;
     }
