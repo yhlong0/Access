@@ -1,5 +1,3 @@
-import { func } from "prop-types";
-
 // feature name
 export const SYSTEMS = '[Systems]';
 
