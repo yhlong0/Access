@@ -1,14 +1,14 @@
-import  { FETCH_BOOKS, SET_BOOKS, setBooks } from '../../actions/books.action';
-import axios from 'axios';
+import { BOOKS, FETCH_BOOKS, setBooks } from '../../actions/books.action';
+import { apiRequest, API_SUCCESS } from '../../actions/api.actions';
 
-export const booksMiddleware = () => next => action => {
+export const booksMiddleware = ({dispatch}) => next => action => {
+    console.log("book Middleware triggered:", action);
     next(action);
     if(action.type === `${FETCH_BOOKS}`) {
-        axios({method: 'GET', url: '/systems'})
-            .then(res => res.data)
-            .then(data => {
-                console.log(data);
-                next(setBooks(data));
-            })
+        dispatch(apiRequest({ body: null, method: 'GET', url: '/systems', entity: '[BOOKS]'}));
+    }
+    if(action.type === `${BOOKS} ${API_SUCCESS}`) {
+        console.log('api success' + action.payload)
+        dispatch(setBooks(action.payload));
     }
 }

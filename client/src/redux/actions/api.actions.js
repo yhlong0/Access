@@ -8,9 +8,9 @@ export const apiRequest = ({ body, method, url, entity }) => ({
     meta: { method, url, entity }
 });
 
-export const apiSuccess = ({ response, entity }) => ({
+export const apiSuccess = (test, {entity}) => ({
     type: `${entity} ${API_SUCCESS}`,
-    payload: response,
+    payload: test,
     meta: {entity}
 });
 

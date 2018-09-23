@@ -19,7 +19,7 @@ const featureMiddleware = [
 ];
 
 const coreMiddleware = [
-
+    apiMiddleware,
 ];
 
 const middleware = applyMiddleware(
