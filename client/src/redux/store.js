@@ -4,10 +4,10 @@ import logger from 'redux-logger';
 
 import reducer from './reducers/index'
 
-import { systemsMiddleware } from './middleware/app/systems';
 import { apiMiddleware } from './middleware/core/api';
-import  api from './middleware/api';
 import { notificationMiddleware } from './middleware/core/notifications';
+import { systemsMiddleware } from './middleware/app/systems';
+import  api from './middleware/api';
 
 const featureMiddleware = [
     systemsMiddleware

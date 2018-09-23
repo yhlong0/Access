@@ -47,12 +47,14 @@ export const mailFolderListItems = (
 
 export const otherMailFolderListItems = (
     <div>
-        <ListItem button>
-            <ListItemIcon>
-                <ReportIcon />                
-            </ListItemIcon>
-            <ListItemText primary="Reports" />
-        </ListItem>
+        <Link to="/test" style={styles.link}>
+            <ListItem button>
+                <ListItemIcon>
+                    <ReportIcon />                
+                </ListItemIcon>
+                <ListItemText primary="Reports" />
+            </ListItem>
+        </Link>
         <ListItem button>
             <ListItemIcon>
                 <DsiabledIcon />
