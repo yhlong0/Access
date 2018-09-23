@@ -1,18 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchSystems } from '../../redux/actions/systems.actions';
+import { fetchBooks, setBooks } from '../../redux/actions/books.action';
 
 
 class TestPage extends React.Component {
 
     componentDidMount() {
-        this.props.dispatch(fetchSystems());
+        this.props.dispatch(setBooks());
     }
     render() {
-        console.log(this.props.systems);
+        console.log(this.props.books);
         return (
             <div>
-                {this.props.systems}
+                {this.props.books}
             </div>            
         );
     }
@@ -21,7 +21,7 @@ class TestPage extends React.Component {
 
 function mapStateToProps(state, ownProps) {
     return {
-        systems: state.systems,
+        books: state.booksReducer,
     };
 }
 

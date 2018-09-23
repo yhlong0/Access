@@ -66,7 +66,7 @@ class SystemPage extends React.Component {
 
 function mapStateToProps(state, ownProps) {
     return {
-        systems: state.systems,
+        systems: state.systemsReducer,
         //selected: state.system.selected,
         //fetching: state.system.fetching,
     };
