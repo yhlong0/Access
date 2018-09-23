@@ -1,3 +1,5 @@
+import { func } from "prop-types";
+
 // feature name
 export const SYSTEMS = '[Systems]';
 
@@ -14,3 +16,4 @@ export const setSystems = ({ systems }) => ({
     type: SET_SYSTEMS,
     payload: systems,
 });
+

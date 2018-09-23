@@ -3,7 +3,6 @@ import axios from 'axios';
 
 export const apiMiddleware = ({dispatch}) => next => action => {
     next(action);
-
     if(action.type.includes(API_REQUEST)) {
         const { url, method, entity } = action.meta;
         axios({ method: method, url: url })
