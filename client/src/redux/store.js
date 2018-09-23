@@ -1,6 +1,6 @@
 import { applyMiddleware, createStore } from 'redux';
 
-import logger from 'redux-logger';
+import { createLogger } from 'redux-logger';
 
 import reducer from './reducers/index'
 
@@ -8,6 +8,11 @@ import { apiMiddleware } from './middleware/core/api';
 import { notificationMiddleware } from './middleware/core/notifications';
 import { systemsMiddleware } from './middleware/app/systems';
 import  api from './middleware/api';
+
+const logger = createLogger({
+    pdiff: true,
+    duration: true,
+});
 
 const featureMiddleware = [
     systemsMiddleware
