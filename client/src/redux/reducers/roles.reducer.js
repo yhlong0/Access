@@ -1,4 +1,4 @@
-import { SET_ROLES } from '../actions/roles.actions';
+import { SET_ROLES, SELECT_ROLE } from '../actions/roles.actions';
 
 const initState = [];
 
@@ -10,6 +10,12 @@ export default function rolesReducer (roles = initState, action) {
             return {
                 ...roles,
                 roles: action.payload
+            }
+
+        case SELECT_ROLE:
+            return {
+                ...roles,
+                selected: action.payload,
             }
 
         default:

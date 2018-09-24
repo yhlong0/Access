@@ -3,7 +3,8 @@ import LinearProgress from '@material-ui/core/LinearProgress';
 import TextField from '../Organisms/TextField';
 import TableView from '../Organisms/TableView';
 import { connect } from 'react-redux';
-import { fetchRoles } from '../../redux/actions/roles.actions';
+import { fetchRoles, selectRole } from '../../redux/actions/roles.actions';
+import { selectItem } from '../../redux/actions/select.action';
 import * as roleActions from '../../actions/roleActions';
 
 
@@ -40,7 +41,7 @@ class RolePage extends React.Component {
     }
 
     selectRole = (selected) => {
-        this.props.dispatch(roleActions.selectRole(selected));
+        this.props.dispatch(selectItem(selected));
     }
   
     render() {
@@ -70,7 +71,7 @@ class RolePage extends React.Component {
 function mapStateToProps(state, ownProps) {
     return {
         roles: state.rolesReducer.roles,
-        //selected: state.role.selected,
+        selected: state.selectReducer.selected,
         loading: state.uiReducer.loading,
     };
 }
