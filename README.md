@@ -56,3 +56,17 @@ Redux to store the state, Material-UI for UI/UX design.
 ##### Role information
 
 1. GET /roles to retrieve all available roles
+
+
+
+## Contributing
+
+If you are interested in fixing issues and contributing directly to the code base,
+please see the document [How to Contribute](https://github.com/yhlong0/access/wiki/How-to-Contribute), which covers the following:
+
+* [How to build and run from source](https://github.com/yhlong0/access/wiki/How-to-Contribute#build-and-run-from-source)
+* [The development workflow, including debugging and running tests](https://github.com/yhlong0/access/wiki/How-to-Contribute#development-workflow)
+* [Coding Guidelines](https://github.com/yhlong0/access/wiki/Coding-Guidelines)
+* [Submitting pull requests](https://github.com/yhlong0/access/wiki/How-to-Contribute#pull-requests)
+
+Please see also our [Code of Conduct](CODE_OF_CONDUCT.md).
