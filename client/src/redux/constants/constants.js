@@ -1,7 +1,7 @@
 export const API = {
     USERS: '/users',
     SYSTEMS: '/systems',
-    ROLES: '/roles',
+    ROLES: '/roles/',
     BOOKS: '/systems'
 };
 

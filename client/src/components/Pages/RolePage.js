@@ -2,10 +2,15 @@ import React from 'react';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import TextField from '../Organisms/TextField';
 import TableView from '../Organisms/TableView';
+
 import { connect } from 'react-redux';
-import { ROLES, fetchRoles, createRole } from '../../redux/actions/roles.actions';
 import { selectItem } from '../../redux/actions/select.action';
-import * as roleActions from '../../actions/roleActions';
+import {
+    ROLES,
+    fetchRoles,
+    createRole,
+    deleteRole
+} from '../../redux/actions/roles.actions';
 
 
 const tableData = {
@@ -37,7 +42,7 @@ class RolePage extends React.Component {
     }
 
     deleteRole = () => {
-        this.props.dispatch(roleActions.deleteRole(this.props.selected));
+        this.props.dispatch(deleteRole(this.props.selected));
     }
 
     selectRole = (selected) => {
