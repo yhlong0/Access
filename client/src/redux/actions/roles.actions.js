@@ -1,21 +1,14 @@
-import * as actions from '../constants/constants';
+export const ROLES = '[Roles]';
 
-export const setRoles = (payload) => ({
-    type: actions.SET_ROLES,
-    payload
-});
+export const FETCH_ROLES = `${ROLES} FETCH`;
+export const SET_ROLES = `${ROLES} SET`;
 
 export const fetchRoles = () => ({
-    type: actions.API,
-    payload: {
-        url: '/roles',
-        success: setRoles,
-    }
+    type: FETCH_ROLES
 });
 
-export const selectRole = (selected) => {
-    return {
-        type: 'SELECT_ROLE',
-        payload: selected,
-    };
-};
+export const setRoles = (data) => ({
+    type: SET_ROLES,
+    payload: data
+});
+
