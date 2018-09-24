@@ -1,8 +1,8 @@
 export const SELECT_ITEM = 'SELECT_ITEM';
 
-export const selectItem = (selected) => {
+export const selectItem = (selected, entity) => {
     return {
-        type: SELECT_ITEM,
+        type: `${entity} ${SELECT_ITEM}`,
         payload: selected,
     };
 };

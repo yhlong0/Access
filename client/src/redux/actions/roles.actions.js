@@ -12,10 +12,3 @@ export const setRoles = (data) => ({
     type: SET_ROLES,
     payload: data
 });
-
-export const selectRole = (selected) => {
-    return {
-        type: SELECT_ROLE,
-        payload: selected,
-    };
-};

@@ -4,15 +4,12 @@ const initState = [];
 
 export default function selectReducer(selected = initState, action) {
 
-    switch (action.type) {
-
-        case SELECT_ITEM:
-            return {
-                ...selected,
-                selected: action.payload
-            }
-
-        default:
-            return selected;
+    if (action.type.includes(SELECT_ITEM)) {
+        return {
+            ...selected,
+            selected: action.payload
+        }
+    } else {
+        return selected;
     }
 }
