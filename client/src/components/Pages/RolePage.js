@@ -3,7 +3,7 @@ import LinearProgress from '@material-ui/core/LinearProgress';
 import TextField from '../Organisms/TextField';
 import TableView from '../Organisms/TableView';
 import { connect } from 'react-redux';
-import { ROLES, fetchRoles } from '../../redux/actions/roles.actions';
+import { ROLES, fetchRoles, createRole } from '../../redux/actions/roles.actions';
 import { selectItem } from '../../redux/actions/select.action';
 import * as roleActions from '../../actions/roleActions';
 
@@ -33,7 +33,7 @@ class RolePage extends React.Component {
     }
 
     createRole = (role) => {
-        this.props.dispatch(roleActions.createRole(role));
+        this.props.dispatch(createRole(role));
     }
 
     deleteRole = () => {
