@@ -46,7 +46,7 @@ class RolePage extends React.Component {
     render() {
       return (
         <div>
-            {this.props.fetching &&
+            {this.props.loading &&
                 <LinearProgress />
             }  
             <TextField 
@@ -71,7 +71,7 @@ function mapStateToProps(state, ownProps) {
     return {
         roles: state.rolesReducer.roles,
         //selected: state.role.selected,
-        //fetching: state.role.fetching,
+        loading: state.uiReducer.loading,
     };
 }
 
