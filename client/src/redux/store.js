@@ -20,6 +20,7 @@ const featureMiddleware = [
 
 const coreMiddleware = [
     apiMiddleware,
+    notificationMiddleware
 ];
 
 const middleware = applyMiddleware(
