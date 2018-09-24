@@ -10,9 +10,9 @@ import booksReducer from './books.reducer';
 
 export default combineReducers({
   booksReducer,
-  // notificationsReducer,
-  // rolesReducer,
+  notificationsReducer,
+  rolesReducer,
+  uiReducer,
   // systemsReducer,
-  // uiReducer,
   // usersReducer,
 });

@@ -44,7 +44,6 @@ class RolePage extends React.Component {
     }
   
     render() {
-        console.log(this.props.roles);
       return (
         <div>
             {this.props.fetching &&
@@ -55,12 +54,14 @@ class RolePage extends React.Component {
                 description={'Role Description'} 
                 create={this.createRole}
             /> 
-            <TableView 
-                tableData={tableData} 
-                data={this.props.roles}
-                deleteItem={this.deleteRole}
-                selectItem={this.selectRole}
-            />
+            {this.props.roles && 
+                <TableView 
+                    tableData={tableData} 
+                    data={this.props.roles}
+                    deleteItem={this.deleteRole}
+                    selectItem={this.selectRole}
+                />
+            }
         </div>
       );
     }
@@ -68,7 +69,7 @@ class RolePage extends React.Component {
 
 function mapStateToProps(state, ownProps) {
     return {
-        roles: state.roles,
+        roles: state.rolesReducer.roles,
         //selected: state.role.selected,
         //fetching: state.role.fetching,
     };
