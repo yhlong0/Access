@@ -4,7 +4,6 @@ import TextField from '../Organisms/TextField';
 import TableView from '../Organisms/TableView';
 
 import { connect } from 'react-redux';
-import * as systemActions from '../../actions/systemActions';
 import { selectItem } from '../../redux/actions/select.action';
 import { 
     SYSTEMS,
