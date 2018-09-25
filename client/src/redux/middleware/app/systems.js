@@ -1,8 +1,7 @@
+import { API } from '../../constants/constants';
 import {  apiRequest, API_SUCCESS, API_ERROR } from '../../actions/api.actions';
 import { setNotification } from '../../actions/notification.actions';
 import { setLoader } from '../../actions/ui.actions';
-import { API } from '../../constants/constants';
-
 import { 
     SYSTEMS, 
     FETCH_SYSTEMS, 
@@ -12,6 +11,7 @@ import {
 } from '../../actions/systems.actions';
 
 export const systemsMiddleware = () => next => action => {
+    
     if(action.type.includes(SYSTEMS)) {
         next(action);
     }

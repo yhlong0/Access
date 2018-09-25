@@ -1,7 +1,7 @@
+import { API } from '../../constants/constants';
 import { apiRequest, API_SUCCESS, API_ERROR } from '../../actions/api.actions';
 import { setNotification } from '../../actions/notification.actions';
 import { setLoader } from '../../actions/ui.actions';
-import { API } from '../../constants/constants';
 import { 
     ROLES, 
     FETCH_ROLES, 
@@ -9,8 +9,6 @@ import {
     DELETE_ROLE,
     setRoles 
 } from '../../actions/roles.actions';
-
-
 
 export const rolesMiddleware = () => next => action => {
     if(action.type.includes(ROLES)) {

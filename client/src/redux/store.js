@@ -7,6 +7,7 @@ import { apiMiddleware } from './middleware/core/api';
 import { notificationMiddleware } from './middleware/core/notifications';
 import { systemsMiddleware } from './middleware/app/systems';
 import { rolesMiddleware } from './middleware/app/roles';
+import { usersMiddleware } from './middleware/app/users';
 import { booksMiddleware } from './middleware/app/books';
 
 
@@ -16,6 +17,7 @@ const logger = createLogger({
 });
 
 const featureMiddleware = [
+    usersMiddleware,
     booksMiddleware,
     rolesMiddleware,
     systemsMiddleware,
