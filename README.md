@@ -40,21 +40,21 @@ Redux to store the state, Material-UI for UI/UX design.
 1. GET /users to retrieve all users information
 2. POST /users to add a new user
 3. GET /users/:userId to get a user by ID
-4. POST /users/:userId
-
-
+4. PUT /users/:userId update user by ID
+5. DELETE /users/:userID delete user by ID
 
 
 ##### System information
 
-1. GET /systems to retrieve all systems 
+Same REST API formmat
 
-
-
+e.g. PUT /systems/:systemId update system information by ID
 
 ##### Role information
 
-1. GET /roles to retrieve all available roles
+Same REST API formmat
+
+e.g. PUT /roles/:roleId update role information by ID
 
 
 
