@@ -13,7 +13,10 @@ import {
 
 
 export const rolesMiddleware = () => next => action => {
-    next(action);
+    if(action.type.includes(ROLES)) {
+        next(action);
+    }
+    
     switch (action.type) {
 
         case FETCH_ROLES:
