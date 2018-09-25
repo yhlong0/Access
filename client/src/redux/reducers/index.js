@@ -14,7 +14,7 @@ export default combineReducers({
   notificationsReducer,
   rolesReducer,
   uiReducer,
-  selectReducer
-  // systemsReducer,
+  selectReducer,
+  systemsReducer
   // usersReducer,
 });

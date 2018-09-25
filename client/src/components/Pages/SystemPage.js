@@ -49,7 +49,6 @@ class SystemPage extends React.Component {
     }
 
     render() {
-        console.log(this.props.systems);
         return (
             <div>
                 {this.props.loading &&
