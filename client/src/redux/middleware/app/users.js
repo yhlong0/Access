@@ -30,6 +30,19 @@ export const usersMiddleware = () => next => action => {
             }));
             break;
 
+        case CREATE_USER:
+            next(setLoader({
+                state: true,
+                entity: USERS
+            }));
+            next(apiRequest({
+                body: action.payload,
+                method: 'POST',
+                url: API.USERS,
+                entity: USERS
+            }));
+            break;
+
         case `${USERS} ${API_SUCCESS}`:
             const { method } = action.meta;
             if (method === 'GET') {

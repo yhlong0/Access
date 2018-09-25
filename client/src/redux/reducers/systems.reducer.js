@@ -1,6 +1,6 @@
 import { SET_SYSTEMS } from '../actions/systems.actions';
 
-const initState = [];
+const initState = {};
 
 export default function systemsReducer(systems = initState, action) {
 

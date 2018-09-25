@@ -1,6 +1,6 @@
 import { SET_ROLES } from '../actions/roles.actions';
 
-const initState = [];
+const initState = {};
 
 export default function rolesReducer (roles = initState, action) {
 

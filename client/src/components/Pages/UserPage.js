@@ -12,7 +12,10 @@ import AddIconButton from '../Molecules/AddIconButton';
 import { connect } from 'react-redux';
 import { fetchSystems } from '../../redux/actions/systems.actions';
 import { fetchRoles } from '../../redux/actions/roles.actions';
-import { fetchUsers } from '../../redux/actions/users.actions';
+import { 
+    fetchUsers,
+    createUser, 
+} from '../../redux/actions/users.actions';
 import * as userActions from '../../actions/userActions';
 
 const styles = theme => ({
@@ -59,7 +62,7 @@ class UserPage extends React.Component {
     }
 
     createUser = (user) => {
-        this.props.dispatch(userActions.createUser(user));
+        this.props.dispatch(createUser(user));
     }
 
     openDialog = (userId, dialog) => {
@@ -159,7 +162,7 @@ function mapStateToProps(state, ownProps) {
         accessData: {}, //state.user.accessData,
         search: '', //state.user.search,
         renderList: [], //state.user.renderList,
-        renderNewUser: false, //state.user.renderNewUser,
+        renderNewUser: state.usersReducer.renderNewUser,
         showAllUsers: true, //state.user.showAllUsers,
     };
 }
