@@ -37,15 +37,15 @@ class SystemPage extends React.Component {
     }
 
     createSystem = (system) => {
-        this.props.dispatch(systemActions.createSystem(system));
+        this.props.dispatch(createSystem(system));
     }
 
     deleteSystem = () => {
-        this.props.dispatch(systemActions.deleteSystem(this.props.selected));
+        this.props.dispatch(deleteSystem(this.props.selected));
     }
 
     selectSystem = (selected) => {
-        this.props.dispatch(systemActions.selectSystem(selected));
+        this.props.dispatch(selectItem(selected, `${SYSTEMS}`));
     }
 
     render() {

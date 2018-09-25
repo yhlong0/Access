@@ -31,6 +31,34 @@ export const systemsMiddleware = () => next => action => {
             }));
             break;
 
+        case CREATE_SYSTEM:
+            next(setLoader({
+                state: true,
+                entity: SYSTEMS
+            }));
+            next(apiRequest({
+                body: action.payload,
+                method: 'POST',
+                url: API.SYSTEMS,
+                entity: SYSTEMS
+            }));
+            break;
+
+        case DELETE_SYSTEM:
+            next(setLoader({
+                state: true,
+                entity: SYSTEMS
+            }));
+            action.payload.map(select => {
+                next(apiRequest({
+                    body: action.payload,
+                    method: 'DELETE',
+                    url: `${API.SYSTEMS}/${select}`,
+                    entity: SYSTEMS
+                }));
+            })
+            break;
+
         case `${SYSTEMS} ${API_SUCCESS}`:
             const { method } = action.meta;
             if (method === 'GET') {
@@ -39,9 +67,18 @@ export const systemsMiddleware = () => next => action => {
                     state: false, 
                     entity: SYSTEMS 
                 }));
+            } else {
+                next(apiRequest({
+                    body: null,
+                    method: 'GET',
+                    url: API.SYSTEMS,
+                    entity: SYSTEMS
+                }));
+                next(setLoader({
+                    state: false,
+                    entity: SYSTEMS
+                }));
             }
-            
-            
             break;
 
         case `${SYSTEMS} ${API_ERROR}`: 
