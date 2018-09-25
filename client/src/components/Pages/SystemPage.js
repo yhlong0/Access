@@ -4,7 +4,7 @@ import TextField from '../Organisms/TextField';
 import TableView from '../Organisms/TableView';
 
 import { connect } from 'react-redux';
-import { selectItem } from '../../redux/actions/select.action';
+import { selectItem } from '../../redux/actions/ui.actions';
 import { 
     SYSTEMS,
     fetchSystems, 
@@ -74,7 +74,7 @@ class SystemPage extends React.Component {
 function mapStateToProps(state, ownProps) {
     return {
         systems: state.systemsReducer.systems,
-        selected: state.selectReducer.selected,
+        selected: state.uiReducer.selected,
         loading: state.uiReducer.loading,
     };
 }

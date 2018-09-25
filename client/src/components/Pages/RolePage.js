@@ -4,7 +4,7 @@ import TextField from '../Organisms/TextField';
 import TableView from '../Organisms/TableView';
 
 import { connect } from 'react-redux';
-import { selectItem } from '../../redux/actions/select.action';
+import { selectItem } from '../../redux/actions/ui.actions';
 import {
     ROLES,
     fetchRoles,
@@ -76,7 +76,7 @@ class RolePage extends React.Component {
 function mapStateToProps(state, ownProps) {
     return {
         roles: state.rolesReducer.roles,
-        selected: state.selectReducer.selected,
+        selected: state.uiReducer.selected,
         loading: state.uiReducer.loading,
     };
 }
