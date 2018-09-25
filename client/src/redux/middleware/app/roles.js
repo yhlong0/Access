@@ -57,6 +57,7 @@ export const rolesMiddleware = () => next => action => {
                     url: `${API.ROLES}/${select}`,
                     entity: ROLES
                 }));
+                return select;
             })
             break;
 

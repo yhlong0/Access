@@ -56,6 +56,7 @@ export const systemsMiddleware = () => next => action => {
                     url: `${API.SYSTEMS}/${select}`,
                     entity: SYSTEMS
                 }));
+                return select;
             })
             break;
 
