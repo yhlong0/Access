@@ -61,7 +61,7 @@ export const rolesMiddleware = () => next => action => {
             break;
 
         case `${ROLES} ${API_SUCCESS}`:
-            const { method, entity } = action.meta;
+            const { method } = action.meta;
             if (method === 'GET') {
                 next(setRoles(action.payload));
                 next(setLoader({

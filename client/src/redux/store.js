@@ -17,7 +17,8 @@ const logger = createLogger({
 
 const featureMiddleware = [
     booksMiddleware,
-    rolesMiddleware
+    rolesMiddleware,
+    systemsMiddleware,
 ];
 
 const coreMiddleware = [
