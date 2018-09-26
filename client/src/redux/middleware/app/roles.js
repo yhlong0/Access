@@ -68,18 +68,11 @@ export const rolesMiddleware = () => next => action => {
                     entity: ROLES
                 }));
             } else {
-                next(apiRequest({
-                    body: null,
-                    method: 'GET',
-                    url: API.ROLES,
-                    entity: ROLES
-                }));
                 next(setLoader({
                     state: false,
                     entity: ROLES
                 }));
             }
-
             break;
 
         case `${ROLES} ${API_ERROR}`:

@@ -69,12 +69,6 @@ export const systemsMiddleware = () => next => action => {
                     entity: SYSTEMS 
                 }));
             } else {
-                next(apiRequest({
-                    body: null,
-                    method: 'GET',
-                    url: API.SYSTEMS,
-                    entity: SYSTEMS
-                }));
                 next(setLoader({
                     state: false,
                     entity: SYSTEMS
