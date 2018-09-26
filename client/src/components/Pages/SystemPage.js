@@ -35,12 +35,6 @@ class SystemPage extends React.Component {
         this.props.dispatch(fetchSystems());
     }
 
-    componentDidUpdate(prevProps) {
-        if (this.props.systems !== prevProps.systems) {
-            this.props.dispatch(fetchSystems());
-        }
-    }
-
     createSystem = (system) => {
         this.props.dispatch(createSystem(system));
     }

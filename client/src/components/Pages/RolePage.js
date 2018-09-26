@@ -37,12 +37,6 @@ class RolePage extends React.Component {
         this.props.dispatch(fetchRoles());
     }
 
-    componentDidUpdate(prevProps) {
-        if(this.props.roles !== prevProps.roles) {
-            this.props.dispatch(fetchRoles());
-        }
-    }
-
     createRole = (role) => {
         this.props.dispatch(createRole(role));
     }

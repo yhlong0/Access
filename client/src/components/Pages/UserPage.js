@@ -61,12 +61,6 @@ class UserPage extends React.Component {
         this.props.dispatch(fetchRoles());
     }
 
-    componentDidUpdate(prevProps) {
-        if (this.props.users !== prevProps.users) {
-            this.props.dispatch(fetchUsers());
-        }
-    }
-
     createUser = (user) => {
         this.props.dispatch(createUser(user));
     }

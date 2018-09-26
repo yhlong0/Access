@@ -52,6 +52,12 @@ export const usersMiddleware = () => next => action => {
                     entity: USERS
                 }));
             } else {
+                next(apiRequest({
+                    body: null,
+                    method: 'GET',
+                    url: API.USERS,
+                    entity: USERS
+                }));
                 next(setLoader({
                     state: false,
                     entity: USERS
