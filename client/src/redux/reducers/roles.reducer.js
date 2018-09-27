@@ -1,16 +1,17 @@
-const initState = [];
+import { SET_ROLES } from '../actions/roles.actions';
 
-export default function roleReducer (roles = initState, action) {
+const initState = {};
+
+export default function rolesReducer (roles = initState, action) {
 
     switch (action.type) {
-        case 'SET_ROLES':
-            return action.payload;
-            
-        case 'SELECT_ROLE': 
+
+        case SET_ROLES:
             return {
                 ...roles,
-                selected: action.payload,
+                roles: action.payload
             }
+
         default:
             return roles;
     }

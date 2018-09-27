@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import LinearProgress from '@material-ui/core/LinearProgress';
-import { connect } from 'react-redux';
 
 import UsersList from '../Organisms/UsersList';
 import AddingDialog from '../Organisms/Dialog';
@@ -10,10 +9,15 @@ import NewUserTextField from '../Molecules/NewUserTextField';
 import LabeledSwitch from '../Molecules/LabeledSwitch';
 import AddIconButton from '../Molecules/AddIconButton';
 
+import { connect } from 'react-redux';
+import { fetchSystems } from '../../redux/actions/systems.actions';
+import { fetchRoles } from '../../redux/actions/roles.actions';
+import { 
+    fetchUsers,
+    createUser, 
+} from '../../redux/actions/users.actions';
 import * as userActions from '../../actions/userActions';
-import * as systemActions from '../../actions/systemActions';
-import * as roleActions from '../../actions/roleActions';
-//test branch.
+
 const styles = theme => ({
     root: {
         width: '100%',
@@ -52,13 +56,13 @@ const styles = theme => ({
 class UserPage extends React.Component {
 
     componentDidMount() {
-        this.props.dispatch(userActions.showAllUsers(this.props.showAllUsers));
-        this.props.dispatch(systemActions.fetchSystems());
-        this.props.dispatch(roleActions.fetchRoles());
+        this.props.dispatch(fetchUsers());
+        this.props.dispatch(fetchSystems());
+        this.props.dispatch(fetchRoles());
     }
 
     createUser = (user) => {
-        this.props.dispatch(userActions.createUser(user));
+        this.props.dispatch(createUser(user));
     }
 
     openDialog = (userId, dialog) => {
@@ -107,14 +111,14 @@ class UserPage extends React.Component {
             users, 
             dialogOpenStatus, 
             renderList, 
-            fetching,
+            loading,
             search,
             renderNewUser,
         } = this.props;
         
         return (
             <div className={classes.root}>
-                { fetching && <LinearProgress /> }
+                {loading && <LinearProgress /> }
                 <AddingDialog 
                     dialogOpenStatus={dialogOpenStatus}
                     closeDialog={this.closeDialog}
@@ -129,13 +133,16 @@ class UserPage extends React.Component {
                 {renderNewUser &&
                     <NewUserTextField create={this.createUser} />
                 }
-                <UsersList 
-                    userData={users} 
-                    openDialog={this.openDialog}
-                    removeAccess={this.removeAccess}
-                    removeRole={this.removeRole}
-                    changeStatus={this.changeStatus}
-                />
+                { users && 
+                    <UsersList
+                        userData={users}
+                        openDialog={this.openDialog}
+                        removeAccess={this.removeAccess}
+                        removeRole={this.removeRole}
+                        changeStatus={this.changeStatus}
+                    />
+                }
+
             </div>
         );
     }
@@ -147,16 +154,16 @@ UserPage.propTypes = {
 
 function mapStateToProps(state, ownProps) {
     return {
-        users: state.user.user,
-        fetching: state.user.fetching,
-        dialogOpenStatus: state.user.dialogOpenStatus,
-        systems: state.system.system,
-        roles: state.role.role,
-        accessData: state.user.accessData,
-        search: state.user.search,
-        renderList: state.user.renderList,
-        renderNewUser: state.user.renderNewUser,
-        showAllUsers: state.user.showAllUsers,
+        users: state.usersReducer.users,
+        loading: state.uiReducer.loading,
+        dialogOpenStatus: false,
+        systems: state.systemsReducer.systems,
+        roles: state.rolesReducer.roles,
+        accessData: {}, //state.user.accessData,
+        search: '', //state.user.search,
+        renderList: [], //state.user.renderList,
+        renderNewUser: state.usersReducer.renderNewUser,
+        showAllUsers: true, //state.user.showAllUsers,
     };
 }
 

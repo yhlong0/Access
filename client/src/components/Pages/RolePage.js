@@ -2,9 +2,15 @@ import React from 'react';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import TextField from '../Organisms/TextField';
 import TableView from '../Organisms/TableView';
+
 import { connect } from 'react-redux';
-import { fetchRoles } from '../../redux/actions/roles.actions';
-import * as roleActions from '../../actions/roleActions';
+import { selectItem } from '../../redux/actions/ui.actions';
+import {
+    ROLES,
+    fetchRoles,
+    createRole,
+    deleteRole
+} from '../../redux/actions/roles.actions';
 
 
 const tableData = {
@@ -32,22 +38,21 @@ class RolePage extends React.Component {
     }
 
     createRole = (role) => {
-        this.props.dispatch(roleActions.createRole(role));
+        this.props.dispatch(createRole(role));
     }
 
     deleteRole = () => {
-        this.props.dispatch(roleActions.deleteRole(this.props.selected));
+        this.props.dispatch(deleteRole(this.props.selected));
     }
 
     selectRole = (selected) => {
-        this.props.dispatch(roleActions.selectRole(selected));
+        this.props.dispatch(selectItem(selected, `${ROLES}`));
     }
   
     render() {
-        console.log(this.props.roles);
-      return (
+      return (  
         <div>
-            {this.props.fetching &&
+            {this.props.loading &&
                 <LinearProgress />
             }  
             <TextField 
@@ -55,12 +60,14 @@ class RolePage extends React.Component {
                 description={'Role Description'} 
                 create={this.createRole}
             /> 
-            <TableView 
-                tableData={tableData} 
-                data={this.props.roles}
-                deleteItem={this.deleteRole}
-                selectItem={this.selectRole}
-            />
+            {this.props.roles && 
+                <TableView 
+                    tableData={tableData} 
+                    data={this.props.roles}
+                    deleteItem={this.deleteRole}
+                    selectItem={this.selectRole}
+                />
+            }
         </div>
       );
     }
@@ -68,9 +75,9 @@ class RolePage extends React.Component {
 
 function mapStateToProps(state, ownProps) {
     return {
-        roles: state.roles,
-        //selected: state.role.selected,
-        //fetching: state.role.fetching,
+        roles: state.rolesReducer.roles,
+        selected: state.uiReducer.selected,
+        loading: state.uiReducer.loading,
     };
 }
 

@@ -2,9 +2,15 @@ import React from 'react';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import TextField from '../Organisms/TextField';
 import TableView from '../Organisms/TableView';
+
 import { connect } from 'react-redux';
-import * as systemActions from '../../actions/systemActions';
-import { fetchSystems } from '../../redux/actions/systems.actions';
+import { selectItem } from '../../redux/actions/ui.actions';
+import { 
+    SYSTEMS,
+    fetchSystems, 
+    createSystem,
+    deleteSystem
+} from '../../redux/actions/systems.actions';
 
 const tableData = {
     title: 'Systems',
@@ -30,22 +36,21 @@ class SystemPage extends React.Component {
     }
 
     createSystem = (system) => {
-        this.props.dispatch(systemActions.createSystem(system));
+        this.props.dispatch(createSystem(system));
     }
 
     deleteSystem = () => {
-        this.props.dispatch(systemActions.deleteSystem(this.props.selected));
+        this.props.dispatch(deleteSystem(this.props.selected));
     }
 
     selectSystem = (selected) => {
-        this.props.dispatch(systemActions.selectSystem(selected));
+        this.props.dispatch(selectItem(selected, `${SYSTEMS}`));
     }
 
     render() {
-        console.log(this.props.systems);
         return (
             <div>
-                {this.props.fetching &&
+                {this.props.loading &&
                     <LinearProgress />
                 } 
                 <TextField 
@@ -53,12 +58,14 @@ class SystemPage extends React.Component {
                     description={'System Description'} 
                     create={this.createSystem}
                 />
-                <TableView 
-                    tableData={tableData} 
-                    data={this.props.systems}
-                    deleteItem={this.deleteSystem}
-                    selectItem={this.selectSystem}
-                />
+                {this.props.systems && 
+                    <TableView
+                        tableData={tableData}
+                        data={this.props.systems}
+                        deleteItem={this.deleteSystem}
+                        selectItem={this.selectSystem}
+                    />
+                }
             </div>
         );
     }
@@ -66,9 +73,9 @@ class SystemPage extends React.Component {
 
 function mapStateToProps(state, ownProps) {
     return {
-        systems: state.systemsReducer,
-        //selected: state.system.selected,
-        //fetching: state.system.fetching,
+        systems: state.systemsReducer.systems,
+        selected: state.uiReducer.selected,
+        loading: state.uiReducer.loading,
     };
 }
 
