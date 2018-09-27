@@ -1,6 +1,6 @@
 import { SET_BOOKS } from '../actions/books.action';
 
-const initState = [];
+const initState = {};
 
 export default function booksReducer(books = initState, action) {
     switch (action.type) {
