@@ -41,7 +41,6 @@ const UsersList = props => {
         removeRole,
         changeStatus, 
     } = props;
-    //console.log(userData[0]);
 
     const panelList = userData.map((user) => { 
         return (
@@ -102,7 +101,7 @@ const UsersList = props => {
                 control={
                     <Switch
                         checked={user.status}
-                        onChange={() => changeStatus(user._id)}
+                        onChange={() => changeStatus(user._id, user.status)}
                         value="checkedB"
                         color="primary"
                     />

@@ -5,6 +5,7 @@ export const SET_USERS = `${USERS} SET`;
 export const SELECT_USERS = `${USERS} SELECT`;
 export const CREATE_USER = `${USERS} CREATE`;
 export const DELETE_USER = `${USERS} DELETE`;
+export const CHANGE_STATUS = `${USERS} CHANGE STATUS`;
 
 export const fetchUsers = () => ({
     type: FETCH_USERS
@@ -23,4 +24,10 @@ export const createUser = (user) => ({
 export const deleteUser = (selected) => ({
     type: DELETE_USER,
     payload: selected
+});
+
+export const changeStatus = (userId, userStatus, showAllUsers) => ({
+    type: CHANGE_STATUS,
+    payload: userId,
+    status: userStatus
 });

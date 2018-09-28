@@ -7,6 +7,7 @@ import {
     FETCH_USERS, 
     CREATE_USER,
     DELETE_USER,
+    CHANGE_STATUS,
     setUsers 
 } from '../../actions/users.actions';
 
@@ -42,6 +43,19 @@ export const usersMiddleware = () => next => action => {
                 entity: USERS
             }));
             break;
+        
+        case CHANGE_STATUS: 
+            next(setLoader({
+                state: true,
+                entity: USERS
+            }));  
+            next(apiRequest({
+                body: {status:!action.status},
+                method: 'PUT',
+                url: `${API.USERS}/${action.payload}`,
+                entity: USERS
+            }));
+            break; 
 
         case `${USERS} ${API_SUCCESS}`:
             const { method } = action.meta;

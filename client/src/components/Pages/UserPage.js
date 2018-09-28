@@ -15,7 +15,8 @@ import { fetchRoles } from '../../redux/actions/roles.actions';
 import { switchNewUserView } from '../../redux/actions/ui.actions';
 import { 
     fetchUsers,
-    createUser, 
+    createUser,
+    changeStatus, 
 } from '../../redux/actions/users.actions';
 import * as userActions from '../../actions/userActions';
 
@@ -86,8 +87,8 @@ class UserPage extends React.Component {
         this.props.dispatch(userActions.removeRole(roleId, userId));
     }
 
-    changeStatus = (userId) => {
-        this.props.dispatch(userActions.changeStatus(userId, this.props.showAllUsers));
+    changeStatus = (userId, userStatus) => {
+        this.props.dispatch(changeStatus(userId, userStatus, this.props.showAllUsers));
     }
 
     closeDialog = () => {
