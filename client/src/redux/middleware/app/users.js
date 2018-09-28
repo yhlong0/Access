@@ -8,13 +8,12 @@ import {
     CREATE_USER,
     DELETE_USER,
     CHANGE_STATUS,
+    REMOVE_ROLE,
     setUsers 
 } from '../../actions/users.actions';
 
 export const usersMiddleware = () => next => action => {
-    //if (action.type.includes(USERS)) {
-        next(action);
-    //}
+    next(action);
 
     switch (action.type) {
 
@@ -53,6 +52,19 @@ export const usersMiddleware = () => next => action => {
                 body: {status:!action.status},
                 method: 'PUT',
                 url: `${API.USERS}/${action.payload}`,
+                entity: USERS
+            }));
+            break; 
+
+        case REMOVE_ROLE:
+            next(setLoader({
+                state: true,
+                entity: USERS
+            }));
+            next(apiRequest({
+                body: null,
+                method: 'DELETE',
+                url: `${API.USERS}/${action.userId}/role/${action.roleId}`,
                 entity: USERS
             }));
             break; 
