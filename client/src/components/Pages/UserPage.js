@@ -12,6 +12,7 @@ import AddIconButton from '../Molecules/AddIconButton';
 import { connect } from 'react-redux';
 import { fetchSystems } from '../../redux/actions/systems.actions';
 import { fetchRoles } from '../../redux/actions/roles.actions';
+import { switchNewUserView } from '../../redux/actions/ui.actions';
 import { 
     fetchUsers,
     createUser, 
@@ -97,8 +98,8 @@ class UserPage extends React.Component {
         this.props.dispatch(userActions.updateSearch(search));
     }
 
-    changeRenderNewUser = () => {
-        this.props.dispatch(userActions.changeRenderNewUser());
+    switchNewUserView = () => {
+        this.props.dispatch(switchNewUserView());
     }
 
     fetchUsers = () => {
@@ -113,7 +114,7 @@ class UserPage extends React.Component {
             renderList, 
             loading,
             search,
-            renderNewUser,
+            newUserView,
         } = this.props;
         
         return (
@@ -128,9 +129,9 @@ class UserPage extends React.Component {
                     addItem={this.addAccess}
                     updateSearch={this.updateSearch}
                 />        
-                <AddIconButton changeRenderNewUser={this.changeRenderNewUser} />
+                <AddIconButton switchNewUserView={this.switchNewUserView} />
                 <LabeledSwitch showAllUsers={this.fetchUsers} />
-                {renderNewUser &&
+                {newUserView &&
                     <NewUserTextField create={this.createUser} />
                 }
                 { users && 
@@ -162,7 +163,7 @@ function mapStateToProps(state, ownProps) {
         accessData: {}, //state.user.accessData,
         search: '', //state.user.search,
         renderList: [], //state.user.renderList,
-        renderNewUser: state.usersReducer.renderNewUser,
+        newUserView: state.uiReducer.newUserView,
         showAllUsers: true, //state.user.showAllUsers,
     };
 }

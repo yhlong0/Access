@@ -1,8 +1,13 @@
-import { SET_LOADER, SELECT_ITEM } from '../actions/ui.actions';
+import { 
+    SET_LOADER, 
+    SELECT_ITEM,
+    SWITCH_NEW_USER_VIEW
+} from '../actions/ui.actions';
 
 const initState = {
     loading: false,
-    selected: []
+    selected: [],
+    newUserView: false
 };
 
 export default function uiReducer (ui = initState, action) {
@@ -19,6 +24,12 @@ export default function uiReducer (ui = initState, action) {
             return {
                 ...ui,
                 selected: action.payload
+            }
+
+        case action.type.includes(SWITCH_NEW_USER_VIEW):
+            return {
+                ...ui,
+                newUserView: !ui.newUserView
             }
         
         default:

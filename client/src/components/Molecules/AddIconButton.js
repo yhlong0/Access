@@ -12,7 +12,7 @@ const styles = theme => ({
 });
 
 const AddIconButton = (props) => {
-    const { classes, changeRenderNewUser } = props;
+    const { classes, switchNewUserView } = props;
     return(
         <Tooltip title="Add">
             <Button 
@@ -20,7 +20,7 @@ const AddIconButton = (props) => {
                 color="primary" 
                 aria-label="Add" 
                 className={classes.fab}
-                onClick={changeRenderNewUser}
+                onClick={switchNewUserView}
             >
                 <AddIcon />
             </Button>
@@ -30,7 +30,7 @@ const AddIconButton = (props) => {
 
 AddIconButton.propTypes = {
     classes: PropTypes.object.isRequired,
-    changeRenderNewUser: PropTypes.func.isRequired,
+    switchNewUserView: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles)(AddIconButton);
