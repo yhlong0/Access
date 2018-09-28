@@ -8,6 +8,7 @@ export const DELETE_USER = `${USERS} DELETE`;
 export const CHANGE_STATUS = `${USERS} CHANGE STATUS`;
 export const REMOVE_ROLE = `${USERS} REMOVE ROLE`;
 export const REMOVE_ACCESS = `${USERS} REMOVE ACCESS`;
+export const OPEN_DIALOG = `${USERS} OPEN DIALOG`
 
 export const fetchUsers = () => ({
     type: FETCH_USERS
@@ -44,4 +45,12 @@ export const removeAccess = (systemId, userId) => ({
     type: REMOVE_ACCESS,
     systemId: systemId,
     userId: userId
+});
+
+export const openDialog = (userId, dialog, systems, roles) => ({
+    type: OPEN_DIALOG,
+    userId: userId,
+    dialog: dialog,
+    systems: systems,
+    roles: roles
 });

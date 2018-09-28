@@ -1,7 +1,7 @@
 import { API } from '../../constants/constants';
 import { API_SUCCESS, API_ERROR, apiRequest } from "../../actions/api.actions";
 import { setNotification } from '../../actions/notification.actions';
-import { setLoader } from '../../actions/ui.actions';
+import { setLoader, switchModalView } from '../../actions/ui.actions';
 import { 
     USERS, 
     FETCH_USERS, 
@@ -10,6 +10,7 @@ import {
     CHANGE_STATUS,
     REMOVE_ROLE,
     REMOVE_ACCESS,
+    OPEN_DIALOG,
     setUsers 
 } from '../../actions/users.actions';
 
@@ -79,6 +80,16 @@ export const usersMiddleware = () => next => action => {
                 body: null,
                 method: 'DELETE',
                 url: `${API.USERS}/${action.userId}/access/${action.systemId}`,
+                entity: USERS
+            }));
+            break; 
+
+        case OPEN_DIALOG:
+            next(switchModalView(USERS));
+            next(apiRequest({
+                body: null,
+                method: 'GET',
+                url: `${API.USERS}/${action.userId}`,
                 entity: USERS
             }));
             break; 
