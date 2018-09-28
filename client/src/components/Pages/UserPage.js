@@ -18,6 +18,7 @@ import {
     createUser,
     changeStatus, 
     removeRole,
+    removeAccess,
 } from '../../redux/actions/users.actions';
 import * as userActions from '../../actions/userActions';
 
@@ -81,7 +82,7 @@ class UserPage extends React.Component {
     }
 
     removeAccess = (systemId, userId) => {
-        this.props.dispatch(userActions.removeAccess(systemId, userId));
+        this.props.dispatch(removeAccess(systemId, userId));
     }
 
     removeRole = (roleId, userId) => {

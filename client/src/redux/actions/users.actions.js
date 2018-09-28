@@ -7,6 +7,7 @@ export const CREATE_USER = `${USERS} CREATE`;
 export const DELETE_USER = `${USERS} DELETE`;
 export const CHANGE_STATUS = `${USERS} CHANGE STATUS`;
 export const REMOVE_ROLE = `${USERS} REMOVE ROLE`;
+export const REMOVE_ACCESS = `${USERS} REMOVE ACCESS`;
 
 export const fetchUsers = () => ({
     type: FETCH_USERS
@@ -36,5 +37,11 @@ export const changeStatus = (userId, userStatus, showAllUsers) => ({
 export const removeRole = (roleId, userId) => ({
     type: REMOVE_ROLE,
     roleId: roleId,
+    userId: userId
+});
+
+export const removeAccess = (systemId, userId) => ({
+    type: REMOVE_ACCESS,
+    systemId: systemId,
     userId: userId
 });

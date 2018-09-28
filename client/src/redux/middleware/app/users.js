@@ -9,6 +9,7 @@ import {
     DELETE_USER,
     CHANGE_STATUS,
     REMOVE_ROLE,
+    REMOVE_ACCESS,
     setUsers 
 } from '../../actions/users.actions';
 
@@ -65,6 +66,19 @@ export const usersMiddleware = () => next => action => {
                 body: null,
                 method: 'DELETE',
                 url: `${API.USERS}/${action.userId}/role/${action.roleId}`,
+                entity: USERS
+            }));
+            break; 
+
+        case REMOVE_ACCESS:
+            next(setLoader({
+                state: true,
+                entity: USERS
+            }));
+            next(apiRequest({
+                body: null,
+                method: 'DELETE',
+                url: `${API.USERS}/${action.userId}/access/${action.systemId}`,
                 entity: USERS
             }));
             break; 
