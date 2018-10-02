@@ -1,4 +1,5 @@
 const SystemModel = require('../models/system');
+const validate = require('../library/validate'); 
 
 exports.getAllSystems = function (req, res) {
     SystemModel.getAllSystems(function (err, systems) {
@@ -17,7 +18,7 @@ exports.getSystem = function (req, res) {
 exports.updateSystem = function (req, res) {
     let systemId = req.params.systemId;
     let updateContent = req.body;
-    //console.log(updateContent);
+    
     SystemModel.updateSystem(systemId, updateContent, function (err, system) {
         if(!err) {
             res.json({

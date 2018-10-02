@@ -3,14 +3,22 @@ const validate = require('../library/validate');
 
 exports.getAllRoles = function (req, res) {
     RoleModel.getAllRoles(function (err, roles) {
-        res.json(roles);
+        if (!err) {
+            res.json(role);
+        } else {
+            res.status(500).json({ message: 'Can not find role' });
+        }
     });
 };
 
 exports.getRole = function (req, res) {
     let roleId = req.params.roleId;
     RoleModel.getRole(roleId, function (err, role) {
-        res.json(role);
+        if (!err) {
+            res.json(role);
+        } else {
+            res.status(500).json({ message: 'Can not find role' });
+        }
     });
 };
 
@@ -46,25 +54,34 @@ exports.deleteRole = function (req, res) {
         if(!err) {
             res.json({ message: 'Delete success' });
         } else {
-            res.status(500).json({ message: 'User not exist, delete failed' });
+            res.status(500).json({ message: 'Role not exist, delete failed' });
         }
     });
 };
 
 exports.addRole = function(req, res) {
-    let roleName = req.body.name;
-    let roleDescription = req.body.description;
+    if (validate.has(req.body, 'name') &&
+        validate.has(req.body, 'description')
+    ) {
+        let roleName = req.body.name;
+        let roleDescription = req.body.description;
 
-    role = {
-        name: roleName,
-        description: roleDescription
-    };
-
-    RoleModel.addRole(role, function(err, role) {
-        if (err) {
-            res.status(500).json({ message: 'Add role failed.' })
-        } else {
-            res.json(role);
-        }  
-    });
-}
+        role = {
+            name: roleName,
+            description: roleDescription
+        };
+        
+        RoleModel.addRole(role, function (err, role) {
+            if (err) {
+                res.status(500).json({ message: 'Add role failed.' })
+            } else {
+                res.json(role);
+            }
+        });
+    } else {
+        res.status(400)
+            .json({
+                message: "Please create role with valid name and description"
+            });
+    }
+};
