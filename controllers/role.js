@@ -1,4 +1,5 @@
 const RoleModel = require('../models/role');
+const validate = require('../library/validate'); 
 
 exports.getAllRoles = function (req, res) {
     RoleModel.getAllRoles(function (err, roles) {
@@ -17,16 +18,25 @@ exports.updateRole = function (req, res) {
     let roleId = req.params.roleId;
     let updateContent = req.body;
 
-    RoleModel.updateRole(roleId, updateContent, function (err, role) {
-        if(!err) {
-            res.json({
-                message: 'update success',
-                role: role
+    if (validate.has(updateContent, 'name') ||
+        validate.has(updateContent, 'description')
+    ) {
+        RoleModel.updateRole(roleId, updateContent, function (err, role) {
+            if (!err) {
+                res.json({
+                    message: 'update success',
+                    role: role
+                });
+            } else {
+                res.json({ message: 'update failed' });
+            }
+        });
+    } else {
+        res.status(400)
+            .json({
+                message: "PLease update with valid body"
             });
-        } else {
-            res.json({ message: 'update failed' });
-        }
-    });
+    }
 };
 
 exports.deleteRole = function (req, res) {
