@@ -8,6 +8,7 @@ import { API } from '../../constants/constants';
 export const booksMiddleware = () => next => action => {
     //next(action);
     switch(action.type) {
+
         case FETCH_BOOKS:
             next(apiRequest({ 
                 body: null, 
@@ -20,6 +21,7 @@ export const booksMiddleware = () => next => action => {
                 entity: BOOKS 
             }));
         break;
+
         case `${BOOKS} ${API_SUCCESS}`:
             next(setBooks(action.payload));
             next(setLoader({ 
@@ -27,6 +29,7 @@ export const booksMiddleware = () => next => action => {
                 entity: BOOKS 
             }));
             break;
+
         case `${BOOKS} ${API_ERROR}`:
             next(setNotification({
                 message: action.payload.message,
@@ -37,6 +40,7 @@ export const booksMiddleware = () => next => action => {
                 entity: BOOKS 
             }));
             break;
+
         default:
             next(action);
     }
