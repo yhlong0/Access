@@ -18,13 +18,15 @@ export const dialogMiddleware = () => next => action => {
             next(apiRequesst({
                 body: null,
                 method: 'GET',
-                url: API.BOOKS,
+                url: `${API.USERS}/${action.userId}`,
                 entity: DIALOG
             }));
             break;
     
         case `${DIALOG} ${API_SUCCESS}`:
-            next(setBooks(action.payload));
+            let roleList = action.payload.data.roles.map(item => item._id);
+            let result = roles.filter(item => !roleList.includes(item._id));
+            next(setRenderList(result));
             next(setLoader({ 
                 state: false, 
                 entity: DIALOG 
