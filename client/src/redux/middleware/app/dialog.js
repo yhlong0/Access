@@ -8,13 +8,13 @@ export const dialogMiddleware = () => next => action => {
     switch (action.type) {
         case DIALOG_OPEN:
             next(switchModalView(DIALOG));
-            next(apiRequesst({
-                body: null,
-                method: 'GET',
-                url: API.BOOKS,
-                entity: DIALOG
-            }));
-            break;
+            // next(apiRequesst({
+            //     body: null,
+            //     method: 'GET',
+            //     url: API.BOOKS,
+            //     entity: DIALOG
+            // }));
+            // break;
     
         default:
             next(action);

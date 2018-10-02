@@ -9,7 +9,7 @@ const initState = {
     loading: false,
     selected: [],
     newUserView: false,
-    ModalView: false
+    modalView: false
 };
 
 export default function uiReducer (ui = initState, action) {
@@ -37,7 +37,7 @@ export default function uiReducer (ui = initState, action) {
         case action.type.includes(SWITCH_MODAL_VIEW):
             return {
                 ...ui,
-                ModalView: !ui.ModalView
+                modalView: !ui.modalView
             }
         
         default:

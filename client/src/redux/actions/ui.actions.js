@@ -18,7 +18,7 @@ export const selectItem = (selected, entity) => {
 
 export const switchNewUserView = () => {
     return {
-        type: 'SWITCH_NEW_USER_VIEW'
+        type: SWITCH_NEW_USER_VIEW
     }
 }
 
