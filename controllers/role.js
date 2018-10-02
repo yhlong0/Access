@@ -28,7 +28,7 @@ exports.updateRole = function (req, res) {
                     role: role
                 });
             } else {
-                res.json({ message: 'update failed' });
+                res.status(500).json({ message: 'update failed' });
             }
         });
     } else {
@@ -44,7 +44,7 @@ exports.deleteRole = function (req, res) {
 
     RoleModel.deleteRole(roleId, function (err) {
         if(!err) {
-            res.json({message: 'delete success'});
+            res.json({ message: 'delete success' });
         } else {
             res.json({ message: 'delete failed' });
         }
@@ -62,7 +62,7 @@ exports.addRole = function(req, res) {
 
     RoleModel.addRole(role, function(err, role) {
         if (err) {
-            console.log(err);
+            res.status(500).json({ message: 'Add role failed.' })
         } else {
             res.json(role);
         }  
