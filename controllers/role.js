@@ -24,17 +24,17 @@ exports.updateRole = function (req, res) {
         RoleModel.updateRole(roleId, updateContent, function (err, role) {
             if (!err) {
                 res.json({
-                    message: 'update success',
+                    message: 'Update success',
                     role: role
                 });
             } else {
-                res.status(500).json({ message: 'update failed' });
+                res.status(500).json({ message: 'Update failed' });
             }
         });
     } else {
         res.status(400)
             .json({
-                message: "PLease update with valid body"
+                message: "Please update with valid body"
             });
     }
 };
@@ -44,9 +44,9 @@ exports.deleteRole = function (req, res) {
 
     RoleModel.deleteRole(roleId, function (err) {
         if(!err) {
-            res.json({ message: 'delete success' });
+            res.json({ message: 'Delete success' });
         } else {
-            res.json({ message: 'delete failed' });
+            res.status(500).json({ message: 'User not exist, delete failed' });
         }
     });
 };
