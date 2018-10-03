@@ -55,7 +55,10 @@ exports.deleteSystem = function (req, res) {
         if(!err) {
             res.json({message: 'Delete success'});
         } else {
-            res.json({ message: 'System does not exist, delete failed' });
+            res.status(400)
+               .json({ 
+                   message: 'System does not exist, delete failed' 
+                });
         }
     });
 };

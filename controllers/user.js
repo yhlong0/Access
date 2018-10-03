@@ -1,15 +1,25 @@
 const UserModel = require('../models/user');
+const validate = require('../library/validate'); 
 
 exports.getAllUsers = function(req, res) {
     UserModel.getAllUsers(function(err, users) {
-        res.json(users);
+        if (!err) {
+            res.json(users);
+        } else {
+            res.status(500).json({ message: 'Can not find user' });
+        }
     });  
 };
 
 exports.getUser = function (req, res) {
     let userId = req.params.userId;
+
     UserModel.getUser(userId, function (err, user) {
-        res.json(user);
+        if (!err) {
+            res.json(user);
+        } else {
+            res.status(500).json({ message: 'Can not find user' });
+        }
     });
 };
 
@@ -18,41 +28,54 @@ exports.deleteUser = function (req, res) {
 
     UserModel.deleteUser(userId, function (err) {
         if(!err) {
-            res.json({message: 'delete success'});
+            res.json({ message: 'Delete success' });
         } else {
-            res.json({ message: 'delete failed' });
+            res.status(400)
+               .json({ 
+                   message: 'User does not exist, delete failed' 
+                });
         }
     });
 };
 
 exports.addUser = function (req, res) {
-    let lastname = req.body.lastname;
-    let firstname = req.body.firstname;
+    if (validate.has(req.body, 'lastname') &&
+        validate.has(req.body, 'firstname')
+    ) {
 
-    if(req.body.joinDate) {
-        joinDate = req.body.joinDate;
-    } else {
-        joinDate = Date.now();
-    }
-    
-    user = {
-        lastname: lastname,
-        firstname: firstname,
-        joinDate: joinDate,
-        status: true,
-        sysAccess: [
-        ],
-        roles: [
-        ]
-    };
+        let lastname = req.body.lastname;
+        let firstname = req.body.firstname;
 
-    UserModel.addUser(user, function (err, user) {
-        if(err) {
-            console.log(err);
+        if(req.body.joinDate) {
+            joinDate = req.body.joinDate;
         } else {
-            res.json(user);
-        }       
-    });
+            joinDate = Date.now();
+        }
+        
+        user = {
+            lastname: lastname,
+            firstname: firstname,
+            joinDate: joinDate,
+            status: true,
+            sysAccess: [
+            ],
+            roles: [
+            ]
+        };
+
+        UserModel.addUser(user, function (err, user) {
+            if(err) {
+                console.log(err);
+            } else {
+                res.json(user);
+            }       
+        });
+    } else {
+        res.status(400)
+        .json({
+            message: "Please create user with valid last name and first name."
+        });
+    }
 };
 
 exports.showUserAccess = function (req, res) {
