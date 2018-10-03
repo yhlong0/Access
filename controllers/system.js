@@ -57,7 +57,7 @@ exports.deleteSystem = function (req, res) {
         } else {
             res.status(400)
                .json({ 
-                   message: 'System does not exist, delete failed' 
+                   message: 'System does not exist, delete failed.' 
                 });
         }
     });
@@ -77,16 +77,19 @@ exports.addSystem = function (req, res) {
 
         SystemModel.addSystem(system, function (err, system) {
             if (err) {
-                console.log(err);
+                res.status(500)
+                   .json({ 
+                       message: 'Can not add system. Error: ' + err
+                    });
             } else {
                 res.json(system);
             }  
         });
     } else {
         res.status(400)
-        .json({
-            message: "Please create system with valid name and description"
-        });
+            .json({
+                message: "Please create system with valid name and description."
+            });
     }
 };
 

@@ -6,7 +6,7 @@ exports.getAllUsers = function(req, res) {
         if (!err) {
             res.json(users);
         } else {
-            res.status(500).json({ message: 'Can not find user' });
+            res.status(500).json({ message: 'Can not find user.' });
         }
     });  
 };
@@ -18,7 +18,7 @@ exports.getUser = function (req, res) {
         if (!err) {
             res.json(user);
         } else {
-            res.status(500).json({ message: 'Can not find user' });
+            res.status(500).json({ message: 'Can not find user.' });
         }
     });
 };
@@ -32,7 +32,7 @@ exports.deleteUser = function (req, res) {
         } else {
             res.status(400)
                .json({ 
-                   message: 'User does not exist, delete failed' 
+                   message: 'User does not exist, delete failed.' 
                 });
         }
     });

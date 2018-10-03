@@ -55,7 +55,10 @@ exports.deleteRole = function (req, res) {
         if(!err) {
             res.json({ message: 'Delete success' });
         } else {
-            res.status(500).json({ message: 'Role does not exist, delete failed' });
+            res.status(400)
+               .json({ 
+                   message: 'Role does not exist, delete failed.' 
+                });
         }
     });
 };
@@ -74,7 +77,10 @@ exports.addRole = function(req, res) {
         
         RoleModel.addRole(role, function (err, role) {
             if (err) {
-                res.status(500).json({ message: 'Add role failed.' })
+                res.status(500)
+                   .json({ 
+                       message: 'Can not add role. Error: ' + err 
+                    });
             } else {
                 res.json(role);
             }
