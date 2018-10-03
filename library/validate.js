@@ -47,16 +47,8 @@ exports.has = function(object, key) {
  * // => false
  */
 
-exports.isEmpty = function(value) {
-    if(isPrototype(value)) {
-        return !Object.keys(value).length
-    }
-    for (const key in value) {
-        if (hasOwnProperty.call(value, key)) {
-          return false
-        }
-    }
-    return true;
+exports.isEmpty = function (obj) {
+    return Object.keys(obj).length === 0 && obj.constructor === Object;
 } 
 
 

@@ -147,16 +147,23 @@ exports.updateUser = function(req, res) {
     let userId = req.params.userId;
     let updateContent = req.body;
 
-    UserModel.updateUser(userId, updateContent, function(err, user) {
-        if(!err) {
-            res.json({
-                message: 'Update success',
-                user: user
+    if (validate.isEmpty(req.body)) {
+        res.status(400)
+            .json({
+                message: "Please update user with valid info."
             });
-        } else {
-            res.json({ message: 'Update failed. Error: ' + err });
-        }
-    });
+    } else {
+        UserModel.updateUser(userId, updateContent, function (err, user) {
+            if (!err) {
+                res.json({
+                    message: 'Update success',
+                    user: user
+                });
+            } else {
+                res.json({ message: 'Update failed. Error: ' + err });
+            }
+        });
+    }
 };
 
 
