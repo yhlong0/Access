@@ -9,12 +9,20 @@ exports.addUserAccess = function (req, res) {
 
     SystemModel.getSystem(systemId, function(err, system) {
         if(err) {
-            console.log(err);
+            res.status(500).json({ message: 'Can not find system.' });
         } else {
             let systemAccess = system.toObject();
             systemAccess.accessDate = Date.now();
+
             UserModel.addUserAccess(userId, systemAccess, function (err, user) {
-                res.json(user);
+                if (err) {
+                    res.status(500)
+                       .json({ 
+                            message: 'Can not add access. Error: ' + err
+                        });
+                } else {
+                    res.json(user);
+                } 
             });
         }
     });
@@ -27,13 +35,20 @@ exports.addUserRole = function (req, res) {
     
     RoleModel.getRole(roleId, function(err, role) {
         if(err) {
-            console.log(err);
+            res.status(500).json({ message: 'Can not find role.' });
         } else {
             let roleAccess = role.toObject();
             roleAccess.accessDate = Date.now();
-            console.log(roleAccess);
+
             UserModel.addUserRole(userId, roleAccess, function (err, user) {
-                res.json(user);
+                if (err) {
+                    res.status(500)
+                       .json({ 
+                            message: 'Can not add role. Error: ' + err
+                        });
+                } else {
+                    res.json(user);
+                } 
             });
         }
     });
