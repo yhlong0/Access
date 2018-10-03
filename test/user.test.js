@@ -117,14 +117,14 @@ describe('Clean Users', () => {
                         })
                         .end((err, res) => {
                             res.should.have.status(200);
-                            res.body.should.be.a('object');
-                            res.body.should.have.property('lastname').eql('update_lastname');
-                            res.body.should.have.property('firstname').eql('update_firstname');
-                            res.body.should.have.property('joinDate');
-                            res.body.should.have.property('status').eql(false);
-                            res.body.should.have.property('sysAccess').which.is.a('array');
-                            res.body.should.have.property('roles').which.is.a('array');
-                            res.body.should.have.property('_id').eql(user.id);
+                            res.body.user.should.be.a('object');
+                            res.body.user.should.have.property('lastname').eql('update_lastname');
+                            res.body.user.should.have.property('firstname').eql('update_firstname');
+                            res.body.user.should.have.property('joinDate');
+                            res.body.user.should.have.property('status').eql(false);
+                            res.body.user.should.have.property('sysAccess').which.is.a('array');
+                            res.body.user.should.have.property('roles').which.is.a('array');
+                            res.body.user.should.have.property('_id').eql(user.id);
                             done();
                         });
                 });

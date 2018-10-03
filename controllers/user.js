@@ -65,7 +65,10 @@ exports.addUser = function (req, res) {
 
         UserModel.addUser(user, function (err, user) {
             if(err) {
-                console.log(err);
+                res.status(500)
+                    .json({ 
+                        message: 'Can not add user. Error: ' + err
+                    });
             } else {
                 res.json(user);
             }       
@@ -82,7 +85,10 @@ exports.showUserAccess = function (req, res) {
     let userId = req.params.userId;
     UserModel.getUser(userId, function (err, user) {
         if(err) {
-            console.log(err);
+            res.status(400)
+                .json({ 
+                    message: 'Can not find user access. Error: ' + err
+                });
         } else {
             res.json(user.sysAccess);
         }  
@@ -93,7 +99,10 @@ exports.showUserRoles = function (req, res) {
     let userId = req.params.userId;
     UserModel.getUser(userId, function (err, user) {
         if(err) {
-            console.log(err);
+            res.status(400)
+            .json({ 
+                message: 'Can not find user role. Error: ' + err
+            });
         } else {
             res.json(user.roles);
         } 
@@ -131,7 +140,14 @@ exports.updateUser = function(req, res) {
     let updateContent = req.body;
 
     UserModel.updateUser(userId, updateContent, function(err, user) {
-        res.json(user);
+        if(!err) {
+            res.json({
+                message: 'Update success',
+                user: user
+            });
+        } else {
+            res.json({ message: 'Update failed. Error: ' + err });
+        }
     });
 };
 
