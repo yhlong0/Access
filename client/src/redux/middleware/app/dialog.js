@@ -20,7 +20,10 @@ export const dialogMiddleware = () => next => action => {
                 entity: DIALOG 
             }));
             next(apiRequest({
-                body: null,
+                body: { 
+                    systems: action.systems, 
+                    roles: action.roles
+                },
                 method: 'GET',
                 url: `${API.USERS}/${action.userId}`,
                 entity: DIALOG
@@ -32,9 +35,9 @@ export const dialogMiddleware = () => next => action => {
             break;
     
         case `${DIALOG} ${API_SUCCESS}`:
-            let roleList = action.payload.data.roles.map(item => item._id);
-            let result = action.payload.data.roles.filter(item => !roleList.includes(item._id));
-            next(setRenderList(result));
+            let roleList = action.payload.roles.map(item => item._id);
+            let result = action.payload.roles.filter(item => !roleList.includes(item._id));
+            next(setRenderList(action.payload.roles));
             next(setLoader({ 
                 state: false, 
                 entity: DIALOG 

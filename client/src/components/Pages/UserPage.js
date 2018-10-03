@@ -169,7 +169,7 @@ function mapStateToProps(state, ownProps) {
         roles: state.rolesReducer.roles,
         accessData: {}, //state.user.accessData,
         search: '', //state.user.search,
-        renderList: [], //state.user.renderList,
+        renderList: state.dialogReducer.renderList,
         newUserView: state.uiReducer.newUserView,
         showAllUsers: true, //state.user.showAllUsers,
     };
