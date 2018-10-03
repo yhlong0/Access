@@ -20,6 +20,9 @@ import {
     removeRole,
     removeAccess,
 } from '../../redux/actions/users.actions';
+import {
+    openDialog,
+} from '../../redux/actions/dialog.action';
 import * as userActions from '../../actions/userActions';
 
 const styles = theme => ({
@@ -70,7 +73,7 @@ class UserPage extends React.Component {
     }
 
     openDialog = (userId, dialog) => {
-        this.props.dispatch(userActions.openDialog(userId, dialog, this.props.systems, this.props.roles));
+        this.props.dispatch(openDialog(userId, dialog, this.props.systems, this.props.roles));
     }
 
     clickedAccess = (accessId) => {
@@ -160,7 +163,7 @@ function mapStateToProps(state, ownProps) {
     return {
         users: state.usersReducer.users,
         loading: state.uiReducer.loading,
-        dialogOpenStatus: false,
+        dialogOpenStatus: state.uiReducer.modalView,
         systems: state.systemsReducer.systems,
         roles: state.rolesReducer.roles,
         accessData: {}, //state.user.accessData,

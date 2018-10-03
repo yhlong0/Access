@@ -9,6 +9,7 @@ import { systemsMiddleware } from './middleware/app/systems';
 import { rolesMiddleware } from './middleware/app/roles';
 import { usersMiddleware } from './middleware/app/users';
 import { booksMiddleware } from './middleware/app/books';
+import { dialogMiddleware } from './middleware/app/dialog';
 
 
 const logger = createLogger({
@@ -21,6 +22,7 @@ const featureMiddleware = [
     booksMiddleware,
     rolesMiddleware,
     systemsMiddleware,
+    dialogMiddleware
 ];
 
 const coreMiddleware = [
