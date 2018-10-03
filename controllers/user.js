@@ -83,6 +83,7 @@ exports.addUser = function (req, res) {
 
 exports.showUserAccess = function (req, res) {
     let userId = req.params.userId;
+
     UserModel.getUser(userId, function (err, user) {
         if(err) {
             res.status(400)
@@ -97,6 +98,7 @@ exports.showUserAccess = function (req, res) {
 
 exports.showUserRoles = function (req, res) {
     let userId = req.params.userId;
+
     UserModel.getUser(userId, function (err, user) {
         if(err) {
             res.status(400)
@@ -115,9 +117,12 @@ exports.deleteUserAccess = function(req, res) {
 
     UserModel.deleteUserAccess(userId, accessId, function(err) {
         if (!err) {
-            res.json({ message: 'delete success' });
+            res.json({ message: 'Delete success' });
         } else {
-            res.json({ message: 'delete failed' });
+            res.status(400)
+                .json({
+                    message: "Access does not exist, delete failed."
+                });
         }
     });
 };
@@ -128,9 +133,12 @@ exports.deleteUserRole = function (req, res) {
 
     UserModel.deleteUserRole(userId, roleId, function (err) {
         if (!err) {
-            res.json({ message: 'delete success' });
+            res.json({ message: 'Delete success' });
         } else {
-            res.json({ message: 'delete failed' });
+            res.status(400)
+                .json({
+                    message: "Role does not exist, delete failed."
+                });
         }
     });
 };
