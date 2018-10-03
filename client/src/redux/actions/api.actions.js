@@ -5,13 +5,13 @@ export const API_ERROR = 'API_ERROR';
 export const apiRequest = ({ body, method, url, entity }) => ({
     type: `${entity} ${API_REQUEST}`,
     payload: body,
-    meta: { method, url, entity }
+    meta: { method, url, entity, body }
 });
 
-export const apiSuccess = (response, {entity, method}) => ({
+export const apiSuccess = (response, {entity, method, body}) => ({
     type: `${entity} ${API_SUCCESS}`,
     payload: response,
-    meta: {entity, method}
+    meta: {entity, method, body}
 });
 
 export const apiError = ({ error, entity }) => ({

@@ -5,7 +5,7 @@ export const apiMiddleware = ({dispatch}) => next => action => {
     next(action);
     if(action.type.includes(API_REQUEST)) {
 
-        const { url, method, entity } = action.meta;
+        const { url, method, entity, body } = action.meta;
 
         axios({ 
             method: method, 
@@ -15,7 +15,7 @@ export const apiMiddleware = ({dispatch}) => next => action => {
             .then(res => res.data)
             .then(data => {
                 console.log(data);
-                dispatch(apiSuccess(data, { entity, method }))
+                dispatch(apiSuccess(data, { entity, method, body }))
             })
             .catch(error => dispatch(apiError({ error, entity })))
     }

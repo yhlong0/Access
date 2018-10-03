@@ -35,9 +35,10 @@ export const dialogMiddleware = () => next => action => {
             break;
     
         case `${DIALOG} ${API_SUCCESS}`:
+            console.log(action.meta.body.roles);
             let roleList = action.payload.roles.map(item => item._id);
-            let result = action.payload.roles.filter(item => !roleList.includes(item._id));
-            next(setRenderList(action.payload.roles));
+            let result = action.meta.body.roles.filter(item => !roleList.includes(item._id));
+            next(setRenderList(result));
             next(setLoader({ 
                 state: false, 
                 entity: DIALOG 
