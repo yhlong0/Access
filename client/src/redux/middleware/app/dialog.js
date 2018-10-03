@@ -4,7 +4,7 @@ import { switchModalView, setLoader } from '../../actions/ui.actions';
 import {
     DIALOG,
     DIALOG_OPEN,
-    closeDialog,
+    DIALOG_CLOSE,
     setRenderList
 } from '../../actions/dialog.action';
 
@@ -25,6 +25,10 @@ export const dialogMiddleware = () => next => action => {
                 url: `${API.USERS}/${action.userId}`,
                 entity: DIALOG
             }));
+            break;
+
+        case DIALOG_CLOSE:
+            next(switchModalView(DIALOG));
             break;
     
         case `${DIALOG} ${API_SUCCESS}`:

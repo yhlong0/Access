@@ -22,6 +22,7 @@ import {
 } from '../../redux/actions/users.actions';
 import {
     openDialog,
+    closeDialog
 } from '../../redux/actions/dialog.action';
 import * as userActions from '../../actions/userActions';
 
@@ -97,7 +98,7 @@ class UserPage extends React.Component {
     }
 
     closeDialog = () => {
-        this.props.dispatch(userActions.closeDialog());
+        this.props.dispatch(closeDialog());
     }
 
     updateSearch = (search) => {
