@@ -26,4 +26,38 @@ exports.has = function(object, key) {
 };
 
 
+/**
+ * Checks if `value` is an empty object, collection, map, or set.
+ *
+ * Objects are considered empty if they have no own enumerable string keyed
+ * properties.
+ *
+ * Array-like values such as `arguments` objects, arrays, buffers, strings, or
+ * jQuery-like collections are considered empty if they have a `length` of `0`.
+ * Similarly, maps and sets are considered empty if they have a `size` of `0`.
+ *
+ * @since 0.1.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is empty, else `false`.
+ * @example
+ *
+ *
+ * isEmpty({ 'a': 1 })
+ * // => false
+ */
+
+exports.isEmpty = function(value) {
+    if(isPrototype(value)) {
+        return !Object.keys(value).length
+    }
+    for (const key in value) {
+        if (hasOwnProperty.call(value, key)) {
+          return false
+        }
+    }
+    return true;
+} 
+
+
 
