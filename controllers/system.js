@@ -3,7 +3,11 @@ const validate = require('../library/validate');
 
 exports.getAllSystems = function (req, res) {
     SystemModel.getAllSystems(function (err, systems) {
-        res.json(systems);
+        if (!err) {
+            res.json(systems);
+        } else {
+            res.status(500).json({ message: 'Can not find system' });
+        }
     });
 };
 
@@ -11,7 +15,11 @@ exports.getSystem = function (req, res) {
     let systemId = req.params.systemId;
 
     SystemModel.getSystem(systemId, function (err, system) {
-        res.json(system);
+        if (!err) {
+            res.json(system);
+        } else {
+            res.status(500).json({ message: 'Can not find system' });
+        }
     });
 };
 
@@ -19,16 +27,25 @@ exports.updateSystem = function (req, res) {
     let systemId = req.params.systemId;
     let updateContent = req.body;
     
-    SystemModel.updateSystem(systemId, updateContent, function (err, system) {
-        if(!err) {
-            res.json({
-                message: 'update success',
-                system: system
-            });
-        } else {
-            res.json({ message: 'update failed' });
-        }
-    });
+    if (validate.has(updateContent, 'name') ||
+        validate.has(updateContent, 'description')
+    ) {
+        SystemModel.updateSystem(systemId, updateContent, function (err, system) {
+            if(!err) {
+                res.json({
+                    message: 'Update success',
+                    system: system
+                });
+            } else {
+                res.json({ message: 'Update failed. Error: ' + err });
+            }
+        });
+    } else {
+        res.status(400)
+        .json({
+            message: "Please update system with valid name or description."
+        });
+    }
 };
 
 exports.deleteSystem = function (req, res) {
@@ -36,28 +53,37 @@ exports.deleteSystem = function (req, res) {
 
     SystemModel.deleteSystem(systemId, function (err) {
         if(!err) {
-            res.json({message: 'delete success'});
+            res.json({message: 'Delete success'});
         } else {
-            res.json({ message: 'delete failed' });
+            res.json({ message: 'System does not exist, delete failed' });
         }
     });
 };
 
 exports.addSystem = function (req, res) {
-    let systemName = req.body.name;
-    let systemDescription = req.body.description;
+    if (validate.has(req.body, 'name') &&
+        validate.has(req.body, 'description')
+    ) {
+        let systemName = req.body.name;
+        let systemDescription = req.body.description;
 
-    system = {
-        name: systemName,
-        description: systemDescription
-    };
+        system = {
+            name: systemName,
+            description: systemDescription
+        };
 
-    SystemModel.addSystem(system, function (err, system) {
-        if (err) {
-            console.log(err);
-        } else {
-            res.json(system);
-        }  
-    });
+        SystemModel.addSystem(system, function (err, system) {
+            if (err) {
+                console.log(err);
+            } else {
+                res.json(system);
+            }  
+        });
+    } else {
+        res.status(400)
+        .json({
+            message: "Please create system with valid name and description"
+        });
+    }
 };
 

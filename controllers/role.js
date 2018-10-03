@@ -13,6 +13,7 @@ exports.getAllRoles = function (req, res) {
 
 exports.getRole = function (req, res) {
     let roleId = req.params.roleId;
+
     RoleModel.getRole(roleId, function (err, role) {
         if (!err) {
             res.json(role);
@@ -36,13 +37,13 @@ exports.updateRole = function (req, res) {
                     role: role
                 });
             } else {
-                res.status(500).json({ message: 'Update failed' });
+                res.status(500).json({ message: 'Update failed. Error: ' + err });
             }
         });
     } else {
         res.status(400)
             .json({
-                message: "Please update with valid body"
+                message: "Please update role with valid name or description"
             });
     }
 };
@@ -54,7 +55,7 @@ exports.deleteRole = function (req, res) {
         if(!err) {
             res.json({ message: 'Delete success' });
         } else {
-            res.status(500).json({ message: 'Role not exist, delete failed' });
+            res.status(500).json({ message: 'Role does not exist, delete failed' });
         }
     });
 };
