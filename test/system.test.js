@@ -108,7 +108,7 @@ describe('Clean Systems', () => {
                         .end((err, res) => {
                             res.should.have.status(200);
                             res.body.should.be.a('object');
-                            res.body.should.have.property('message').eql('update success');
+                            res.body.should.have.property('message').eql('Update success');
                             res.body.should.to.have.nested.property('system.name').eql('updatesystem');
                             res.body.should.to.have.nested.property('system.description').eql('updatedescription');
                             done();                            
@@ -132,7 +132,7 @@ describe('Clean Systems', () => {
                     .end((err, res) => {
                         res.should.have.status(200);
                         res.body.should.be.a('object');
-                        res.body.should.have.property('message').eql('delete success');
+                        res.body.should.have.property('message').eql('Delete success');
                         done();
                     });
                 });

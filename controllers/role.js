@@ -4,7 +4,7 @@ const validate = require('../library/validate');
 exports.getAllRoles = function (req, res) {
     RoleModel.getAllRoles(function (err, roles) {
         if (!err) {
-            res.json(role);
+            res.json(roles);
         } else {
             res.status(500).json({ message: 'Can not find role' });
         }
