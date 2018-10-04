@@ -22,7 +22,8 @@ export const dialogMiddleware = () => next => action => {
             next(apiRequest({
                 body: { 
                     systems: action.systems, 
-                    roles: action.roles
+                    roles: action.roles,
+                    dialog: action.dialog
                 },
                 method: 'GET',
                 url: `${API.USERS}/${action.userId}`,
@@ -35,9 +36,18 @@ export const dialogMiddleware = () => next => action => {
             break;
     
         case `${DIALOG} ${API_SUCCESS}`:
-            console.log(action.meta.body.roles);
+            let body = action.meta.body;
             let roleList = action.payload.roles.map(item => item._id);
-            let result = action.meta.body.roles.filter(item => !roleList.includes(item._id));
+            let sysList = action.payload.sysAccess.map(item => item._id);
+            let result = [];
+
+            if(body.dialog === 'role') {
+                result = body.roles.filter(item => !roleList.includes(item._id));
+            } else {
+                result = body.systems.filter(item => !sysList.includes(item._id));
+                
+            }
+            
             next(setRenderList(result));
             next(setLoader({ 
                 state: false, 
