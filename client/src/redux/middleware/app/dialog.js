@@ -1,10 +1,12 @@
 import { apiRequest, API_SUCCESS, API_ERROR } from '../../actions/api.actions';
 import { setNotification } from '../../actions/notification.actions';
 import { switchModalView, setLoader } from '../../actions/ui.actions';
+import { USERS } from '../../actions/users.actions';
 import {
     DIALOG,
     DIALOG_OPEN,
     DIALOG_CLOSE,
+    DIALOG_ADD_ITEM,
     setRenderList,
     setUserId,
     setDialog,
@@ -33,6 +35,26 @@ export const dialogMiddleware = () => next => action => {
                 method: 'GET',
                 url: `${API.USERS}/${action.userId}`,
                 entity: DIALOG
+            }));
+            break;
+
+        case DIALOG_ADD_ITEM:
+            let payload = action.payload
+            next(apiRequest({
+                body: {
+                    id: payload.checkedItem,
+                },
+                method: 'POST',
+                url: `${API.USERS}/${payload.userId}/${payload.dialog}`,
+                entity: DIALOG
+            }));
+            next(switchModalView(DIALOG));
+            next(closeDialog());
+            next(apiRequest({
+                body: null,
+                method: 'GET',
+                url: API.USERS,
+                entity: USERS
             }));
             break;
 

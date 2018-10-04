@@ -46,7 +46,7 @@ export const setDialog = (dialog) => ({
     payload: dialog
 });
 
-export const addItem = (itemId, userId, dialog) => ({
+export const addItem = (dialogData) => ({
     type: DIALOG_ADD_ITEM,
-    payload: {itemId, userId}
+    payload: dialogData
 });

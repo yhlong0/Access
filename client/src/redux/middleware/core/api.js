@@ -14,7 +14,6 @@ export const apiMiddleware = ({dispatch}) => next => action => {
         })
             .then(res => res.data)
             .then(data => {
-                console.log(data);
                 dispatch(apiSuccess(data, { entity, method, body }))
             })
             .catch(error => dispatch(apiError({ error, entity })))
