@@ -7,6 +7,7 @@ import {
     DIALOG_CLOSE,
     setRenderList,
     setUserId,
+    setDialog,
     closeDialog
 } from '../../actions/dialog.action';
 
@@ -21,6 +22,7 @@ export const dialogMiddleware = () => next => action => {
                 state: true, 
                 entity: DIALOG 
             }));
+            next(setDialog(action.dialog));
             next(apiRequest({
                 body: { 
                     systems: action.systems, 

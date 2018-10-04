@@ -1,4 +1,5 @@
 import { 
+    DIALOG_SET,
     DIALOG_SET_LIST, 
     DIALOG_CLOSE,
     DIALOG_SEARCH,
@@ -10,7 +11,8 @@ const initState = {
     renderList: [],
     checkedItem: [],
     search: '',
-    userId: ''
+    userId: '',
+    dialog: ''
 }
 
 export default function dialogReducer(dialog = initState, action) {
@@ -23,13 +25,20 @@ export default function dialogReducer(dialog = initState, action) {
                 renderList: action.payload
             }
 
+        case DIALOG_SET:
+            return {
+                ...dialog,
+                dialog: action.payload
+            }
+
         case DIALOG_CLOSE: 
             return {
                 ...dialog,
                 renderList: [],
                 checkedItem: [],
                 search: '',
-                userId: ''
+                userId: '',
+                dialog: ''
             }
 
         case DIALOG_SEARCH:
