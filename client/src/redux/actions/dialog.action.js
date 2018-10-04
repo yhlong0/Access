@@ -40,7 +40,7 @@ export const setUserId = (userId) => ({
     payload: userId
 });
 
-export const addItem = ({itemId, userId }) => ({
+export const addItem = ({ itemId, userId }) => ({
     type: DIALOG_ADD_ITEM,
     payload: {itemId, userId}
 });
