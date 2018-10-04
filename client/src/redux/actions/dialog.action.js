@@ -2,6 +2,7 @@ export const DIALOG = '[Dialog]';
 
 export const DIALOG_OPEN = `${DIALOG} OPEN`;
 export const DIALOG_CLOSE = `${DIALOG} CLOSE`;
+export const DIALOG_SET = `${DIALOG} SET`;
 export const DIALOG_SET_LIST = `${DIALOG} SET_LIST`;
 export const DIALOG_SEARCH = `${DIALOG} SEARCH`;
 export const DIALOG_CHECKED_ITEM = `${DIALOG} CHECKED_ITEM`;
@@ -40,7 +41,12 @@ export const setUserId = (userId) => ({
     payload: userId
 });
 
-export const addItem = ({ itemId, userId }) => ({
+export const setDialog = (dialog) => ({
+    type: DIALOG_SET,
+    payload: dialog
+});
+
+export const addItem = (itemId, userId, dialog) => ({
     type: DIALOG_ADD_ITEM,
     payload: {itemId, userId}
 });
