@@ -5,7 +5,8 @@ import {
     DIALOG,
     DIALOG_OPEN,
     DIALOG_CLOSE,
-    setRenderList
+    setRenderList,
+    closeDialog
 } from '../../actions/dialog.action';
 
 import { API } from '../../constants/constants';
@@ -33,6 +34,7 @@ export const dialogMiddleware = () => next => action => {
 
         case DIALOG_CLOSE:
             next(switchModalView(DIALOG));
+            next(closeDialog());
             break;
     
         case `${DIALOG} ${API_SUCCESS}`:
@@ -44,8 +46,7 @@ export const dialogMiddleware = () => next => action => {
             if(body.dialog === 'role') {
                 result = body.roles.filter(item => !roleList.includes(item._id));
             } else {
-                result = body.systems.filter(item => !sysList.includes(item._id));
-                
+                result = body.systems.filter(item => !sysList.includes(item._id)); 
             }
             
             next(setRenderList(result));

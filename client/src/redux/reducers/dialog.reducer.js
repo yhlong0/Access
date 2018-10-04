@@ -1,4 +1,4 @@
-import { DIALOG_SET_LIST } from '../actions/dialog.action';
+import { DIALOG_SET_LIST, DIALOG_CLOSE } from '../actions/dialog.action';
 
 const initState = {
     renderList: []
@@ -13,7 +13,13 @@ export default function dialogReducer(dialog = initState, action) {
                 ...dialog,
                 renderList: action.payload
             }
-            
+
+        case DIALOG_CLOSE: 
+            return {
+                ...dialog,
+                renderList: []
+            }
+        
         default:
             return dialog;
     }

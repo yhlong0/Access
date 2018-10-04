@@ -20,3 +20,5 @@ export const setRenderList = (result) => ({
 export const closeDialog = () => ({
     type: DIALOG_CLOSE
 });
+
+
