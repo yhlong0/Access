@@ -6,6 +6,7 @@ import {
     DIALOG_OPEN,
     DIALOG_CLOSE,
     setRenderList,
+    setUserId,
     closeDialog
 } from '../../actions/dialog.action';
 
@@ -24,7 +25,8 @@ export const dialogMiddleware = () => next => action => {
                 body: { 
                     systems: action.systems, 
                     roles: action.roles,
-                    dialog: action.dialog
+                    dialog: action.dialog,
+                    userId: action.userId
                 },
                 method: 'GET',
                 url: `${API.USERS}/${action.userId}`,
@@ -54,6 +56,7 @@ export const dialogMiddleware = () => next => action => {
                 state: false, 
                 entity: DIALOG 
             }));
+            next(setUserId(body.userId));
             break;
 
         case `${DIALOG} ${API_ERROR}`:

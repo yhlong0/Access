@@ -4,7 +4,9 @@ export const DIALOG_OPEN = `${DIALOG} OPEN`;
 export const DIALOG_CLOSE = `${DIALOG} CLOSE`;
 export const DIALOG_SET_LIST = `${DIALOG} SET_LIST`;
 export const DIALOG_SEARCH = `${DIALOG} SEARCH`;
-export const DIALOG_CHECKED_ITEM = `${DIALOG} CHECKED_ITEM`
+export const DIALOG_CHECKED_ITEM = `${DIALOG} CHECKED_ITEM`;
+export const DIALOG_SAVE_USERID = `${DIALOG} SAVE_USERID`;
+export const DIALOG_ADD_ITEM = `${DIALOG} ADD_ITEM`;
 
 export const openDialog = (userId, dialog, systems, roles) => ({
     type: DIALOG_OPEN,
@@ -31,4 +33,14 @@ export const updateSearch = (search) => ({
 export const checkedItem = (itemId) => ({
     type: DIALOG_CHECKED_ITEM,
     payload: itemId
+});
+
+export const setUserId = (userId) => ({
+    type: DIALOG_SAVE_USERID,
+    payload: userId
+});
+
+export const addItem = ({itemId, userId }) => ({
+    type: DIALOG_ADD_ITEM,
+    payload: {itemId, userId}
 });
