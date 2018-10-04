@@ -26,7 +26,10 @@ export default function dialogReducer(dialog = initState, action) {
         case DIALOG_CLOSE: 
             return {
                 ...dialog,
-                renderList: []
+                renderList: [],
+                checkedItem: [],
+                search: '',
+                userId: ''
             }
 
         case DIALOG_SEARCH:
