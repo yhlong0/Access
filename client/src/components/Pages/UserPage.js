@@ -22,7 +22,8 @@ import {
 } from '../../redux/actions/users.actions';
 import {
     openDialog,
-    closeDialog
+    closeDialog,
+    updateSearch
 } from '../../redux/actions/dialog.action';
 import * as userActions from '../../actions/userActions';
 
@@ -102,7 +103,7 @@ class UserPage extends React.Component {
     }
 
     updateSearch = (search) => {
-        this.props.dispatch(userActions.updateSearch(search));
+        this.props.dispatch(updateSearch(search));
     }
 
     switchNewUserView = () => {
@@ -168,7 +169,7 @@ function mapStateToProps(state, ownProps) {
         systems: state.systemsReducer.systems,
         roles: state.rolesReducer.roles,
         accessData: {}, //state.user.accessData,
-        search: '', //state.user.search,
+        search: state.dialogReducer.search,
         renderList: state.dialogReducer.renderList,
         newUserView: state.uiReducer.newUserView,
         showAllUsers: true, //state.user.showAllUsers,

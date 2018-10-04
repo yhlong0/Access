@@ -2,7 +2,8 @@ export const DIALOG = '[Dialog]';
 
 export const DIALOG_OPEN = `${DIALOG} OPEN`;
 export const DIALOG_CLOSE = `${DIALOG} CLOSE`;
-export const DIALOG_SET_LIST = `${DIALOG} SET_LIST`
+export const DIALOG_SET_LIST = `${DIALOG} SET_LIST`;
+export const DIALOG_SEARCH = `${DIALOG} SEARCH`;
 
 export const openDialog = (userId, dialog, systems, roles) => ({
     type: DIALOG_OPEN,
@@ -21,4 +22,7 @@ export const closeDialog = () => ({
     type: DIALOG_CLOSE
 });
 
-
+export const updateSearch = (search) => ({
+    type: DIALOG_SEARCH,
+    payload: search
+});

@@ -1,7 +1,12 @@
-import { DIALOG_SET_LIST, DIALOG_CLOSE } from '../actions/dialog.action';
+import { 
+    DIALOG_SET_LIST, 
+    DIALOG_CLOSE,
+    DIALOG_SEARCH 
+} from '../actions/dialog.action';
 
 const initState = {
-    renderList: []
+    renderList: [],
+    search: ''
 }
 
 export default function dialogReducer(dialog = initState, action) {
@@ -19,7 +24,13 @@ export default function dialogReducer(dialog = initState, action) {
                 ...dialog,
                 renderList: []
             }
-        
+
+        case DIALOG_SEARCH:
+            return {
+                ...dialog,
+                search: action.payload
+            }
+
         default:
             return dialog;
     }
