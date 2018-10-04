@@ -23,7 +23,8 @@ import {
 import {
     openDialog,
     closeDialog,
-    updateSearch
+    updateSearch,
+    checkedItem
 } from '../../redux/actions/dialog.action';
 import * as userActions from '../../actions/userActions';
 
@@ -78,8 +79,8 @@ class UserPage extends React.Component {
         this.props.dispatch(openDialog(userId, dialog, this.props.systems, this.props.roles));
     }
 
-    clickedAccess = (accessId) => {
-        this.props.dispatch(userActions.clickedAccess(accessId));
+    checkedItem = (itemId) => {
+        this.props.dispatch(checkedItem(itemId));
     }
 
     addAccess = () => {
@@ -131,7 +132,7 @@ class UserPage extends React.Component {
                 <AddingDialog 
                     dialogOpenStatus={dialogOpenStatus}
                     closeDialog={this.closeDialog}
-                    checkedItem={this.clickedAccess}
+                    checkedItem={this.checkedItem}
                     listItems={renderList}
                     search={search}
                     addItem={this.addAccess}
@@ -168,7 +169,7 @@ function mapStateToProps(state, ownProps) {
         dialogOpenStatus: state.uiReducer.modalView,
         systems: state.systemsReducer.systems,
         roles: state.rolesReducer.roles,
-        accessData: {}, //state.user.accessData,
+        accessData: state.dialogReducer.checkedItem,
         search: state.dialogReducer.search,
         renderList: state.dialogReducer.renderList,
         newUserView: state.uiReducer.newUserView,
