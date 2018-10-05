@@ -71,7 +71,7 @@ const styles = theme => ({
 class UserPage extends React.Component {
 
     componentDidMount() {
-        this.props.dispatch(fetchUsers());
+        this.props.dispatch(fetchUsers(this.props.showAllUsers));
         this.props.dispatch(fetchSystems());
         this.props.dispatch(fetchRoles());
     }
@@ -116,9 +116,9 @@ class UserPage extends React.Component {
         this.props.dispatch(switchNewUserView());
     }
 
-    fetchUsers = () => {
-        this.props.dispatch(userActions.showAllUsers(this.props.showAllUsers));
-    }
+    // fetchUsers = () => {
+    //     this.props.dispatch(userActions.showAllUsers(this.props.showAllUsers));
+    // }
 
     switchFullUsersView = () => {
         this.props.dispatch(switchFullUsersView())

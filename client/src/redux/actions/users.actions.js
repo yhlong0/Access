@@ -10,8 +10,9 @@ export const REMOVE_ROLE = `${USERS} REMOVE ROLE`;
 export const SET_USERS = `${USERS} SET`;
 export const SELECT_USERS = `${USERS} SELECT`;
 
-export const fetchUsers = () => ({
-    type: FETCH_USERS
+export const fetchUsers = (showAllUsers) => ({
+    type: FETCH_USERS,
+    payload: showAllUsers
 });
 
 export const deleteUser = (userId) => ({
