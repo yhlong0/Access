@@ -47,7 +47,7 @@ export const mailFolderListItems = (
 
 export const otherMailFolderListItems = (
     <div>
-        <Link to="/test" style={styles.link}>
+        <Link to="/report" style={styles.link}>
             <ListItem button>
                 <ListItemIcon>
                     <ReportIcon />                

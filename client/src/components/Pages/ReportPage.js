@@ -1,17 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchBooks } from '../../redux/actions/books.action';
 
 
-class TestPage extends React.Component {
+class ReportPage extends React.Component {
 
     componentDidMount() {
-        this.props.dispatch(fetchBooks());
+        
     }
     render() {
         return (
             <div>
-                {this.props.books && this.props.books.map(book => book.name)}
+                welcome to report page.
             </div>            
         );
     }
@@ -24,4 +23,4 @@ function mapStateToProps(state, ownProps) {
     };
 }
 
-export default connect(mapStateToProps)(TestPage);
+export default connect(mapStateToProps)(ReportPage);
