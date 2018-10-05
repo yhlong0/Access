@@ -43,6 +43,7 @@ const UsersList = props => {
         removeAccess,
         removeRole,
         changeStatus, 
+        deleteUser
     } = props;
 
     const panelList = userData.map((user) => { 
@@ -110,7 +111,12 @@ const UsersList = props => {
                     />
                 }
             />
-            <Button variant="contained" color="secondary" className={classes.button}>
+            <Button 
+                variant="contained" 
+                color="secondary" 
+                className={classes.button}
+                onClick={() => deleteUser(user._id)}
+            >
                 Delete
                 <DeleteIcon className={classes.rightIcon} />
             </Button>
