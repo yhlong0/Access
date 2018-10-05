@@ -19,7 +19,7 @@ import { mailFolderListItems, otherMailFolderListItems } from '../Organisms/tile
 import UserPage from '../Pages/UserPage';
 import RolePage from '../Pages/RolePage';
 import SystemPage from '../Pages/SystemPage';
-import TestPage from '../Pages/TestPage';
+import ReportPage from '../Pages/ReportPage';
 
 
 
@@ -160,7 +160,7 @@ class MiniDrawer extends React.Component {
                     <Route path="/user" component={UserPage} />
                     <Route path="/role" component={RolePage} />
                     <Route path="/system" component={SystemPage} />
-                    <Route path="/test" component={TestPage} />
+                    <Route path="/report" component={ReportPage} />
                 </main>
             </div>
         );
