@@ -4,7 +4,7 @@ import Switch from '@material-ui/core/Switch';
 
 class LabeledSwitch extends React.Component {
     state = {
-        checked: true,
+        checked: false,
     };
 
     handleChange = name => event => {
