@@ -135,8 +135,5 @@ export const usersMiddleware = () => next => action => {
                 entity: USERS
             }));
             break;
-        
-        default:
-            next(action);
     }
 };
