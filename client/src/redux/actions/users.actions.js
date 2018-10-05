@@ -1,6 +1,7 @@
 export const USERS = '[Users]';
 
 export const FETCH_USERS = `${USERS} FETCH`;
+export const DELETE_USERS = `${USERS} DELETE`;
 export const SET_USERS = `${USERS} SET`;
 export const SELECT_USERS = `${USERS} SELECT`;
 export const CREATE_USER = `${USERS} CREATE`;
@@ -8,10 +9,14 @@ export const DELETE_USER = `${USERS} DELETE`;
 export const CHANGE_STATUS = `${USERS} CHANGE STATUS`;
 export const REMOVE_ROLE = `${USERS} REMOVE ROLE`;
 export const REMOVE_ACCESS = `${USERS} REMOVE ACCESS`;
-export const OPEN_DIALOG = `${USERS} OPEN DIALOG`
+export const OPEN_DIALOG = `${USERS} OPEN DIALOG`;
 
 export const fetchUsers = () => ({
     type: FETCH_USERS
+});
+
+export const deleteUser = () => ({
+    type: DELETE_USER
 });
 
 export const setUsers = (data) => ({
@@ -22,11 +27,6 @@ export const setUsers = (data) => ({
 export const createUser = (user) => ({
     type: CREATE_USER,
     payload: user
-});
-
-export const deleteUser = (selected) => ({
-    type: DELETE_USER,
-    payload: selected
 });
 
 export const changeStatus = (userId, userStatus, showAllUsers) => ({

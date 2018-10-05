@@ -19,6 +19,7 @@ import {
     changeStatus, 
     removeRole,
     removeAccess,
+    deleteUser
 } from '../../redux/actions/users.actions';
 import {
     openDialog,
@@ -116,6 +117,10 @@ class UserPage extends React.Component {
         this.props.dispatch(userActions.showAllUsers(this.props.showAllUsers));
     }
 
+    deleteUser = (userId) => {
+        this.props.dispatch(deleteUser(userId));
+    }
+
     render() {
         const { 
             classes, 
@@ -151,6 +156,7 @@ class UserPage extends React.Component {
                         removeAccess={this.removeAccess}
                         removeRole={this.removeRole}
                         changeStatus={this.changeStatus}
+                        deleteUser={this.deleteUser}
                     />
                 }
 
