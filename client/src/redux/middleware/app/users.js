@@ -44,6 +44,19 @@ export const usersMiddleware = () => next => action => {
                 entity: USERS
             }));
             break;
+
+        case DELETE_USER:
+            next(setLoader({
+                state: true,
+                entity: USERS
+            }));
+            next(apiRequest({
+                body: null,
+                method: 'DELETE',
+                url: `${API.USERS}/${action.payload}`,
+                entity: USERS
+            }));
+            break;
         
         case CHANGE_STATUS: 
             next(setLoader({
@@ -121,5 +134,9 @@ export const usersMiddleware = () => next => action => {
                 message: action.payload.message,
                 entity: USERS
             }));
+            break;
+        
+        default:
+            next(action);
     }
 };
