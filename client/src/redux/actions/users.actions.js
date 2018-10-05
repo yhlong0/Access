@@ -1,15 +1,14 @@
 export const USERS = '[Users]';
 
-export const FETCH_USERS = `${USERS} FETCH`;
-export const DELETE_USERS = `${USERS} DELETE`;
-export const SET_USERS = `${USERS} SET`;
-export const SELECT_USERS = `${USERS} SELECT`;
+export const CHANGE_STATUS = `${USERS} CHANGE STATUS`;
 export const CREATE_USER = `${USERS} CREATE`;
 export const DELETE_USER = `${USERS} DELETE`;
-export const CHANGE_STATUS = `${USERS} CHANGE STATUS`;
-export const REMOVE_ROLE = `${USERS} REMOVE ROLE`;
-export const REMOVE_ACCESS = `${USERS} REMOVE ACCESS`;
+export const FETCH_USERS = `${USERS} FETCH`;
 export const OPEN_DIALOG = `${USERS} OPEN DIALOG`;
+export const REMOVE_ACCESS = `${USERS} REMOVE ACCESS`;
+export const REMOVE_ROLE = `${USERS} REMOVE ROLE`;
+export const SET_USERS = `${USERS} SET`;
+export const SELECT_USERS = `${USERS} SELECT`;
 
 export const fetchUsers = () => ({
     type: FETCH_USERS
