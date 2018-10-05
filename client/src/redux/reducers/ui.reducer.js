@@ -11,7 +11,7 @@ const initState = {
     selected: [],
     newUserView: false,
     modalView: false,
-    showAllUsers: false
+    showAllUsers: true
 };
 
 export default function uiReducer (ui = initState, action) {

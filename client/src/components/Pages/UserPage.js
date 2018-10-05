@@ -116,12 +116,8 @@ class UserPage extends React.Component {
         this.props.dispatch(switchNewUserView());
     }
 
-    // fetchUsers = () => {
-    //     this.props.dispatch(userActions.showAllUsers(this.props.showAllUsers));
-    // }
-
     switchFullUsersView = () => {
-        this.props.dispatch(switchFullUsersView())
+        this.props.dispatch(switchFullUsersView(this.props.showAllUsers))
     }
 
     deleteUser = (userId) => {

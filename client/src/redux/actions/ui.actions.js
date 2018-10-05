@@ -23,9 +23,10 @@ export const switchNewUserView = () => {
     }
 }
 
-export const switchFullUsersView = () => {
+export const switchFullUsersView = (showAllUsers) => {
     return {
-        type: SWITCH_FULL_USER_VIEW
+        type: SWITCH_FULL_USER_VIEW,
+        payload: showAllUsers
     }
 }
 
