@@ -2,14 +2,16 @@ import {
     SET_LOADER, 
     SELECT_ITEM,
     SWITCH_NEW_USER_VIEW,
-    SWITCH_MODAL_VIEW
+    SWITCH_MODAL_VIEW,
+    SWITCH_FULL_USER_VIEW
 } from '../actions/ui.actions';
 
 const initState = {
     loading: false,
     selected: [],
     newUserView: false,
-    modalView: false
+    modalView: false,
+    showAllUsers: false
 };
 
 export default function uiReducer (ui = initState, action) {
@@ -38,6 +40,12 @@ export default function uiReducer (ui = initState, action) {
             return {
                 ...ui,
                 modalView: !ui.modalView
+            }
+
+        case action.type.includes(SWITCH_FULL_USER_VIEW):
+            return {
+                ...ui,
+                showAllUsers: !ui.showAllUsers
             }
         
         default:
