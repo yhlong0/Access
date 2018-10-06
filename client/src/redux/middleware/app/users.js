@@ -1,7 +1,11 @@
 import { API } from '../../constants/constants';
 import { API_SUCCESS, API_ERROR, apiRequest } from "../../actions/api.actions";
 import { setNotification } from '../../actions/notification.actions';
-import { setLoader, switchModalView } from '../../actions/ui.actions';
+import { 
+    setLoader, 
+    switchModalView,
+    SWITCH_FULL_USER_VIEW 
+} from '../../actions/ui.actions';
 import { 
     USERS, 
     FETCH_USERS, 
@@ -25,7 +29,7 @@ export const usersMiddleware = () => next => action => {
                 entity: USERS
             }));
             next(apiRequest({
-                body: null, 
+                body: action.payload, 
                 method: 'GET', 
                 url: API.USERS, 
                 entity: USERS
@@ -70,6 +74,19 @@ export const usersMiddleware = () => next => action => {
                 entity: USERS
             }));
             break; 
+        
+        case SWITCH_FULL_USER_VIEW:
+            next(setLoader({
+                state: true,
+                entity: USERS
+            }));
+            next(apiRequest({
+                body: action.payload,
+                method: 'GET',
+                url: API.USERS,
+                entity: USERS
+            }));
+            break;
 
         case REMOVE_ROLE:
             next(setLoader({
@@ -107,10 +124,15 @@ export const usersMiddleware = () => next => action => {
             }));
             break; 
 
-        case `${USERS} ${API_SUCCESS}`:
-            const { method } = action.meta;
+        case `${USERS} ${API_SUCCESS}`:     
+            const { method, body } = action.meta;
             if (method === 'GET') {
-                next(setUsers(action.payload));
+                let users = [];     
+                body ? users = action.payload :
+                       users = action.payload
+                        .filter(user => user.status === true)
+                console.log(body);     
+                next(setUsers(users));
                 next(setLoader({
                     state: false,
                     entity: USERS
