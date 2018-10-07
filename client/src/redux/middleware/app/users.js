@@ -146,7 +146,8 @@ export const usersMiddleware = () => next => action => {
                     body: null,
                     method: 'GET',
                     url: API.USERS,
-                    entity: USERS
+                    entity: USERS,
+                    showAll: showAll
                 }));
                 next(setLoader({
                     state: false,
