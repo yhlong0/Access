@@ -32,7 +32,8 @@ export const usersMiddleware = () => next => action => {
                 body: action.payload, 
                 method: 'GET', 
                 url: API.USERS, 
-                entity: USERS
+                entity: USERS,
+                showAll: action.showAllUsers
             }));
             break;
 
@@ -67,11 +68,13 @@ export const usersMiddleware = () => next => action => {
                 state: true,
                 entity: USERS
             }));  
+            console.log(action)
             next(apiRequest({
                 body: {status:!action.status},
                 method: 'PUT',
                 url: `${API.USERS}/${action.payload}`,
-                entity: USERS
+                entity: USERS,
+                showAll: action.showAll
             }));
             break; 
         
@@ -81,10 +84,11 @@ export const usersMiddleware = () => next => action => {
                 entity: USERS
             }));
             next(apiRequest({
-                body: action.payload,
+                body: null,
                 method: 'GET',
                 url: API.USERS,
-                entity: USERS
+                entity: USERS,
+                showAll: action.payload
             }));
             break;
 
@@ -125,13 +129,13 @@ export const usersMiddleware = () => next => action => {
             break; 
 
         case `${USERS} ${API_SUCCESS}`:     
-            const { method, body } = action.meta;
+            const { method, body, showAll } = action.meta;
             if (method === 'GET') {
                 let users = [];     
-                body ? users = action.payload :
-                       users = action.payload
-                        .filter(user => user.status === true)
-                console.log(body);     
+                showAll ? users = action.payload :
+                          users = action.payload
+                            .filter(user => user.status === true)
+                console.log(showAll);     
                 next(setUsers(users));
                 next(setLoader({
                     state: false,

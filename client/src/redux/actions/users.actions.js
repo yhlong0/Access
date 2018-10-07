@@ -33,7 +33,8 @@ export const createUser = (user) => ({
 export const changeStatus = (userId, userStatus, showAllUsers) => ({
     type: CHANGE_STATUS,
     payload: userId,
-    status: userStatus
+    status: userStatus,
+    showAll: showAllUsers
 });
 
 export const removeRole = (roleId, userId) => ({

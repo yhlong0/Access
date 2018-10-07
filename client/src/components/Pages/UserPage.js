@@ -31,7 +31,6 @@ import {
     checkedItem,
     addItem
 } from '../../redux/actions/dialog.action';
-import * as userActions from '../../actions/userActions';
 
 const styles = theme => ({
     root: {
