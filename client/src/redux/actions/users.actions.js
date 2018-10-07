@@ -25,9 +25,10 @@ export const setUsers = (data) => ({
     payload: data,
 });
 
-export const createUser = (user) => ({
+export const createUser = (user, showAllUsers) => ({
     type: CREATE_USER,
-    payload: user
+    payload: user,
+    showAll: showAllUsers
 });
 
 export const changeStatus = (userId, userStatus, showAllUsers) => ({

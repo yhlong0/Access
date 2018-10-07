@@ -46,7 +46,8 @@ export const usersMiddleware = () => next => action => {
                 body: action.payload,
                 method: 'POST',
                 url: API.USERS,
-                entity: USERS
+                entity: USERS,
+                showAll: action.showAll
             }));
             break;
 

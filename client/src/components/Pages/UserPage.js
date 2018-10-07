@@ -76,7 +76,7 @@ class UserPage extends React.Component {
     }
 
     createUser = (user) => {
-        this.props.dispatch(createUser(user));
+        this.props.dispatch(createUser(user, this.props.showAllUsers));
     }
 
     openDialog = (userId, dialog) => {
