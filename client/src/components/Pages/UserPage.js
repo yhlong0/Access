@@ -120,7 +120,7 @@ class UserPage extends React.Component {
     }
 
     deleteUser = (userId) => {
-        this.props.dispatch(deleteUser(userId));
+        this.props.dispatch(deleteUser(userId, this.props.showAllUsers));
     }
 
     render() {

@@ -60,7 +60,8 @@ export const usersMiddleware = () => next => action => {
                 body: null,
                 method: 'DELETE',
                 url: `${API.USERS}/${action.payload}`,
-                entity: USERS
+                entity: USERS,
+                showAll: action.showAll
             }));
             break;
         
@@ -69,7 +70,6 @@ export const usersMiddleware = () => next => action => {
                 state: true,
                 entity: USERS
             }));  
-            console.log(action)
             next(apiRequest({
                 body: {status:!action.status},
                 method: 'PUT',
@@ -130,13 +130,12 @@ export const usersMiddleware = () => next => action => {
             break; 
 
         case `${USERS} ${API_SUCCESS}`:     
-            const { method, body, showAll } = action.meta;
+            const { method, showAll } = action.meta;
             if (method === 'GET') {
                 let users = [];     
                 showAll ? users = action.payload :
                           users = action.payload
-                            .filter(user => user.status === true)
-                console.log(showAll);     
+                            .filter(user => user.status === true)   
                 next(setUsers(users));
                 next(setLoader({
                     state: false,

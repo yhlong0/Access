@@ -15,9 +15,10 @@ export const fetchUsers = (showAllUsers) => ({
     payload: showAllUsers
 });
 
-export const deleteUser = (userId) => ({
+export const deleteUser = (userId, showAllUsers) => ({
     type: DELETE_USER,
-    payload: userId
+    payload: userId,
+    showAll: showAllUsers
 });
 
 export const setUsers = (data) => ({
