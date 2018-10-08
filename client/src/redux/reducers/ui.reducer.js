@@ -3,7 +3,8 @@ import {
     SELECT_ITEM,
     SWITCH_NEW_USER_VIEW,
     SWITCH_MODAL_VIEW,
-    SWITCH_FULL_USER_VIEW
+    SWITCH_FULL_USER_VIEW,
+    SWITCH_SNACKBAR
 } from '../actions/ui.actions';
 
 const initState = {
@@ -11,7 +12,8 @@ const initState = {
     selected: [],
     newUserView: false,
     modalView: false,
-    showAllUsers: false
+    showAllUsers: false,
+    showSnackbar: false
 };
 
 export default function uiReducer (ui = initState, action) {
@@ -47,7 +49,12 @@ export default function uiReducer (ui = initState, action) {
                 ...ui,
                 showAllUsers: !ui.showAllUsers
             }
-        
+
+        case action.type.includes(SWITCH_SNACKBAR):
+            return {
+                ...ui,
+                showSnackbar: !ui.showSnackbar
+            }
         default:
             return ui;
     }
