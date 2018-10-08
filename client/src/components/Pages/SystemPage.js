@@ -5,7 +5,7 @@ import TableView from '../Organisms/TableView';
 import SimpleSnackbar from '../Atoms/Snackbar';
 
 import { connect } from 'react-redux';
-import { selectItem } from '../../redux/actions/ui.actions';
+import { selectItem, switchSnackbar } from '../../redux/actions/ui.actions';
 import { 
     SYSTEMS,
     fetchSystems, 
@@ -38,6 +38,7 @@ class SystemPage extends React.Component {
 
     createSystem = (system) => {
         this.props.dispatch(createSystem(system));
+        this.props.dispatch(switchSnackbar());
     }
 
     deleteSystem = () => {
@@ -67,7 +68,9 @@ class SystemPage extends React.Component {
                         selectItem={this.selectSystem}
                     />
                 }
-                <SimpleSnackbar />
+                <SimpleSnackbar 
+                    showSnackbar={this.props.showSnackbar}
+                />
             </div>
         );
     }
@@ -78,6 +81,7 @@ function mapStateToProps(state, ownProps) {
         systems: state.systemsReducer.systems,
         selected: state.uiReducer.selected,
         loading: state.uiReducer.loading,
+        showSnackbar: state.uiReducer.showSnackbar
     };
 }
 

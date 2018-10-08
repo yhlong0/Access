@@ -30,7 +30,7 @@ class SimpleSnackbar extends React.Component {
   };
 
   render() {
-    const { classes } = this.props;
+    const { classes, showSnackbar } = this.props;
     return (
       <div>
         <Button onClick={this.handleClick}>Open simple snackbar</Button>
@@ -39,7 +39,7 @@ class SimpleSnackbar extends React.Component {
             vertical: 'bottom',
             horizontal: 'left',
           }}
-          open={this.state.open}
+          open={showSnackbar}
           autoHideDuration={6000}
           onClose={this.handleClose}
           ContentProps={{
