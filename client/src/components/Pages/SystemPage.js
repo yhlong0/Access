@@ -2,6 +2,7 @@ import React from 'react';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import TextField from '../Organisms/TextField';
 import TableView from '../Organisms/TableView';
+import SimpleSnackbar from '../Atoms/Snackbar';
 
 import { connect } from 'react-redux';
 import { selectItem } from '../../redux/actions/ui.actions';
@@ -66,6 +67,7 @@ class SystemPage extends React.Component {
                         selectItem={this.selectSystem}
                     />
                 }
+                <SimpleSnackbar />
             </div>
         );
     }
