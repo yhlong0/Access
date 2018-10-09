@@ -5,6 +5,8 @@
   "dependencies": {
     "@material-ui/core": "^1.5.1",
     "axios": "^0.18.0",
+    "moment": "^2.22.2",
+    "notistack": "^0.2.1",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
     "react-redux": "^5.0.7",
@@ -13,8 +15,7 @@
     "redux": "^4.0.0",
     "redux-logger": "^3.0.6",
     "redux-promise-middleware": "^5.1.1",
-    "redux-thunk": "^2.3.0",
-    "moment": "^2.22.2"
+    "redux-thunk": "^2.3.0"
   },
   "devDependencies": {
     "enzyme": "^3.6.0",

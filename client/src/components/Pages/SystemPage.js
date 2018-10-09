@@ -2,7 +2,7 @@ import React from 'react';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import TextField from '../Organisms/TextField';
 import TableView from '../Organisms/TableView';
-import SimpleSnackbar from '../Atoms/Snackbar';
+import { withSnackbar } from 'notistack';
 
 import { connect } from 'react-redux';
 import { selectItem, switchSnackbar } from '../../redux/actions/ui.actions';
@@ -39,6 +39,7 @@ class SystemPage extends React.Component {
     createSystem = (system) => {
         this.props.dispatch(createSystem(system));
         this.props.dispatch(switchSnackbar());
+        this.props.onPresentSnackbar('success', 'Success fetched');
     }
 
     deleteSystem = () => {
@@ -68,9 +69,6 @@ class SystemPage extends React.Component {
                         selectItem={this.selectSystem}
                     />
                 }
-                <SimpleSnackbar 
-                    showSnackbar={this.props.showSnackbar}
-                />
             </div>
         );
     }
@@ -85,4 +83,5 @@ function mapStateToProps(state, ownProps) {
     };
 }
 
-export default connect(mapStateToProps)(SystemPage);
+let temp = connect(mapStateToProps)(SystemPage);
+export default withSnackbar(temp);

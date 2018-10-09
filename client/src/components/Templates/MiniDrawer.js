@@ -12,6 +12,7 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import { SnackbarProvider } from 'notistack';
 import { Route, Link } from 'react-router-dom';
 
 import { mailFolderListItems, otherMailFolderListItems } from '../Organisms/tileData';
@@ -156,11 +157,19 @@ class MiniDrawer extends React.Component {
                             );
                         }
                     } />
-                        
-                    <Route path="/user" component={UserPage} />
-                    <Route path="/role" component={RolePage} />
-                    <Route path="/system" component={SystemPage} />
-                    <Route path="/report" component={ReportPage} />
+                    <SnackbarProvider 
+                        maxSnack={3}
+                        autoHideDuration={5000}
+                        anchorOrigin={{
+                            vertical: 'bottom',
+                            horizontal: 'left'
+                        }}
+                    >
+                        <Route path="/user" component={UserPage} />
+                        <Route path="/role" component={RolePage} />
+                        <Route path="/system" component={SystemPage} />
+                        <Route path="/report" component={ReportPage} />
+                    </SnackbarProvider>
                 </main>
             </div>
         );
