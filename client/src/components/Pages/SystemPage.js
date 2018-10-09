@@ -5,7 +5,7 @@ import TableView from '../Organisms/TableView';
 import { withSnackbar } from 'notistack';
 
 import { connect } from 'react-redux';
-import { selectItem, switchSnackbar } from '../../redux/actions/ui.actions';
+import { selectItem } from '../../redux/actions/ui.actions';
 import { 
     SYSTEMS,
     fetchSystems, 
@@ -38,12 +38,12 @@ class SystemPage extends React.Component {
 
     createSystem = (system) => {
         this.props.dispatch(createSystem(system));
-        this.props.dispatch(switchSnackbar());
-        this.props.onPresentSnackbar('success', 'Success fetched');
+        this.props.onPresentSnackbar('success', 'Success add new system.');
     }
 
     deleteSystem = () => {
         this.props.dispatch(deleteSystem(this.props.selected));
+        this.props.onPresentSnackbar('success', 'Success delete a system.');
     }
 
     selectSystem = (selected) => {
@@ -83,5 +83,5 @@ function mapStateToProps(state, ownProps) {
     };
 }
 
-let temp = connect(mapStateToProps)(SystemPage);
-export default withSnackbar(temp);
+let child = connect(mapStateToProps)(SystemPage);
+export default withSnackbar(child);

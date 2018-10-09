@@ -36,9 +36,3 @@ export const switchModalView = (entity) => {
         type: `${entity} ${SWITCH_MODAL_VIEW}`
     }
 }
-
-export const switchSnackbar = (entity) => {
-    return {
-        type: `${entity} ${SWITCH_SNACKBAR}`
-    }
-}
