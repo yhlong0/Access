@@ -148,29 +148,29 @@ class MiniDrawer extends React.Component {
                     <Divider />
                     <List>{otherMailFolderListItems}</List>
                 </Drawer>
-                <main className={classes.content}>
-                    <div className={classes.toolbar} />
-                    <Route path="/" exact render={
-                        () => {
-                            return (
-                                <Typography noWrap>{'Welcome to user access tracking system!'}</Typography> 
-                            );
-                        }
-                    } />
-                    <SnackbarProvider 
-                        maxSnack={3}
-                        autoHideDuration={5000}
-                        anchorOrigin={{
-                            vertical: 'bottom',
-                            horizontal: 'left'
-                        }}
-                    >
+                <SnackbarProvider
+                    maxSnack={3}
+                    autoHideDuration={5000}
+                    anchorOrigin={{
+                        vertical: 'bottom',
+                        horizontal: 'left'
+                    }}
+                >
+                    <main className={classes.content}>
+                        <div className={classes.toolbar} />
+                        <Route path="/" exact render={
+                            () => {
+                                return (
+                                    <Typography noWrap>{'Welcome to user access tracking system!'}</Typography> 
+                                );
+                            }
+                        } />
                         <Route path="/user" component={UserPage} />
                         <Route path="/role" component={RolePage} />
                         <Route path="/system" component={SystemPage} />
-                        <Route path="/report" component={ReportPage} />
-                    </SnackbarProvider>
-                </main>
+                        <Route path="/report" component={ReportPage} />                  
+                    </main>
+                </SnackbarProvider>
             </div>
         );
     }
