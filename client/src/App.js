@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { Security, SecureRoute, ImplicitCallback } from '@okta/okta-react';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+
 import MiniDrawer from './components/Templates/MiniDrawer';
-import { BrowserRouter as Router } from 'react-router-dom';
+import Login from './components/auth/Login';
+import Secure from './components/Pages/SecurePage';
 
 const theme = createMuiTheme({
   palette: {
