@@ -14,6 +14,7 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import { SnackbarProvider } from 'notistack';
 import { Route, Link } from 'react-router-dom';
+import { Security, SecureRoute, ImplicitCallback } from '@okta/okta-react';
 
 import { mailFolderListItems, otherMailFolderListItems } from '../Organisms/tileData';
 
@@ -21,6 +22,8 @@ import UserPage from '../Pages/UserPage';
 import RolePage from '../Pages/RolePage';
 import SystemPage from '../Pages/SystemPage';
 import ReportPage from '../Pages/ReportPage';
+import Login from '../auth/Login';
+import Secure from '../Pages/SecurePage';
 
 
 
@@ -95,6 +98,10 @@ const styles = theme => ({
     }
 });
 
+function onAuthRequired({ history }) {
+    history.push('/login');
+}
+
 class MiniDrawer extends React.Component {
     state = {
         open: false,
@@ -112,66 +119,79 @@ class MiniDrawer extends React.Component {
         const { classes, theme } = this.props;
 
         return (
-            <div className={classes.root}>
-                <AppBar
-                    position="absolute"
-                    className={classNames(classes.appBar, this.state.open && classes.appBarShift)}
-                >
-                    <Toolbar disableGutters={!this.state.open}>
-                        <IconButton
-                            color="inherit"
-                            aria-label="Open drawer"
-                            onClick={this.handleDrawerOpen}
-                            className={classNames(classes.menuButton, this.state.open && classes.hide)}
-                        >
-                            <MenuIcon />
-                        </IconButton>
-                        <Typography variant="title" color="inherit" noWrap>
-                            <Link to="/" className={classes.link}>User Access Tracking</Link>
-                        </Typography>
-                    </Toolbar>
-                </AppBar>
-                <Drawer
-                    variant="permanent"
-                    classes={{
-                        paper: classNames(classes.drawerPaper, !this.state.open && classes.drawerPaperClose),
-                    }}
-                    open={this.state.open}
-                >
-                    <div className={classes.toolbar}>
-                        <IconButton onClick={this.handleDrawerClose}>
-                            {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
-                        </IconButton>
-                    </div>
-                    <Divider />
-                    <List>{mailFolderListItems}</List>
-                    <Divider />
-                    <List>{otherMailFolderListItems}</List>
-                </Drawer>
-                <SnackbarProvider
-                    maxSnack={3}
-                    autoHideDuration={5000}
-                    anchorOrigin={{
-                        vertical: 'bottom',
-                        horizontal: 'left'
-                    }}
-                >
-                    <main className={classes.content}>
-                        <div className={classes.toolbar} />
-                        <Route path="/" exact render={
-                            () => {
-                                return (
-                                    <Typography noWrap>{'Welcome to user access tracking system!'}</Typography> 
-                                );
-                            }
-                        } />
-                        <Route path="/user" component={UserPage} />
-                        <Route path="/role" component={RolePage} />
-                        <Route path="/system" component={SystemPage} />
-                        <Route path="/report" component={ReportPage} />                  
-                    </main>
-                </SnackbarProvider>
-            </div>
+            <Security
+                issuer='https://dev-689245.oktapreview.com/oauth2/default'
+                client_id='0oagkz02eecjzv4j90h7'
+                redirect_uri={window.location.origin + '/implicit/callback'}
+                onAuthRequired={onAuthRequired}
+            >
+                <div className={classes.root}>
+                    <AppBar
+                        position="absolute"
+                        className={classNames(classes.appBar, this.state.open && classes.appBarShift)}
+                    >
+                        <Toolbar disableGutters={!this.state.open}>
+                            <IconButton
+                                color="inherit"
+                                aria-label="Open drawer"
+                                onClick={this.handleDrawerOpen}
+                                className={classNames(classes.menuButton, this.state.open && classes.hide)}
+                            >
+                                <MenuIcon />
+                            </IconButton>
+                            <Typography variant="title" color="inherit" noWrap>
+                                <Link to="/" className={classes.link}>User Access Tracking</Link>
+                            </Typography>
+                        </Toolbar>
+                    </AppBar>
+                    <Drawer
+                        variant="permanent"
+                        classes={{
+                            paper: classNames(classes.drawerPaper, !this.state.open && classes.drawerPaperClose),
+                        }}
+                        open={this.state.open}
+                    >
+                        <div className={classes.toolbar}>
+                            <IconButton onClick={this.handleDrawerClose}>
+                                {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
+                            </IconButton>
+                        </div>
+                        <Divider />
+                        <List>{mailFolderListItems}</List>
+                        <Divider />
+                        <List>{otherMailFolderListItems}</List>
+                    </Drawer>
+                    <SnackbarProvider
+                        maxSnack={3}
+                        autoHideDuration={5000}
+                        anchorOrigin={{
+                            vertical: 'bottom',
+                            horizontal: 'left'
+                        }}
+                    >
+                        <main className={classes.content}>
+                            <div className={classes.toolbar} />
+                            <Route path="/" exact render={
+                                () => {
+                                    return (
+                                        <Typography noWrap>{'Welcome to user access tracking system!'}</Typography> 
+                                    );
+                                }
+                            } />
+                            <Route path="/user" component={UserPage} />
+                            <Route path="/role" component={RolePage} />
+                            <Route path="/system" component={SystemPage} />
+                            <Route path="/report" component={ReportPage} />
+                            <SecureRoute path='/secure' exact={true} component={Secure} />
+                            <Route path='/implicit/callback' component={ImplicitCallback} /> 
+                            <Route
+                                path='/login'
+                                render={() => <Login baseUrl='https://dev-689245.oktapreview.com' />}
+                            />                  
+                        </main>
+                    </SnackbarProvider>
+                </div>
+            </Security>
         );
     }
 }
