@@ -4,6 +4,8 @@
   "private": true,
   "dependencies": {
     "@material-ui/core": "^1.5.1",
+    "@okta/okta-react": "^1.1.1",
+    "@okta/okta-signin-widget": "^2.13.0",
     "axios": "^0.18.0",
     "moment": "^2.22.2",
     "notistack": "^0.2.1",
