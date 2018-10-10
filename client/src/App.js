@@ -35,7 +35,13 @@ class App extends Component {
         >
           <div className="App">
             <MuiThemeProvider theme={theme}>
-              <MiniDrawer />       
+              <MiniDrawer /> 
+              <SecureRoute path='/secure' exact={true} component={Secure} />
+              <Route 
+                path='/login' 
+                render={() => <Login baseUrl='https://dev-689245.oktapreview.com' />} 
+              />
+              <Route path='/implicit/callback' component={ImplicitCallback} />       
             </MuiThemeProvider>
           </div>
         </Security>
