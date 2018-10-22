@@ -4,9 +4,9 @@ const validate = require('../library/validate');
 exports.getAllUsers = function(req, res) {
     UserModel.getAllUsers(function(err, users) {
         if (!err) {
-            res.json(users);
+            res.status(200).json(users);
         } else {
-            res.status(500).json({ message: 'Can not find user.' });
+            res.status(404).json({ message: 'Can not find user.' });
         }
     });  
 };
