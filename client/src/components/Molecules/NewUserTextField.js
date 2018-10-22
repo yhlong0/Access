@@ -96,7 +96,7 @@ class TextFields extends React.Component {
                     type="submit"
                 >
                     Save
-        </Button>
+                </Button>
             </form>
         );
     }
