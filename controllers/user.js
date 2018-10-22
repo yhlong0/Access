@@ -16,9 +16,9 @@ exports.getUser = function (req, res) {
 
     UserModel.getUser(userId, function (err, user) {
         if (!err) {
-            res.json(user);
+            res.status(200).json(user);
         } else {
-            res.status(500).json({ message: 'Can not find user.' });
+            res.status(404).json({ message: 'Can not find user.' });
         }
     });
 };
