@@ -28,7 +28,7 @@ exports.deleteUser = function (req, res) {
 
     UserModel.deleteUser(userId, function (err) {
         if(!err) {
-            res.json({ message: 'Delete success' });
+            res.status(204).json({ message: 'Delete success' });
         } else {
             res.status(400)
                .json({ 
@@ -70,7 +70,7 @@ exports.addUser = function (req, res) {
                         message: 'Can not add user. Error: ' + err
                     });
             } else {
-                res.json(user);
+                res.status(201).json(user);
             }       
         });
     } else {
