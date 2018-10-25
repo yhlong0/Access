@@ -42,7 +42,7 @@ describe('Clean Users', () => {
                     .post('/users')
                     .send(user)
                     .end((err, res) => {
-                        res.should.have.status(200);
+                        res.should.have.status(201);
                         res.body.should.be.a('object');
                         res.body.should.have.property('lastname');
                         res.body.should.have.property('firstname');
@@ -230,9 +230,8 @@ describe('Clean Users', () => {
                     chai.request(app)
                     .delete('/users/'+ user.id)
                     .end((err, res) => {
-                        res.should.have.status(200);
+                        res.should.have.status(204);
                         res.body.should.be.a('object');
-                        res.body.should.have.property('message').eql('Delete success');
                         done();
                     });
                 });
