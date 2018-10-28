@@ -66,7 +66,7 @@ class AddingDialog extends React.Component {
                     <DialogTitle id="form-dialog-title">Add {dialogData}</DialogTitle>
                     <DialogContent>
                         <DialogContentText>
-                            To add access for this user, please search the system here.
+                            To add {dialogData} for this user, please search here.
                         </DialogContentText>
                         <TextField
                             autoFocus
