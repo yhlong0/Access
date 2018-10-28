@@ -132,6 +132,7 @@ class UserPage extends React.Component {
             loading,
             search,
             newUserView,
+            dialogData
         } = this.props;
         
         return (
@@ -145,6 +146,7 @@ class UserPage extends React.Component {
                     search={search}
                     addItem={this.addItem}
                     updateSearch={this.updateSearch}
+                    dialogData={dialogData.dialog}
                 />        
                 <AddIconButton switchNewUserView={this.switchNewUserView} />
                 <LabeledSwitch showAllUsers={this.switchFullUsersView} />

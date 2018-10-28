@@ -30,6 +30,7 @@ class AddingDialog extends React.Component {
         const {
             classes,
             dialogOpenStatus,
+            dialogData,
             closeDialog,
             checkedItem,
             listItems,
@@ -62,7 +63,7 @@ class AddingDialog extends React.Component {
                     onClose={closeDialog}
                     aria-labelledby="form-dialog-title"
                 >
-                    <DialogTitle id="form-dialog-title">Add Access</DialogTitle>
+                    <DialogTitle id="form-dialog-title">Add {dialogData}</DialogTitle>
                     <DialogContent>
                         <DialogContentText>
                             To add access for this user, please search the system here.
