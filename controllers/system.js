@@ -2,7 +2,9 @@ const SystemModel = require('../models/system');
 const validate = require('../library/validate'); 
 
 exports.getAllSystems = function (req, res) {
-    SystemModel.getAllSystems(function (err, systems) {
+    let top = req.query.top;
+
+    SystemModel.getAllSystems(top, function (err, systems) {
         if (!err) {
             res.json(systems);
         } else {

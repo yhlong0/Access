@@ -3,7 +3,6 @@ const validate = require('../library/validate');
 
 exports.getAllUsers = function(req, res) {
     let top = req.query.top;
-    console.log(top);
 
     UserModel.getAllUsers(top, function(err, users) {
         if (!err) {
