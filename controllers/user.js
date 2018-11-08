@@ -13,6 +13,8 @@ exports.getAllUsers = function(req, res) {
 
 exports.getUser = function (req, res) {
     let userId = req.params.userId;
+    let top = req.query.top;
+    console.log(top);
 
     UserModel.getUser(userId, function (err, user) {
         if (!err) {
