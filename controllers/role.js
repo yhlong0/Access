@@ -2,7 +2,9 @@ const RoleModel = require('../models/role');
 const validate = require('../library/validate'); 
 
 exports.getAllRoles = function (req, res) {
-    RoleModel.getAllRoles(function (err, roles) {
+    let top = req.query.top;
+
+    RoleModel.getAllRoles(top, function (err, roles) {
         if (!err) {
             res.json(roles);
         } else {
