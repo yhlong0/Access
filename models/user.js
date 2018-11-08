@@ -22,10 +22,11 @@ UserSchema.statics.getUser = function (id, callback) {
 };
 
 UserSchema.statics.getAllUsers = function (top, callback) {
-    if(top == null) {
+    if(!isNaN(top)) {
+        this.find().limit(Number(top)).exec(callback);
+    } else {
         this.find({}, callback);
     }
-    
 };
 
 UserSchema.statics.addUser = function (user, callback) {
