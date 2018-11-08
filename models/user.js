@@ -21,8 +21,11 @@ UserSchema.statics.getUser = function (id, callback) {
     this.findById(id, callback);  
 };
 
-UserSchema.statics.getAllUsers = function (callback) {
-    this.find({}, callback);
+UserSchema.statics.getAllUsers = function (top, callback) {
+    if(top == null) {
+        this.find({}, callback);
+    }
+    
 };
 
 UserSchema.statics.addUser = function (user, callback) {

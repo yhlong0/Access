@@ -2,7 +2,10 @@ const UserModel = require('../models/user');
 const validate = require('../library/validate'); 
 
 exports.getAllUsers = function(req, res) {
-    UserModel.getAllUsers(function(err, users) {
+    let top = req.query.top;
+    console.log(top);
+
+    UserModel.getAllUsers(top, function(err, users) {
         if (!err) {
             res.status(200).json(users);
         } else {
@@ -13,8 +16,6 @@ exports.getAllUsers = function(req, res) {
 
 exports.getUser = function (req, res) {
     let userId = req.params.userId;
-    let top = req.query.top;
-    console.log(top);
 
     UserModel.getUser(userId, function (err, user) {
         if (!err) {
