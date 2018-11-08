@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Select from 'react-select';
-
+import makeAnimated from 'react-select/lib/animated';
 
 const suggestions = [
     { label: 'Afghanistan' },
@@ -19,6 +19,12 @@ class ReportPage extends React.Component {
         
     }
 
+    handleChange = name => value => {
+        this.setState({
+          [name]: value,
+        });
+    };
+
     render() {
         return (
             <div>
@@ -32,7 +38,9 @@ class ReportPage extends React.Component {
                     },
                     }}
                     options={suggestions}
+                    components={makeAnimated()}
                     value={this.state.multi}
+                    onChange={this.handleChange('multi')}
                     placeholder="Select multiple systems"
                     isMulti
                 />
