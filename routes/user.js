@@ -20,9 +20,11 @@ router.delete('/:userId', userController.deleteUser);
 
 /* Show user access. */
 router.get('/:userId/access', userController.showUserAccess);
-//router.get('/:userId?access=all')
+//router.get('/:userId', userController.showUserAccess);
 //req.query.access
 // => "all"
+
+
 
 /* Show user roles. */
 router.get('/:userId/role', userController.showUserRoles);

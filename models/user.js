@@ -21,8 +21,12 @@ UserSchema.statics.getUser = function (id, callback) {
     this.findById(id, callback);  
 };
 
-UserSchema.statics.getAllUsers = function (callback) {
-    this.find({}, callback);
+UserSchema.statics.getAllUsers = function (top, callback) {
+    if(!isNaN(top)) {
+        this.find().limit(Number(top)).exec(callback);
+    } else {
+        this.find({}, callback);
+    }
 };
 
 UserSchema.statics.addUser = function (user, callback) {
@@ -39,7 +43,6 @@ UserSchema.statics.updateUser = function (userId, updateContent, callback) {
 };
 
 UserSchema.statics.deleteUser = function(userId, callback) {
-    console.log(userId);
     this.deleteOne({ _id: userId }, callback);
 }
 

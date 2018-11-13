@@ -1,5 +1,5 @@
 const config = require('./config/test');
-const mongoose = require('mongoose').set('debug', true);
+const mongoose = require('mongoose').set('debug', false);
 console.log(config.mongoURI[process.env.NODE_ENV]);
 mongoose.connect(
     config.mongoURI[process.env.NODE_ENV], 

@@ -9,8 +9,12 @@ SystemSchema.statics.getSystem = function (id, callback) {
     this.findById(id, callback);
 };
 
-SystemSchema.statics.getAllSystems = function (callback) {
-    this.find({}, callback);
+SystemSchema.statics.getAllSystems = function (top, callback) {
+    if(!isNaN(top)) {
+        this.find().limit(Number(top)).exec(callback);
+    } else {
+        this.find({}, callback);
+    }
 };
 
 SystemSchema.statics.updateSystem = function (systemId, updateContent, callback) {
