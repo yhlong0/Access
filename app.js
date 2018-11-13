@@ -1,4 +1,5 @@
 const express = require('express');
+const graphqlHTTP = require('express-graphql');
 const bodyParser = require('body-parser');
 const app = express();
 const port = process.env.PORT || 4000;
@@ -16,6 +17,9 @@ app.use('/', webRouter);
 app.use('/users', userRouter);
 app.use('/roles', roleRouter);
 app.use('/systems', systemRouter);
+app.use('/graphql', graphqlHTTP({
+
+}));
 
 
 
