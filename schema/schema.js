@@ -1,7 +1,12 @@
 const graphql = require('graphql');
 const _ = require('lodash');
 
-const { GraphQLObjectType, GraphQLString, GraphQLSchema } = graphql;
+const { 
+    GraphQLObjectType,
+    GraphQLString, 
+    GraphQLSchema,
+    GraphQLID 
+} = graphql;
 
 // test data
 
@@ -15,7 +20,7 @@ const systems = [
 const SystemType = new GraphQLObjectType({
     name: 'System',
     fields: () => ({
-        id: { type: GraphQLString},
+        id: { type: GraphQLID},
         name: { type: GraphQLString },
         description: { type: GraphQLString }
     })
@@ -28,7 +33,7 @@ const RootQuery = new GraphQLObjectType({
             type: SystemType,
             args: {
                 id: {
-                    type: GraphQLString
+                    type: GraphQLID
                 }
             },
             resolve(parent, args) {
