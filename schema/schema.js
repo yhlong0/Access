@@ -10,3 +10,20 @@ const SystemType = new GraphQLObjectType({
         description: { type: GraphQLString }
     })
 });
+
+const RootQuery = new GraphQLObjectType({
+    name: 'RootQueryType',
+    fields: {
+        system: {
+            type: SystemType,
+            args: {
+                id: {
+                    type: GraphQLString
+                }
+            },
+            resolve(parent, args) {
+                // code to get data from db.
+            }
+        }
+    }
+});
