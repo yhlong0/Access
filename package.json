@@ -25,6 +25,8 @@
     "body-parser": "^1.18.3",
     "concurrently": "^3.6.1",
     "express": "^4.16.4",
+    "express-graphql": "^0.7.1",
+    "graphql": "^14.0.2",
     "mongoose": "^5.3.4"
   },
   "devDependencies": {
