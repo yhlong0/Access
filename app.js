@@ -20,7 +20,8 @@ app.use('/users', userRouter);
 app.use('/roles', roleRouter);
 app.use('/systems', systemRouter);
 app.use('/graphql', graphqlHTTP({
-    schema
+    schema,
+    graphiql: true
 }));
 
 

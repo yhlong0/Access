@@ -33,7 +33,7 @@ const RootQuery = new GraphQLObjectType({
             },
             resolve(parent, args) {
                 // code to get data from db.
-                return _.find(books, { id: args.id});
+                return _.find(systems, { id: args.id});
             }
         }
     }
