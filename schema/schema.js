@@ -6,7 +6,8 @@ const {
     GraphQLString, 
     GraphQLSchema,
     GraphQLID,
-    GraphQLBoolean 
+    GraphQLBoolean,
+    GraphQLList 
 } = graphql;
 
 // test data
@@ -18,7 +19,7 @@ const users = [
         _id: '1', 
         status: true, 
         joinDate: '2018-09-05T18:02:12.106Z',
-        sysAccess: '1' 
+        sysAccess: ['1', '2', '3']
     },
     { 
         lastname: 'User 2', 
@@ -62,13 +63,18 @@ const UserType = new GraphQLObjectType({
         status: { type: GraphQLBoolean },
         joinDate: { type: GraphQLString },
         sysAccess: {
-            type: SystemType,
+            type: new GraphQLList(SystemType),
             resolve(parent, args) {
-                return _.find(systems, { id: parent.sysAccess })
+                return parent.sysAccess.map(
+                    sys => _.find(
+                        systems, { id: sys }
+                ));
             }
         }
     })
 });
+
+
 
 const SystemType = new GraphQLObjectType({
     name: 'System',
