@@ -12,10 +12,38 @@ const {
 // test data
 
 const users = [
-    { lastname: 'User 1', firstname: 'First 1', _id: '1', status: true, joinDate: '2018-09-05T18:02:12.106Z' },
-    { lastname: 'User 2', firstname: 'First 2', _id: '2', status: true, joinDate: '2018-09-05T18:02:12.106Z' },
-    { lastname: 'User 3', firstname: 'First 3', _id: '3', status: true, joinDate: '2018-09-05T18:02:12.106Z' },
-    { lastname: 'User 4', firstname: 'First 4', _id: '4', status: true, joinDate: '2018-09-05T18:02:12.106Z' },
+    { 
+        lastname: 'User 1', 
+        firstname: 'First 1', 
+        _id: '1', 
+        status: true, 
+        joinDate: '2018-09-05T18:02:12.106Z',
+        sysAccess: '1' 
+    },
+    { 
+        lastname: 'User 2', 
+        firstname: 'First 2', 
+        _id: '2', 
+        status: true, 
+        joinDate: '2018-09-05T18:02:12.106Z',
+        sysAccess: '2' 
+    },
+    { 
+        lastname: 'User 3', 
+        firstname: 'First 3', 
+        _id: '3', 
+        status: true, 
+        joinDate: '2018-09-05T18:02:12.106Z', 
+        sysAccess: '3' 
+    },
+    { 
+        lastname: 'User 4', 
+        firstname: 'First 4', 
+        _id: '4', 
+        status: true, 
+        joinDate: '2018-09-05T18:02:12.106Z',
+        sysAccess: '4'  
+    },
 ]
 
 const systems = [
@@ -32,7 +60,13 @@ const UserType = new GraphQLObjectType({
         lastname: { type: GraphQLString },
         firstname: { type: GraphQLString },
         status: { type: GraphQLBoolean },
-        joinDate: { type: GraphQLString }
+        joinDate: { type: GraphQLString },
+        sysAccess: {
+            type: SystemType,
+            resolve(parent, args) {
+                return _.find(systems, { id: parent.sysAccess })
+            }
+        }
     })
 });
 
