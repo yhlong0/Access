@@ -34,7 +34,7 @@ app.use(function (req, res, next) {
 });
 
 app.listen(port, function() {
-    console.log('Running on PORT: ' + port);
+    console.log('Running on PORT : ' + port);
 });
 
 module.exports = app;
