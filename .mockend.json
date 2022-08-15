@@ -2,7 +2,7 @@
 	"Device": {
 		"name": { "string": {} },
 		"serialNumber": { "string": {} },
-		"location": { "string": "[a-z]" },
+		"location": { "regexp": "[a-z]" },
 		"type": { "regexp": "switch|modem|router" },
 		"createdAt": {
 			"dateTime": {
