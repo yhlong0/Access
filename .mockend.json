@@ -1,26 +1,12 @@
 {
   "modem": {
     "name": { "string": {} },
-    "serialNumber": {
-      "regexp": "[A-Z][a-z][0-9]{5,10}"
-    },
+    "serialNumber": { "regexp": "[A-Z][a-z][0-9]{5,10}" },
     "createdAt: {
       "dateTime": {
         "min": "2010-01-01T00:00:00Z",
         "max": "2020-12-31T23:59:59Z"
       }
     }
-  },
-  "switch": {
-    "body": { "string": {} },
-    "post": {
-      "belongsTo": "Post"
-    }
-  },
-  "router": {
-    "body": { "string": {} },
-    "post": {
-      "belongsTo": "Post"
-    }
-  },
+  }
 }
