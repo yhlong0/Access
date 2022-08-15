@@ -1,5 +1,6 @@
 {
   "Device": {
-    "name": { "string": {} }
+    "name": { "string": {} },
+    "type": { "regexp": "[switch|modem|router]" }
   }
 }
