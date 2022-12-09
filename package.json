@@ -24,7 +24,7 @@
     "@material-ui/icons": "^2.0.3",
     "body-parser": "^1.18.3",
     "concurrently": "^3.6.1",
-    "express": "^4.16.4",
+    "express": "^4.17.3",
     "express-graphql": "^0.7.1",
     "graphql": "^14.0.2",
     "lodash": "^4.17.21",
